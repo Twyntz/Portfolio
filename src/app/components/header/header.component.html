@@ -1,0 +1,43 @@
+<header class="fixed top-0 h-16 shadow-md z-50 w-full bg-white">
+  <div class="flex justify-between items-center container h-full mx-auto px-6 lg:px-8">
+
+    <!-- Logo -->
+    <a routerLink="/" class="text-3xl font-bold text-gray-800">TU</a>
+
+    <!-- Menu desktop -->
+    <nav class="hidden md:flex space-x-8 text-gray-800 font-medium">
+      <a routerLink="/#profile" class="hover:text-red-600">Profil</a>
+      <a routerLink="/#skills" class="hover:text-red-600">Compétences</a>
+      <a routerLink="/#projects" class="hover:text-red-600">Réalisation</a>
+      <a routerLink="/#career" class="hover:text-red-600">Parcours</a>
+      <a routerLink="/#contact" class="hover:text-red-600">Contact</a>
+    </nav>
+
+    <!-- Bouton Mon CV -->
+    <a
+      href="assets/mon-cv.pdf" target="_blank" download
+      class="hidden md:inline-block bg-black text-white px-4 py-2 rounded hover:bg-red-600 transition">
+      Mon CV
+    </a>
+
+    <!-- Burger mobile -->
+    <button (click)="toggleMobileNav()" class="md:hidden text-gray-800 hover:text-red-600">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24"
+           stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu mobile avec GSAP (déjà en animation) -->
+  <nav #mobileMenu
+       class="md:hidden bg-white border-t flex flex-col space-y-2 p-2 text-gray-800 font-medium absolute w-full left-0 top-16 z-40">
+    <a routerLink="/#profile" class="hover:text-red-600">Profil</a>
+    <a routerLink="/#skills" class="hover:text-red-600">Compétences</a>
+    <a routerLink="/#projects" class="hover:text-red-600">Réalisation</a>
+    <a routerLink="/#career" class="hover:text-red-600">Parcours</a>
+    <a routerLink="/#contact" class="hover:text-red-600">Contact</a>
+    <a href="assets/mon-cv.pdf" target="_blank" download class="hover:text-red-600">Mon CV</a>
+  </nav>
+</header>

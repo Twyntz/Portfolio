@@ -1,0 +1,51 @@
+<section class="py-16 px-6 md:px-16 bg-white text-gray-800" id="profile">
+  <h2 class="text-3xl font-bold text-red-600 mb-2">Mon Profil</h2>
+  <div class="h-1 w-32 bg-black mb-10"></div>
+
+  <div class="flex flex-col md:flex-row gap-10">
+    <!-- Bloc infos profil animé -->
+    <div #profileCard class="bg-gray-800 text-white p-6 rounded-lg w-full md:w-1/3 text-center space-y-6 text-lg font-medium shadow-xl">
+      <!-- Image de profil -->
+      <img src="assets/img/teo.png" alt="Photo de Téo Ulgen"
+           class="w-24 h-24 mx-auto rounded-full object-cover border-4 border-white shadow-md" />
+
+      <!-- Statut -->
+      <span class="inline-block px-3 py-1 text-sm bg-orange-500 text-white rounded-full font-semibold">En mission</span>
+
+      <!-- Infos dynamiques -->
+      <div *ngFor="let item of profileInfo">
+        <ng-container *ngIf="item.link; else plainText">
+          <a [href]="item.link" target="_blank" rel="noopener noreferrer"
+             class="hover:underline hover:text-red-400 transition-colors duration-200">
+            {{ item.label }}
+          </a>
+        </ng-container>
+        <ng-template #plainText>
+          {{ item.label }}
+        </ng-template>
+      </div>
+    </div>
+
+    <!-- Bloc description -->
+    <div class="w-full md:w-2/3 text-justify space-y-6 text-gray-800">
+      <p>
+        Mon intérêt pour le <strong>développement web</strong> s’est révélé durant ma <strong>dernière année de lycée</strong>, où j’ai commencé à m’intéresser
+        aux langages de programmation et à comprendre le fonctionnement des sites internet. Ce premier déclic m’a poussé à
+        <strong>explorer cet univers par moi-même</strong>, mais c’est réellement à l’<strong>IUT de Haguenau</strong> que j’ai pu me perfectionner, en
+        <strong>consolidant mes bases techniques</strong> et en découvrant les <strong>bonnes pratiques du métier</strong>.
+      </p>
+      <p>
+        Au fil des années, j’ai eu l’opportunité de réaliser plusieurs <strong>projets personnels</strong> et de collaborer avec des
+        <strong>associations</strong>, toujours avec le souci de proposer des solutions à la fois <strong>fiables</strong>, <strong>esthétiques</strong> et pensées pour les
+        utilisateurs. Je considère chacun de mes projets comme un <strong>terrain d’expérimentation</strong>, où je peux <strong>tester de nouvelles
+        approches</strong> et me <strong>former en continu</strong> aux évolutions du web.
+      </p>
+      <p>
+        Grâce à plusieurs années d’<strong>alternance</strong> au sein d’<strong>agences web</strong> et d’entreprises, j’ai appris à <strong>travailler en équipe</strong>,
+        à <strong>communiquer efficacement</strong> avec les clients comme avec les collaborateurs, et à <strong>m’adapter aux exigences réelles</strong>
+        d’un environnement professionnel. Ces expériences ont renforcé ma <strong>rigueur</strong>, ma capacité à <strong>résoudre des problèmes concrets</strong>,
+        et mon <strong>envie constante de progresser</strong> dans ce domaine passionnant.
+      </p>
+    </div>
+  </div>
+</section>
