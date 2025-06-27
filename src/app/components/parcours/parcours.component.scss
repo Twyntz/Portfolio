@@ -1,0 +1,9 @@
+#parcours {
+  scroll-margin-top: 100px;
+
+  .timeline-entry {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  }
+}

@@ -4,8 +4,10 @@
 	<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
 		<div *ngFor="let skill of allSkills"
 			class="aspect-square flex flex-col justify-center items-center bg-white rounded-lg shadow hover:shadow-xl transition duration-300">
-			<img [src]="skill.icon" [alt]="skill.name" class="w-12 h-12 mb-2 object-contain" />
-			<span class="text-sm font-medium text-center text-gray-700">{{ skill.name }}</span>
+			<a [routerLink]="['/competences', skill.id]" class="flex flex-col items-center group">
+  				<img [src]="skill.icon" [alt]="skill.name" class="w-12 h-12 mb-2 object-contain transition transform group-hover:scale-110" />
+  				<span class="text-sm font-medium text-center text-gray-700 group-hover:text-red-600">{{ skill.name }}</span>
+			</a>
 		</div>
 	</div>
 </section>

@@ -1,4 +1,21 @@
-<section class="py-16 px-6 md:px-16 bg-white text-gray-800" id="profile">
-  <h2 class="text-3xl font-bold text-red-600 mb-2">Mon parcours</h2>
-  <div class="h-1 w-32 bg-black mb-10"></div>
+<section id="parcours" class="py-20 px-6 md:px-0 bg-gradient-to-b from-gray-50 to-gray-200 text-gray-800">
+  <h2 class="text-3xl font-bold text-red-600 mb-16 text-center">Mon Parcours</h2>
+
+  <div class="relative max-w-3xl mx-auto border-l-2 border-red-500 pl-8 space-y-20">
+    <div #timelineBlock
+         *ngFor="let step of parcoursScolaire.concat(parcoursPro); let i = index"
+         class="timeline-entry"
+         [attr.data-index]="i">
+      <div class="flex items-center gap-4 mb-3">
+        <div class="h-px bg-red-500 flex-1"></div>
+        <span class="text-sm font-semibold text-red-600">{{ step.year }}</span>
+        <div class="h-px bg-red-500 flex-1"></div>
+      </div>
+      <div class="bg-white shadow-md rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ step.title }}</h3>
+        <p class="text-sm italic text-gray-600 mb-2">{{ step.subtitle }}</p>
+        <p class="text-sm text-gray-700 leading-relaxed">{{ step.description }}</p>
+      </div>
+    </div>
+  </div>
 </section>
