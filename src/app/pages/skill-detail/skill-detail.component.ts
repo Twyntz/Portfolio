@@ -7,18 +7,18 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './skill-detail.component.html',
-  styleUrls: ['./skill-detail.component.scss']
+  styleUrls: ['./skill-detail.component.scss'],
 })
 export class SkillDetailComponent implements OnInit {
   skillId: string = '';
   skill: any;
 
   allSkills = [
-  {
-    id: 'html',
-    name: 'HTML',
-    icon: 'assets/img/html.png',
-    html: `
+    {
+      id: 'html',
+      name: 'HTML',
+      icon: 'assets/img/html.png',
+      html: `
       <h2>Introduction</h2>
       <p>HTML (HyperText Markup Language) est le langage fondamental du web. Il permet de structurer le contenu des pages en définissant les différents éléments tels que les titres, paragraphes, tableaux, images, formulaires ou liens. Il constitue la base de tout site ou application web, sur laquelle viennent s’ajouter les feuilles de style (CSS) et les scripts (JavaScript) pour créer des interfaces modernes et interactives.</p>
 
@@ -42,13 +42,13 @@ export class SkillDetailComponent implements OnInit {
       <p>Je suis également à l’aise pour collaborer avec des designers, intégrer des maquettes en HTML/CSS, et adapter les structures HTML à différents contextes techniques (CMS, frameworks, responsive design…).</p>
 
       <p>À court terme, je souhaite continuer à perfectionner ma pratique du HTML, notamment en approfondissant les aspects liés à l’accessibilité web (WCAG, ARIA) et à l’intégration front-end moderne avec des frameworks comme Angular, que j’utilise dans mon projet de fin d’études. Ma priorité est de concevoir des interfaces robustes, évolutives et respectueuses des standards du web.</p>
-    `
-  },
-  {
-    id: 'php',
-    name: 'PHP',
-    icon: 'assets/img/php.png',
-    html: `
+    `,
+    },
+    {
+      id: 'php',
+      name: 'PHP',
+      icon: 'assets/img/php.png',
+      html: `
       <h2>Introduction</h2>
       <p>PHP (Hypertext Preprocessor) est un langage de programmation open source largement utilisé pour le développement web côté serveur. Apprécié pour sa simplicité, sa flexibilité et sa grande compatibilité avec les serveurs et bases de données, il reste aujourd’hui un pilier incontournable dans la création de sites et d’applications dynamiques. Malgré l’émergence de technologies plus récentes, PHP continue d’alimenter une grande partie du web mondial, notamment à travers des plateformes populaires comme WordPress, Drupal ou Prestashop.</p>
 
@@ -78,13 +78,13 @@ export class SkillDetailComponent implements OnInit {
       <p>Je continue de perfectionner ma maîtrise du langage, en me tenant informé des bonnes pratiques modernes (comme l’utilisation de namespaces, des design patterns, ou la gestion des dépendances avec Composer), et en travaillant sur des projets variés.</p>
 
       <p>À l’avenir, j’envisage de renforcer mes compétences PHP en explorant davantage les tests automatisés, l’intégration continue dans des projets PHP, et en consolidant mes bases sur l’optimisation des performances.</p>
-    `
-  },
-  {
-    id: 'communication',
-    name: 'Communication',
-    icon: 'assets/img/communication.svg',
-    html: `
+    `,
+    },
+    {
+      id: 'communication',
+      name: 'Communication',
+      icon: 'assets/img/communication.svg',
+      html: `
       <h2>Introduction</h2>
       <p>La communication est au cœur de toute activité humaine, qu’elle soit personnelle, sociale ou professionnelle. Elle permet d’échanger des idées, de partager des informations, de collaborer efficacement et de créer des liens de confiance. Dans le monde professionnel, une communication claire et structurée est indispensable au bon fonctionnement des équipes, à la coordination des projets et à la satisfaction des parties prenantes, qu’il s’agisse de collègues, de clients ou de partenaires.</p>
 
@@ -111,13 +111,13 @@ export class SkillDetailComponent implements OnInit {
       <p>Je me considère aujourd’hui à l’aise dans les échanges professionnels et dans la transmission d’informations techniques. Néanmoins, je reste conscient que la communication est une compétence qui se perfectionne continuellement. Je souhaite notamment progresser sur des aspects comme la prise de parole en public, la gestion des situations délicates, ou la présentation de concepts complexes à des publics non techniques.</p>
 
       <p>À cette fin, je compte continuer à apprendre par la pratique quotidienne, mais également en me formant. Je prévois notamment de lire <em>L’art du storytelling</em>, un ouvrage qui m’aidera à structurer mes idées de façon plus impactante et à rendre mes messages plus captivants, que ce soit à l’oral ou à l’écrit.</p>
-    `
-  },
-  {
-    id: 'css',
-    name: 'CSS / SCSS',
-    icon: 'assets/img/css.png',
-    html: `
+    `,
+    },
+    {
+      id: 'css',
+      name: 'CSS / SCSS',
+      icon: 'assets/img/css.png',
+      html: `
       <h2>Introduction</h2>
       <p>CSS (Cascading Style Sheets) est le langage qui permet de styliser et de mettre en forme les pages HTML. Il contrôle la disposition, les couleurs, les polices, les animations et l'adaptation des interfaces aux différents types d’écrans. C’est une compétence incontournable pour tout développeur front-end ou full stack souhaitant créer des interfaces web modernes, cohérentes et accessibles.</p>
 
@@ -151,13 +151,13 @@ export class SkillDetailComponent implements OnInit {
       <p>Ma préférence pour SCSS vient de sa capacité à rendre les feuilles de style plus propres, plus modulaires et plus faciles à maintenir, ce qui est essentiel dans les projets professionnels de moyenne ou grande taille. Je l’utilise autant pour améliorer la lisibilité que pour créer des architectures CSS robustes.</p>
 
       <p>Je souhaite continuer à progresser dans la structuration avancée des styles, notamment en approfondissant des méthodologies comme BEM (Block Element Modifier) ou ITCSS, et en consolidant mes connaissances en accessibilité visuelle et performances front-end.</p>
-    `
-  },
-  {
-    id: 'docker',
-    name: 'Docker',
-    icon: 'assets/img/docker.svg',
-    html: `
+    `,
+    },
+    {
+      id: 'docker',
+      name: 'Docker',
+      icon: 'assets/img/docker.svg',
+      html: `
       <h2>Introduction</h2>
       <p>Docker est un outil incontournable dans le monde du développement et du déploiement logiciel moderne. Il permet de créer, déployer et exécuter des applications dans des conteneurs légers et portables. Ces conteneurs embarquent tout ce dont l’application a besoin pour fonctionner : code, dépendances, configurations, environnement d’exécution… ce qui garantit une exécution cohérente quel que soit l’environnement (local, test, production).</p>
 
@@ -199,13 +199,13 @@ export class SkillDetailComponent implements OnInit {
       </ul>
 
       <p>Docker représente pour moi un outil essentiel à maîtriser dans le développement moderne, et je suis motivé à le pratiquer davantage pour pouvoir l’intégrer pleinement dans mes futurs projets de développement, d’intégration et de déploiement logiciel.</p>
-    `
-  },
-  {
-    id: 'gestion-projet',
-    name: 'Gestion de projet',
-    icon: 'assets/img/gestion_de_projet.png',
-    html: `
+    `,
+    },
+    {
+      id: 'gestion-projet',
+      name: 'Gestion de projet',
+      icon: 'assets/img/gestion_de_projet.png',
+      html: `
       <h2>Introduction</h2>
       <p>La gestion de projet est une compétence clé dans les environnements professionnels modernes, en particulier dans le domaine de l’ingénierie logicielle. Elle consiste à planifier, organiser, piloter et finaliser un projet en respectant des contraintes de temps, de budget et de qualité. Une bonne gestion de projet permet de garantir une vision claire des objectifs, une répartition efficace des ressources et un suivi rigoureux de l’avancement.</p>
 
@@ -232,13 +232,13 @@ export class SkillDetailComponent implements OnInit {
       <p>C’est pourquoi je prévois, à moyen terme, de compléter mon expérience par des ressources plus théoriques, notamment des lectures comme <em>S’initier à la gestion de projets informatiques</em>. Cela me permettra de mieux formaliser ce que j’ai appris sur le terrain, d’enrichir ma boîte à outils méthodologique, et de gagner en rigueur pour des projets de plus grande envergure.</p>
 
       <p>En résumé, mes expériences m’ont permis de prendre conscience de l’importance d’une bonne gestion de projet, non seulement pour atteindre les objectifs techniques, mais aussi pour créer un cadre de travail clair, motivant et stable pour toutes les personnes impliquées.</p>
-    `
-  },
-  {
-    id: 'java',
-    name: 'Java',
-    icon: 'assets/img/java.svg',
-    html: `
+    `,
+    },
+    {
+      id: 'java',
+      name: 'Java',
+      icon: 'assets/img/java.svg',
+      html: `
       <h2>Introduction</h2>
       <p>Java est un langage de programmation orienté objet, robuste et multiplateforme, largement utilisé dans le développement d’applications d’entreprise, de logiciels embarqués, de systèmes distribués, ou encore d’applications web. Grâce à la machine virtuelle Java (JVM), il garantit une grande portabilité du code, selon le principe bien connu : "Write Once, Run Anywhere".</p>
 
@@ -279,13 +279,13 @@ export class SkillDetailComponent implements OnInit {
       </ul>
 
       <p>À moyen terme, je souhaite être capable de concevoir des applications Java modernes et modulaires, et de maîtriser l’ensemble de la chaîne de développement, du code jusqu’au déploiement.</p>
-    `
-  },
-  {
-    id: 'javascript',
-    name: 'JavaScript',
-    icon: 'assets/img/js.png',
-    html: `
+    `,
+    },
+    {
+      id: 'javascript',
+      name: 'JavaScript',
+      icon: 'assets/img/js.png',
+      html: `
       <h2>Introduction</h2>
       <p>JavaScript est un langage de programmation incontournable dans le développement web. Il permet de rendre les pages web interactives, dynamiques et réactives. Contrairement à HTML et CSS qui définissent la structure et l’apparence d’une page, JavaScript donne vie à l’interface : manipulation du DOM, interactions en temps réel, animations, appels API, gestion des événements, etc.</p>
 
@@ -329,13 +329,13 @@ export class SkillDetailComponent implements OnInit {
       </ul>
 
       <p>Mon objectif est de consolider mes compétences JavaScript pour pouvoir aborder sereinement des projets plus complexes, basés sur des interfaces riches, des intégrations API, et une architecture front-end évolutive.</p>
-    `
-  },
-  {
-    id: 'relation-client',
-    name: 'Relation Client',
-    icon: 'assets/img/relation_client.png',
-    html: `
+    `,
+    },
+    {
+      id: 'relation-client',
+      name: 'Relation Client',
+      icon: 'assets/img/relation_client.png',
+      html: `
       <h2>Introduction</h2>
       <p>La relation client occupe une place centrale dans la stratégie des entreprises modernes. Elle regroupe l’ensemble des actions mises en œuvre pour établir, entretenir et enrichir les interactions entre une entreprise et ses clients, dans le but de bâtir une relation de confiance durable. Cela passe par la pertinence des réponses apportées, la capacité à gérer les insatisfactions et la volonté d’anticiper les besoins des clients. Au fil des années, cette relation s’est complexifiée avec l’émergence des canaux numériques comme les réseaux sociaux, rendant nécessaire une adaptation constante des pratiques.</p>
 
@@ -370,13 +370,13 @@ export class SkillDetailComponent implements OnInit {
       <p>La relation client couvre un champ bien plus large, incluant notamment la gestion des conflits, la personnalisation de l’expérience, ou encore la fidélisation active. Ce sont des domaines que je souhaite explorer davantage à l’avenir, que ce soit par la pratique ou à travers des lectures et des formations spécialisées.</p>
 
       <p>Je suis convaincu que la maîtrise de la relation client est un atout majeur dans n’importe quel environnement professionnel, y compris dans les métiers techniques. Elle permet non seulement d’améliorer la qualité des produits, mais aussi de renforcer la confiance entre l’entreprise et ses utilisateurs. Mon objectif est donc de continuer à progresser sur ces aspects, en m’appuyant sur l’expérience acquise et en restant ouvert à de nouvelles méthodes et outils.</p>
-    `
-  },
-  {
-    id: 'relation-client',
-    name: 'Relation Client',
-    icon: 'assets/img/relation_client.png',
-    html: `
+    `,
+    },
+    {
+      id: 'relation-client',
+      name: 'Relation Client',
+      icon: 'assets/img/relation_client.png',
+      html: `
       <h2>Introduction</h2>
       <p>La relation client occupe une place centrale dans la stratégie des entreprises modernes. Elle regroupe l’ensemble des actions mises en œuvre pour établir, entretenir et enrichir les interactions entre une entreprise et ses clients, dans le but de bâtir une relation de confiance durable. Cela passe par la pertinence des réponses apportées, la capacité à gérer les insatisfactions et la volonté d’anticiper les besoins des clients. Au fil des années, cette relation s’est complexifiée avec l’émergence des canaux numériques comme les réseaux sociaux, rendant nécessaire une adaptation constante des pratiques.</p>
 
@@ -411,13 +411,13 @@ export class SkillDetailComponent implements OnInit {
       <p>La relation client couvre un champ bien plus large, incluant notamment la gestion des conflits, la personnalisation de l’expérience, ou encore la fidélisation active. Ce sont des domaines que je souhaite explorer davantage à l’avenir, que ce soit par la pratique ou à travers des lectures et des formations spécialisées.</p>
 
       <p>Je suis convaincu que la maîtrise de la relation client est un atout majeur dans n’importe quel environnement professionnel, y compris dans les métiers techniques. Elle permet non seulement d’améliorer la qualité des produits, mais aussi de renforcer la confiance entre l’entreprise et ses utilisateurs. Mon objectif est donc de continuer à progresser sur ces aspects, en m’appuyant sur l’expérience acquise et en restant ouvert à de nouvelles méthodes et outils.</p>
-    `
-  },
-  {
-    id: 'sql',
-    name: 'SQL',
-    icon: 'assets/img/sql.png',
-    html: `
+    `,
+    },
+    {
+      id: 'sql',
+      name: 'SQL',
+      icon: 'assets/img/sql.png',
+      html: `
       <h2>Introduction</h2>
       <p>SQL (Structured Query Language) est un langage fondamental pour la gestion des bases de données relationnelles. Il permet d’interagir efficacement avec les données : les créer, les modifier, les interroger ou les supprimer. Dans le développement d'applications web ou logicielles, SQL joue un rôle central en assurant la cohérence, la structure et l’accessibilité des informations manipulées.</p>
 
@@ -445,14 +445,218 @@ export class SkillDetailComponent implements OnInit {
       <p>Je suis conscient que le domaine du SQL est vaste et que sa maîtrise passe aussi par une compréhension approfondie des bonnes pratiques de modélisation, de la gestion des index, ou encore de la sécurité des requêtes. À ce titre, je souhaite continuer à progresser, notamment en consolidant mes connaissances sur l’optimisation des performances, la gestion de grandes volumétries, et la mise en place de procédures stockées ou de vues matérialisées dans des contextes plus complexes.</p>
 
       <p>Dans cette optique, je prévois de me former davantage, notamment en consultant des ouvrages techniques et des ressources spécialisées, afin d’atteindre un niveau avancé et d’être pleinement autonome dans la conception et l’optimisation de bases de données relationnelles.</p>
-    `
-  },
-];
+    `,
+    },
+    {
+      id: 'wordpress',
+      name: 'Wordpress',
+      icon: 'assets/img/wordpress.png',
+      html: `
+      <h2>Introduction</h2>
+  <p>
+    WordPress est aujourd’hui l’un des CMS les plus utilisés au monde, réputé pour sa flexibilité, sa large communauté,
+    et sa richesse en fonctionnalités. Il permet aussi bien de créer des blogs, des sites vitrines que des boutiques en ligne,
+    grâce à un écosystème de thèmes et de plugins très développé.
+  </p>
+  <p>
+    Dans un contexte professionnel, WordPress représente une solution particulièrement efficace pour les clients souhaitant
+    disposer d’un site administrable, évolutif et rapide à mettre en place. Il offre également l’avantage de permettre
+    aux équipes non techniques de gérer le contenu de manière autonome, grâce à son interface intuitive.
+  </p>
+
+  <h2>Mon expérience vécue</h2>
+  <p>
+    J’ai été amené à travailler sur plusieurs projets professionnels avec WordPress, principalement au sein de l’agence
+    <strong>DGS Création</strong>. Tous les sites réalisés étaient faits <strong>sur mesure</strong>, en partant de zéro,
+    avec un <strong>thème personnalisé développé spécifiquement</strong> pour chaque client, afin de répondre au mieux à
+    leur identité visuelle, à leurs besoins métiers, et à leur cahier des charges.
+  </p>
+  <p>
+    Je n’ai <strong>jamais utilisé de constructeur de pages comme Elementor</strong> : tout était codé directement,
+    que ce soit en PHP, HTML, CSS/SCSS et JavaScript, afin d’assurer un <strong>contrôle total</strong> sur le rendu final,
+    les performances et la maintenabilité.
+  </p>
+  <p>Sur ces projets, j’ai notamment travaillé sur :</p>
+  <ul>
+    <li>La structure des templates WordPress (page, article, CPT…)</li>
+    <li>L’intégration des maquettes fournies par les graphistes</li>
+    <li>Le développement de fonctionnalités personnalisées via des plugins maison</li>
+    <li>L’optimisation SEO technique (balises, structure HTML, chargement)</li>
+    <li>La configuration du back-office pour faciliter la prise en main par le client</li>
+  </ul>
+
+  <h2>Mon niveau de compétence</h2>
+  <p>
+    Mon expérience avec WordPress m’a permis de <strong>maîtriser pleinement son architecture</strong> : boucle WordPress,
+    système de hooks (actions, filtres), création de CPT (Custom Post Types), taxonomies, ACF (Advanced Custom Fields), etc.
+  </p>
+  <p>
+    Je suis à l’aise pour <strong>concevoir un site WordPress de A à Z</strong>, de son installation à sa mise en production,
+    en passant par le développement frontend et backend. Je privilégie toujours la <strong>qualité du code</strong>,
+    la <strong>performance du site</strong> et la <strong>facilité d’administration</strong> pour le client final.
+  </p>
+  <p>
+    Je considère WordPress comme un outil puissant à condition d’être bien maîtrisé, et je continue à suivre ses évolutions,
+    tout en consolidant mes compétences sur des projets réels.
+  </p>
+  `,
+    },
+    {
+      id: 'prestashop',
+      name: 'Prestashop',
+      icon: 'assets/img/prestashop.png',
+      html: `
+      <h2>Introduction</h2>
+      <p>
+        <strong>PrestaShop</strong> est une solution e-commerce open source reconnue pour sa flexibilité, sa richesse fonctionnelle et sa capacité à gérer des catalogues produits complexes. Utilisé par des milliers de boutiques en ligne à travers le monde, il permet de créer des sites e-commerce performants, adaptables et entièrement personnalisables.
+      </p>
+
+      <p>
+        Dans un contexte professionnel, PrestaShop est souvent choisi pour des projets où la liberté de développement et la maîtrise du code sont essentielles. Grâce à son architecture modulaire, il est possible d’adapter la boutique aux besoins précis des commerçants, tant au niveau de l’expérience utilisateur que des processus métiers internes.
+      </p>
+
+      <h2>Mon expérience vécue</h2>
+
+      <p>
+        J’ai eu l’occasion de travailler à plusieurs reprises sur PrestaShop, notamment lors de mon passage chez <strong>DGS Création</strong>, où nous accompagnions des clients dans la conception de leurs sites e-commerce sur mesure.
+      </p>
+
+      <p>Sur ces projets, j’ai travaillé à la fois sur :</p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li><strong>L’intégration front-end</strong> : en transformant les maquettes des graphistes en pages PrestaShop responsives et fidèles au design.</li>
+        <li><strong>Le développement de modules personnalisés</strong> : pour répondre à des besoins spécifiques du client (gestion de livraison, affichage produit dynamique, options marketing...).</li>
+        <li><strong>L’adaptation du back-office</strong> pour le rendre plus accessible et intuitif pour les équipes non techniques.</li>
+        <li><strong>L’optimisation SEO</strong>, indispensable pour assurer la visibilité de la boutique.</li>
+      </ul>
+
+      <p>
+        L’un des projets les plus complets sur lesquels j’ai travaillé est la <strong>refonte du site Uberti.shop</strong>. Sur ce projet, j’ai développé un thème PrestaShop 100% personnalisé, intégré un catalogue produit complet, conçu des modules sur mesure pour faciliter la gestion quotidienne du site, et accompagné le client lors de la prise en main de son nouvel outil.
+      </p>
+
+      <h2>Mon niveau de compétence</h2>
+
+      <p>
+        Grâce à ces expériences, j’ai pu me familiariser avec les mécanismes internes de PrestaShop : <strong>système de hooks</strong>, <strong>architecture MVC</strong>, <strong>surcharge de classes et de templates</strong>, <strong>structure du back-office</strong>, etc.
+      </p>
+
+      <p>Je suis capable de :</p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li>Créer ou modifier un <strong>thème PrestaShop</strong> sur mesure,</li>
+        <li>Développer des <strong>modules personnalisés</strong>,</li>
+        <li>Intégrer des maquettes tout en respectant les contraintes techniques du CMS,</li>
+        <li>Optimiser les performances et le SEO du site,</li>
+        <li>Gérer la <strong>mise en production</strong> d’une boutique PrestaShop.</li>
+      </ul>
+
+      <p>
+        Je considère PrestaShop comme un outil puissant lorsqu’il est bien utilisé, mais qui demande une vraie rigueur de développement pour garantir sa maintenabilité et sa stabilité dans le temps.
+      </p>
+  `,
+    },
+    {
+      id: 'typescript',
+      name: 'TypeScript',
+      icon: 'assets/img/typescript.png',
+      html: `
+      <h2>Introduction</h2>
+  <p>
+    <strong>TypeScript</strong> est un sur-ensemble de JavaScript qui ajoute le typage statique et des fonctionnalités avancées au langage. Il permet d’écrire un code plus robuste, maintenable et lisible, en facilitant la détection d’erreurs dès l’étape de compilation. Très utilisé dans les projets front-end modernes, notamment avec Angular ou React, TypeScript est devenu un standard dans les environnements de développement professionnels.
+  </p>
+
+  <p>
+    En combinant la souplesse de JavaScript avec la rigueur du typage, TypeScript améliore significativement la qualité du code et la productivité des développeurs. Il est particulièrement apprécié dans les projets de moyenne à grande échelle, où la clarté et la fiabilité du code sont essentielles.
+  </p>
+
+  <h2>Mon expérience vécue</h2>
+
+  <p>
+    J’ai découvert TypeScript dans un contexte professionnel lors de projets front-end, notamment avec le framework <strong>Angular</strong>. Dans le cadre de mon projet de portfolio personnel, j’ai réalisé toute l’interface en Angular, ce qui m’a permis de manipuler TypeScript quotidiennement.
+  </p>
+
+  <p>
+    À travers ce projet, j’ai appris à structurer mon code en modules et composants, à définir des interfaces claires pour mes données, et à tirer parti du typage fort pour éviter des erreurs courantes. J’ai également manipulé des services, des observables, et mis en place des formulaires dynamiques avec validation typée.
+  </p>
+
+  <p>
+    L’utilisation de TypeScript m’a permis de gagner en confiance lors du développement, en anticipant plus facilement les comportements inattendus et en documentant naturellement mon code via les types.
+  </p>
+
+  <h2>Mon niveau de compétence</h2>
+
+  <p>
+    Aujourd’hui, je suis à l’aise avec TypeScript dans un contexte Angular. Je suis capable de :
+  </p>
+
+  <ul class="list-disc list-inside ml-4">
+    <li>Créer et utiliser des <strong>interfaces</strong>, <strong>types</strong> et <strong>énumérations</strong> pour structurer les données,</li>
+    <li>Manipuler les <strong>classes</strong>, méthodes et propriétés avec une bonne maîtrise de l’orienté objet,</li>
+    <li>Utiliser les concepts de <strong>génériques</strong>, d’<strong>union types</strong> ou d’<strong>optionnalité</strong> pour écrire un code souple mais sécurisé,</li>
+    <li>Comprendre et corriger les messages d’erreur du compilateur pour améliorer mon code,</li>
+    <li>Intégrer TypeScript dans des projets front-end complexes en lien avec une architecture modulaire.</li>
+  </ul>
+
+  <p>
+    Je continue d’enrichir mes connaissances de TypeScript à travers la pratique quotidienne, la lecture de documentation et l’analyse de projets open source. C’est un langage que j’apprécie particulièrement pour la <strong>rigueur</strong> et la <strong>lisibilité</strong> qu’il apporte à mes projets web.
+  </p>
+  `,
+    },
+    {
+      id: 'angular',
+      name: 'Angular',
+      icon: 'assets/img/angular.png',
+      html: `
+      <h2>Introduction</h2>
+      <p>
+        <strong>Angular</strong> est un framework front-end open source développé par Google, basé sur TypeScript. Il permet de créer des applications web dynamiques, modulaires et maintenables. Grâce à son système de composants, ses outils intégrés (comme le routing, les services, ou la gestion des formulaires) et son architecture robuste, Angular est aujourd’hui utilisé dans de nombreux projets professionnels à grande échelle.
+      </p>
+
+      <p>
+        Pensé pour les projets structurés, Angular favorise une organisation claire du code et une séparation des responsabilités, ce qui en fait un choix privilégié pour les équipes de développement souhaitant construire des applications évolutives.
+      </p>
+
+      <h2>Mon expérience vécue</h2>
+
+      <p>
+        J’ai commencé à utiliser Angular dans le cadre de projets personnels, puis je l’ai pleinement mis en pratique lors de la création de mon portfolio. Ce projet m’a permis d’explorer les principales fonctionnalités du framework : création de composants réutilisables, gestion du routing, utilisation des services pour partager des données, et manipulation des formulaires réactifs.
+      </p>
+
+      <p>
+        J’ai également intégré des bibliothèques externes comme <strong>Tailwind CSS</strong> pour le style, ou <strong>GSAP</strong> pour animer certains éléments de l’interface. Angular m’a offert une structure claire et puissante pour développer rapidement des interfaces cohérentes, tout en gardant une bonne maintenabilité du code.
+      </p>
+
+      <p>
+        La typisation apportée par TypeScript, couplée à la rigueur imposée par Angular, m’a aidé à structurer mes projets plus efficacement et à anticiper les erreurs potentielles dès la phase de développement.
+      </p>
+
+      <h2>Mon niveau de compétence</h2>
+
+      <p>
+        Aujourd’hui, je suis à l’aise avec Angular pour développer des applications complètes. Je suis capable de :
+      </p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li>Créer une architecture d’application Angular claire et modulaire,</li>
+        <li>Développer des composants dynamiques et réutilisables,</li>
+        <li>Utiliser les services et l’injection de dépendances pour centraliser les données,</li>
+        <li>Gérer la navigation avec le module de routing,</li>
+        <li>Travailler avec les formulaires réactifs et les validations,</li>
+        <li>Utiliser les directives, pipes personnalisés et binding avancé,</li>
+        <li>Intégrer des bibliothèques comme GSAP pour les animations ou Tailwind pour le design.</li>
+      </ul>
+
+      <p>
+        Angular est pour moi un framework fiable et puissant, qui me permet de produire des interfaces complexes avec une bonne expérience utilisateur tout en respectant les standards modernes du développement web.
+      </p>
+  `,
+    },
+  ];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.skillId = this.route.snapshot.paramMap.get('id') || '';
-    this.skill = this.allSkills.find(s => s.id === this.skillId);
+    this.skill = this.allSkills.find((s) => s.id === this.skillId);
   }
 }
