@@ -1,4 +1,4 @@
-import{B as f,F as h,G as b,I as q,a as u,f as c,h as n,i as p,j as d,l as t,m as a,n as r,o as m,t as v,y as o,z as g}from"./chunk-YXYPNERK.js";function j(e,x){if(e&1&&(a(0,"section",2)(1,"div",3)(2,"div",4)(3,"h1",5),o(4),r()(),m(5,"div",6),r()()),e&2){let s=v();n(4),g(s.skill.name),n(),t("innerHTML",s.skill==null?null:s.skill.html,c)}}function S(e,x){e&1&&(a(0,"section",7)(1,"p"),o(2,"Comp\xE9tence introuvable."),r()())}var M=(()=>{class e{constructor(s){this.route=s,this.skillId="",this.allSkills=[{id:"html",name:"HTML",icon:"assets/img/html.png",html:`
+import{B as f,F as h,G as b,I as q,a as u,f as p,h as i,i as c,j as d,l as t,m as a,n as r,o as m,t as g,y as o,z as v}from"./chunk-YXYPNERK.js";function x(e,j){if(e&1&&(a(0,"section",2)(1,"div",3)(2,"div",4)(3,"h1",5),o(4),r()(),m(5,"div",6),r()()),e&2){let s=g();i(4),v(s.skill.name),i(),t("innerHTML",s.skill==null?null:s.skill.html,p)}}function S(e,j){e&1&&(a(0,"section",7)(1,"p"),o(2,"Comp\xE9tence introuvable."),r()())}var D=(()=>{class e{constructor(s){this.route=s,this.skillId="",this.allSkills=[{id:"html",name:"HTML",icon:"assets/img/html.png",html:`
       <h2>Introduction</h2>
       <p>HTML (HyperText Markup Language) est le langage fondamental du web. Il permet de structurer le contenu des pages en d\xE9finissant les diff\xE9rents \xE9l\xE9ments tels que les titres, paragraphes, tableaux, images, formulaires ou liens. Il constitue la base de tout site ou application web, sur laquelle viennent s\u2019ajouter les feuilles de style (CSS) et les scripts (JavaScript) pour cr\xE9er des interfaces modernes et interactives.</p>
 
@@ -365,4 +365,288 @@ import{B as f,F as h,G as b,I as q,a as u,f as c,h as n,i as p,j as d,l as t,m a
       <p>Je suis conscient que le domaine du SQL est vaste et que sa ma\xEEtrise passe aussi par une compr\xE9hension approfondie des bonnes pratiques de mod\xE9lisation, de la gestion des index, ou encore de la s\xE9curit\xE9 des requ\xEAtes. \xC0 ce titre, je souhaite continuer \xE0 progresser, notamment en consolidant mes connaissances sur l\u2019optimisation des performances, la gestion de grandes volum\xE9tries, et la mise en place de proc\xE9dures stock\xE9es ou de vues mat\xE9rialis\xE9es dans des contextes plus complexes.</p>
 
       <p>Dans cette optique, je pr\xE9vois de me former davantage, notamment en consultant des ouvrages techniques et des ressources sp\xE9cialis\xE9es, afin d\u2019atteindre un niveau avanc\xE9 et d\u2019\xEAtre pleinement autonome dans la conception et l\u2019optimisation de bases de donn\xE9es relationnelles.</p>
-    `}]}ngOnInit(){this.skillId=this.route.snapshot.paramMap.get("id")||"",this.skill=this.allSkills.find(s=>s.id===this.skillId)}static{this.\u0275fac=function(i){return new(i||e)(p(q))}}static{this.\u0275cmp=u({type:e,selectors:[["app-skill-detail"]],standalone:!0,features:[f],decls:2,vars:2,consts:[["class","py-16 px-6 md:px-24 bg-white text-gray-800 min-h-[60vh]",4,"ngIf"],["class","py-20 text-center text-gray-500",4,"ngIf"],[1,"py-16","px-6","md:px-24","bg-white","text-gray-800","min-h-[60vh]"],[1,"max-w-4xl","mx-auto","space-y-10"],[1,"text-center","my-4"],[1,"text-4xl","font-bold","text-red-600","mb-2"],[1,"prose","prose-lg","max-w-none","text-gray-700","mx-auto",3,"innerHTML"],[1,"py-20","text-center","text-gray-500"]],template:function(i,l){i&1&&d(0,j,6,2,"section",0)(1,S,3,0,"section",1),i&2&&(t("ngIf",l.skill),n(),t("ngIf",!l.skill))},dependencies:[b,h],styles:["[_nghost-%COMP%]{display:block;background:linear-gradient(to bottom,#fff,#f8f8f8)}"]})}}return e})();export{M as SkillDetailComponent};
+    `},{id:"wordpress",name:"Wordpress",icon:"assets/img/wordpress.png",html:`
+      <h2>Introduction</h2>
+  <p>
+    WordPress est aujourd\u2019hui l\u2019un des CMS les plus utilis\xE9s au monde, r\xE9put\xE9 pour sa flexibilit\xE9, sa large communaut\xE9,
+    et sa richesse en fonctionnalit\xE9s. Il permet aussi bien de cr\xE9er des blogs, des sites vitrines que des boutiques en ligne,
+    gr\xE2ce \xE0 un \xE9cosyst\xE8me de th\xE8mes et de plugins tr\xE8s d\xE9velopp\xE9.
+  </p>
+  <p>
+    Dans un contexte professionnel, WordPress repr\xE9sente une solution particuli\xE8rement efficace pour les clients souhaitant
+    disposer d\u2019un site administrable, \xE9volutif et rapide \xE0 mettre en place. Il offre \xE9galement l\u2019avantage de permettre
+    aux \xE9quipes non techniques de g\xE9rer le contenu de mani\xE8re autonome, gr\xE2ce \xE0 son interface intuitive.
+  </p>
+
+  <h2>Mon exp\xE9rience v\xE9cue</h2>
+  <p>
+    J\u2019ai \xE9t\xE9 amen\xE9 \xE0 travailler sur plusieurs projets professionnels avec WordPress, principalement au sein de l\u2019agence
+    <strong>DGS Cr\xE9ation</strong>. Tous les sites r\xE9alis\xE9s \xE9taient faits <strong>sur mesure</strong>, en partant de z\xE9ro,
+    avec un <strong>th\xE8me personnalis\xE9 d\xE9velopp\xE9 sp\xE9cifiquement</strong> pour chaque client, afin de r\xE9pondre au mieux \xE0
+    leur identit\xE9 visuelle, \xE0 leurs besoins m\xE9tiers, et \xE0 leur cahier des charges.
+  </p>
+  <p>
+    Je n\u2019ai <strong>jamais utilis\xE9 de constructeur de pages comme Elementor</strong> : tout \xE9tait cod\xE9 directement,
+    que ce soit en PHP, HTML, CSS/SCSS et JavaScript, afin d\u2019assurer un <strong>contr\xF4le total</strong> sur le rendu final,
+    les performances et la maintenabilit\xE9.
+  </p>
+  <p>Sur ces projets, j\u2019ai notamment travaill\xE9 sur :</p>
+  <ul>
+    <li>La structure des templates WordPress (page, article, CPT\u2026)</li>
+    <li>L\u2019int\xE9gration des maquettes fournies par les graphistes</li>
+    <li>Le d\xE9veloppement de fonctionnalit\xE9s personnalis\xE9es via des plugins maison</li>
+    <li>L\u2019optimisation SEO technique (balises, structure HTML, chargement)</li>
+    <li>La configuration du back-office pour faciliter la prise en main par le client</li>
+  </ul>
+
+  <h2>Mon niveau de comp\xE9tence</h2>
+  <p>
+    Mon exp\xE9rience avec WordPress m\u2019a permis de <strong>ma\xEEtriser pleinement son architecture</strong> : boucle WordPress,
+    syst\xE8me de hooks (actions, filtres), cr\xE9ation de CPT (Custom Post Types), taxonomies, ACF (Advanced Custom Fields), etc.
+  </p>
+  <p>
+    Je suis \xE0 l\u2019aise pour <strong>concevoir un site WordPress de A \xE0 Z</strong>, de son installation \xE0 sa mise en production,
+    en passant par le d\xE9veloppement frontend et backend. Je privil\xE9gie toujours la <strong>qualit\xE9 du code</strong>,
+    la <strong>performance du site</strong> et la <strong>facilit\xE9 d\u2019administration</strong> pour le client final.
+  </p>
+  <p>
+    Je consid\xE8re WordPress comme un outil puissant \xE0 condition d\u2019\xEAtre bien ma\xEEtris\xE9, et je continue \xE0 suivre ses \xE9volutions,
+    tout en consolidant mes comp\xE9tences sur des projets r\xE9els.
+  </p>
+  `},{id:"prestashop",name:"Prestashop",icon:"assets/img/prestashop.png",html:`
+      <h2>Introduction</h2>
+      <p>
+        <strong>PrestaShop</strong> est une solution e-commerce open source reconnue pour sa flexibilit\xE9, sa richesse fonctionnelle et sa capacit\xE9 \xE0 g\xE9rer des catalogues produits complexes. Utilis\xE9 par des milliers de boutiques en ligne \xE0 travers le monde, il permet de cr\xE9er des sites e-commerce performants, adaptables et enti\xE8rement personnalisables.
+      </p>
+
+      <p>
+        Dans un contexte professionnel, PrestaShop est souvent choisi pour des projets o\xF9 la libert\xE9 de d\xE9veloppement et la ma\xEEtrise du code sont essentielles. Gr\xE2ce \xE0 son architecture modulaire, il est possible d\u2019adapter la boutique aux besoins pr\xE9cis des commer\xE7ants, tant au niveau de l\u2019exp\xE9rience utilisateur que des processus m\xE9tiers internes.
+      </p>
+
+      <h2>Mon exp\xE9rience v\xE9cue</h2>
+
+      <p>
+        J\u2019ai eu l\u2019occasion de travailler \xE0 plusieurs reprises sur PrestaShop, notamment lors de mon passage chez <strong>DGS Cr\xE9ation</strong>, o\xF9 nous accompagnions des clients dans la conception de leurs sites e-commerce sur mesure.
+      </p>
+
+      <p>Sur ces projets, j\u2019ai travaill\xE9 \xE0 la fois sur :</p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li><strong>L\u2019int\xE9gration front-end</strong> : en transformant les maquettes des graphistes en pages PrestaShop responsives et fid\xE8les au design.</li>
+        <li><strong>Le d\xE9veloppement de modules personnalis\xE9s</strong> : pour r\xE9pondre \xE0 des besoins sp\xE9cifiques du client (gestion de livraison, affichage produit dynamique, options marketing...).</li>
+        <li><strong>L\u2019adaptation du back-office</strong> pour le rendre plus accessible et intuitif pour les \xE9quipes non techniques.</li>
+        <li><strong>L\u2019optimisation SEO</strong>, indispensable pour assurer la visibilit\xE9 de la boutique.</li>
+      </ul>
+
+      <p>
+        L\u2019un des projets les plus complets sur lesquels j\u2019ai travaill\xE9 est la <strong>refonte du site Uberti.shop</strong>. Sur ce projet, j\u2019ai d\xE9velopp\xE9 un th\xE8me PrestaShop 100% personnalis\xE9, int\xE9gr\xE9 un catalogue produit complet, con\xE7u des modules sur mesure pour faciliter la gestion quotidienne du site, et accompagn\xE9 le client lors de la prise en main de son nouvel outil.
+      </p>
+
+      <h2>Mon niveau de comp\xE9tence</h2>
+
+      <p>
+        Gr\xE2ce \xE0 ces exp\xE9riences, j\u2019ai pu me familiariser avec les m\xE9canismes internes de PrestaShop : <strong>syst\xE8me de hooks</strong>, <strong>architecture MVC</strong>, <strong>surcharge de classes et de templates</strong>, <strong>structure du back-office</strong>, etc.
+      </p>
+
+      <p>Je suis capable de :</p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li>Cr\xE9er ou modifier un <strong>th\xE8me PrestaShop</strong> sur mesure,</li>
+        <li>D\xE9velopper des <strong>modules personnalis\xE9s</strong>,</li>
+        <li>Int\xE9grer des maquettes tout en respectant les contraintes techniques du CMS,</li>
+        <li>Optimiser les performances et le SEO du site,</li>
+        <li>G\xE9rer la <strong>mise en production</strong> d\u2019une boutique PrestaShop.</li>
+      </ul>
+
+      <p>
+        Je consid\xE8re PrestaShop comme un outil puissant lorsqu\u2019il est bien utilis\xE9, mais qui demande une vraie rigueur de d\xE9veloppement pour garantir sa maintenabilit\xE9 et sa stabilit\xE9 dans le temps.
+      </p>
+  `},{id:"typescript",name:"TypeScript",icon:"assets/img/typescript.png",html:`
+      <h2>Introduction</h2>
+  <p>
+    <strong>TypeScript</strong> est un sur-ensemble de JavaScript qui ajoute le typage statique et des fonctionnalit\xE9s avanc\xE9es au langage. Il permet d\u2019\xE9crire un code plus robuste, maintenable et lisible, en facilitant la d\xE9tection d\u2019erreurs d\xE8s l\u2019\xE9tape de compilation. Tr\xE8s utilis\xE9 dans les projets front-end modernes, notamment avec Angular ou React, TypeScript est devenu un standard dans les environnements de d\xE9veloppement professionnels.
+  </p>
+
+  <p>
+    En combinant la souplesse de JavaScript avec la rigueur du typage, TypeScript am\xE9liore significativement la qualit\xE9 du code et la productivit\xE9 des d\xE9veloppeurs. Il est particuli\xE8rement appr\xE9ci\xE9 dans les projets de moyenne \xE0 grande \xE9chelle, o\xF9 la clart\xE9 et la fiabilit\xE9 du code sont essentielles.
+  </p>
+
+  <h2>Mon exp\xE9rience v\xE9cue</h2>
+
+  <p>
+    J\u2019ai d\xE9couvert TypeScript dans un contexte professionnel lors de projets front-end, notamment avec le framework <strong>Angular</strong>. Dans le cadre de mon projet de portfolio personnel, j\u2019ai r\xE9alis\xE9 toute l\u2019interface en Angular, ce qui m\u2019a permis de manipuler TypeScript quotidiennement.
+  </p>
+
+  <p>
+    \xC0 travers ce projet, j\u2019ai appris \xE0 structurer mon code en modules et composants, \xE0 d\xE9finir des interfaces claires pour mes donn\xE9es, et \xE0 tirer parti du typage fort pour \xE9viter des erreurs courantes. J\u2019ai \xE9galement manipul\xE9 des services, des observables, et mis en place des formulaires dynamiques avec validation typ\xE9e.
+  </p>
+
+  <p>
+    L\u2019utilisation de TypeScript m\u2019a permis de gagner en confiance lors du d\xE9veloppement, en anticipant plus facilement les comportements inattendus et en documentant naturellement mon code via les types.
+  </p>
+
+  <h2>Mon niveau de comp\xE9tence</h2>
+
+  <p>
+    Aujourd\u2019hui, je suis \xE0 l\u2019aise avec TypeScript dans un contexte Angular. Je suis capable de :
+  </p>
+
+  <ul class="list-disc list-inside ml-4">
+    <li>Cr\xE9er et utiliser des <strong>interfaces</strong>, <strong>types</strong> et <strong>\xE9num\xE9rations</strong> pour structurer les donn\xE9es,</li>
+    <li>Manipuler les <strong>classes</strong>, m\xE9thodes et propri\xE9t\xE9s avec une bonne ma\xEEtrise de l\u2019orient\xE9 objet,</li>
+    <li>Utiliser les concepts de <strong>g\xE9n\xE9riques</strong>, d\u2019<strong>union types</strong> ou d\u2019<strong>optionnalit\xE9</strong> pour \xE9crire un code souple mais s\xE9curis\xE9,</li>
+    <li>Comprendre et corriger les messages d\u2019erreur du compilateur pour am\xE9liorer mon code,</li>
+    <li>Int\xE9grer TypeScript dans des projets front-end complexes en lien avec une architecture modulaire.</li>
+  </ul>
+
+  <p>
+    Je continue d\u2019enrichir mes connaissances de TypeScript \xE0 travers la pratique quotidienne, la lecture de documentation et l\u2019analyse de projets open source. C\u2019est un langage que j\u2019appr\xE9cie particuli\xE8rement pour la <strong>rigueur</strong> et la <strong>lisibilit\xE9</strong> qu\u2019il apporte \xE0 mes projets web.
+  </p>
+  `},{id:"angular",name:"Angular",icon:"assets/img/angular.png",html:`
+      <h2>Introduction</h2>
+      <p>
+        <strong>Angular</strong> est un framework front-end open source d\xE9velopp\xE9 par Google, bas\xE9 sur TypeScript. Il permet de cr\xE9er des applications web dynamiques, modulaires et maintenables. Gr\xE2ce \xE0 son syst\xE8me de composants, ses outils int\xE9gr\xE9s (comme le routing, les services, ou la gestion des formulaires) et son architecture robuste, Angular est aujourd\u2019hui utilis\xE9 dans de nombreux projets professionnels \xE0 grande \xE9chelle.
+      </p>
+
+      <p>
+        Pens\xE9 pour les projets structur\xE9s, Angular favorise une organisation claire du code et une s\xE9paration des responsabilit\xE9s, ce qui en fait un choix privil\xE9gi\xE9 pour les \xE9quipes de d\xE9veloppement souhaitant construire des applications \xE9volutives.
+      </p>
+
+      <h2>Mon exp\xE9rience v\xE9cue</h2>
+
+      <p>
+        J\u2019ai commenc\xE9 \xE0 utiliser Angular dans le cadre de projets personnels, puis je l\u2019ai pleinement mis en pratique lors de la cr\xE9ation de mon portfolio. Ce projet m\u2019a permis d\u2019explorer les principales fonctionnalit\xE9s du framework : cr\xE9ation de composants r\xE9utilisables, gestion du routing, utilisation des services pour partager des donn\xE9es, et manipulation des formulaires r\xE9actifs.
+      </p>
+
+      <p>
+        J\u2019ai \xE9galement int\xE9gr\xE9 des biblioth\xE8ques externes comme <strong>Tailwind CSS</strong> pour le style, ou <strong>GSAP</strong> pour animer certains \xE9l\xE9ments de l\u2019interface. Angular m\u2019a offert une structure claire et puissante pour d\xE9velopper rapidement des interfaces coh\xE9rentes, tout en gardant une bonne maintenabilit\xE9 du code.
+      </p>
+
+      <p>
+        La typisation apport\xE9e par TypeScript, coupl\xE9e \xE0 la rigueur impos\xE9e par Angular, m\u2019a aid\xE9 \xE0 structurer mes projets plus efficacement et \xE0 anticiper les erreurs potentielles d\xE8s la phase de d\xE9veloppement.
+      </p>
+
+      <h2>Mon niveau de comp\xE9tence</h2>
+
+      <p>
+        Aujourd\u2019hui, je suis \xE0 l\u2019aise avec Angular pour d\xE9velopper des applications compl\xE8tes. Je suis capable de :
+      </p>
+
+      <ul class="list-disc list-inside ml-4">
+        <li>Cr\xE9er une architecture d\u2019application Angular claire et modulaire,</li>
+        <li>D\xE9velopper des composants dynamiques et r\xE9utilisables,</li>
+        <li>Utiliser les services et l\u2019injection de d\xE9pendances pour centraliser les donn\xE9es,</li>
+        <li>G\xE9rer la navigation avec le module de routing,</li>
+        <li>Travailler avec les formulaires r\xE9actifs et les validations,</li>
+        <li>Utiliser les directives, pipes personnalis\xE9s et binding avanc\xE9,</li>
+        <li>Int\xE9grer des biblioth\xE8ques comme GSAP pour les animations ou Tailwind pour le design.</li>
+      </ul>
+
+      <p>
+        Angular est pour moi un framework fiable et puissant, qui me permet de produire des interfaces complexes avec une bonne exp\xE9rience utilisateur tout en respectant les standards modernes du d\xE9veloppement web.
+      </p>
+  `},{id:"symfony",name:"Symfony",icon:"assets/img/symfony.png",html:`
+        <h2>Introduction</h2>
+        <p>
+          <strong>Symfony</strong> est un framework PHP open source reconnu pour sa robustesse, sa modularit\xE9 et son respect des bonnes pratiques du d\xE9veloppement web. Utilis\xE9 par de nombreuses entreprises et projets d\u2019envergure, il s\u2019appuie sur l\u2019architecture MVC (Mod\xE8le-Vue-Contr\xF4leur) et offre un ensemble d\u2019outils puissants pour construire des applications web s\xE9curis\xE9es, \xE9volutives et maintenables.
+        </p>
+
+        <p>
+          Gr\xE2ce \xE0 son \xE9cosyst\xE8me riche (Doctrine, Twig, composants Symfony r\xE9utilisables), Symfony permet un d\xE9veloppement structur\xE9 et professionnel, tout en favorisant la qualit\xE9 du code et la performance applicative.
+        </p>
+
+        <h2>Mon exp\xE9rience v\xE9cue</h2>
+
+        <p>
+          J\u2019ai \xE9t\xE9 amen\xE9 \xE0 travailler avec Symfony lors de mon passage chez <strong>Interpane</strong>, dans le cadre d\u2019un projet de refonte compl\xE8te de leur logiciel de gestion de production assist\xE9e par ordinateur (GPAO).
+        </p>
+
+        <p>
+          L\u2019ancien syst\xE8me tournait encore sous PHP 3, avec un code vieillissant, difficile \xE0 maintenir et \xE0 faire \xE9voluer. L\u2019objectif \xE9tait donc de moderniser totalement l\u2019application, tant sur le plan technique que fonctionnel.
+        </p>
+
+        <p>
+          J\u2019ai choisi Symfony comme socle du nouveau logiciel afin de b\xE9n\xE9ficier d\u2019un cadre solide, de bonnes pratiques de d\xE9veloppement et de la puissance de ses composants. Ce projet m\u2019a amen\xE9 \xE0 :
+        </p>
+
+        <ul class="list-disc list-inside ml-4">
+          <li>Repenser l\u2019architecture compl\xE8te du logiciel sous forme d\u2019une application web moderne,</li>
+          <li>Migrer progressivement les anciennes pages vers des pages Symfony,</li>
+          <li>Utiliser <strong>Doctrine</strong> pour g\xE9rer la base de donn\xE9es de mani\xE8re fiable et \xE9volutive,</li>
+          <li>Int\xE9grer des vues dynamiques avec le moteur de templates <strong>Twig</strong>,</li>
+          <li>Documenter l\u2019ensemble du projet afin d\u2019en faciliter la maintenance future.</li>
+        </ul>
+
+        <p>
+          Au terme de mon passage, j\u2019ai livr\xE9 une version modernis\xE9e du logiciel, accompagn\xE9e d\u2019une documentation claire pour permettre \xE0 l\u2019\xE9quipe de continuer \xE0 l\u2019enrichir.
+        </p>
+
+        <h2>Mon niveau de comp\xE9tence</h2>
+
+        <p>
+          Cette exp\xE9rience m\u2019a permis d\u2019acqu\xE9rir de solides bases sur Symfony, en particulier sur :
+        </p>
+
+        <ul class="list-disc list-inside ml-4">
+          <li>La structuration d\u2019une application Symfony (routing, contr\xF4leurs, services\u2026)</li>
+          <li>L\u2019int\xE9gration avec <strong>Doctrine</strong> pour le mapping objet-relationnel (ORM)</li>
+          <li>L\u2019utilisation de <strong>Twig</strong> pour des interfaces propres et dynamiques</li>
+          <li>La gestion des formulaires, des validations, et des entit\xE9s complexes</li>
+          <li>La s\xE9paration claire des responsabilit\xE9s (MVC) et l\u2019architecture modulaire</li>
+        </ul>
+
+        <p>
+          Je consid\xE8re aujourd\u2019hui Symfony comme un outil fiable et adapt\xE9 aux projets m\xE9tiers complexes, en particulier lorsqu\u2019il s\u2019agit de cr\xE9er une application web sur mesure. Cette exp\xE9rience a renforc\xE9 ma rigueur et mon sens de l\u2019organisation dans le d\xE9veloppement back-end.
+        </p>
+      `},{id:"autonomie",name:"Autonomie",icon:"assets/img/autonomie.png",html:`
+        <h2>Introduction</h2>
+        <p>
+          L\u2019autonomie est une comp\xE9tence cl\xE9 dans le monde professionnel, en particulier dans les m\xE9tiers du num\xE9rique o\xF9 les projets sont souvent complexes, \xE9volutifs et impliquent des \xE9quipes distribu\xE9es.
+          \xCAtre autonome, c\u2019est savoir organiser son travail, prendre des d\xE9cisions pertinentes sans supervision constante, r\xE9soudre des probl\xE8mes de mani\xE8re proactive et rester efficace m\xEAme dans des environnements incertains ou en \xE9volution rapide.
+        </p>
+        <p>
+          Cette capacit\xE9 demande une bonne gestion du temps, de la rigueur, mais aussi une forme de curiosit\xE9 et d\u2019initiative :
+          chercher des solutions par soi-m\xEAme, apprendre de nouvelles choses sans attendre qu\u2019on nous les enseigne, anticiper les besoins du projet ou de l\u2019entreprise.
+          Dans un secteur o\xF9 les technologies \xE9voluent sans cesse, \xEAtre autonome est un atout pr\xE9cieux pour gagner en efficacit\xE9 et en cr\xE9dibilit\xE9.
+        </p>
+        <p>
+          L\u2019autonomie n\u2019exclut \xE9videmment pas le travail en \xE9quipe. Au contraire, elle le renforce :
+          un collaborateur autonome sait quand il doit avancer seul, mais aussi quand il est n\xE9cessaire de consulter, d\u2019alerter ou de coop\xE9rer.
+          C\u2019est cette capacit\xE9 \xE0 \xE9quilibrer ind\xE9pendance et collaboration qui fait toute la valeur d\u2019un professionnel autonome.
+        </p>
+
+        <h2>Mon exp\xE9rience v\xE9cue</h2>
+        <p>
+          Mon autonomie s\u2019est particuli\xE8rement d\xE9velopp\xE9e au sein de l\u2019entreprise <strong>Tschoeppe</strong>, o\xF9 je travaille actuellement.
+          Suite au d\xE9part de plusieurs responsables du service informatique, je me suis retrouv\xE9 en charge de sujets importants sans supervision directe pendant plusieurs semaines.
+          J\u2019ai d\xFB prendre en main un logiciel de dessin 2D complexe, analyser et corriger des bugs critiques, tout en poursuivant le d\xE9veloppement de nouvelles fonctionnalit\xE9s.
+          Cette situation m\u2019a permis de prouver ma capacit\xE9 \xE0 <strong>g\xE9rer des responsabilit\xE9s importantes de mani\xE8re autonome</strong> et \xE0 m\u2019adapter rapidement \xE0 un contexte \xE9volutif.
+        </p>
+        <p>
+          Chez <strong>Interpane</strong>, j\u2019ai eu \xE0 moderniser un ancien logiciel de GPAO en PHP 3. En l\u2019absence de documentation et de r\xE9f\xE9rent technique,
+          j\u2019ai pris l\u2019initiative de migrer le projet vers Symfony, de red\xE9finir son architecture et de cr\xE9er une documentation claire.
+          Cette d\xE9cision a grandement facilit\xE9 la maintenance future du logiciel.
+        </p>
+        <p>
+          Enfin, chez <strong>DGS Cr\xE9ation</strong>, j\u2019ai g\xE9r\xE9 int\xE9gralement certains projets de sites e-commerce et vitrine :
+          de l\u2019int\xE9gration \xE0 la cr\xE9ation de modules personnalis\xE9s, jusqu\u2019\xE0 la formation du client.
+          J\u2019\xE9tais souvent seul \xE0 assurer l\u2019ensemble du d\xE9veloppement, tout en respectant les maquettes valid\xE9es et les d\xE9lais impartis.
+        </p>
+
+        <h2>Mon niveau de comp\xE9tence</h2>
+        <p>
+          Gr\xE2ce \xE0 ces diff\xE9rentes exp\xE9riences, je me consid\xE8re aujourd\u2019hui comme <strong>autonome et fiable</strong> dans mon travail. Je suis capable de :
+        </p>
+        <ul>
+          <li>Comprendre un besoin ou un probl\xE8me de mani\xE8re ind\xE9pendante,</li>
+          <li>Proposer des solutions r\xE9alistes et adapt\xE9es,</li>
+          <li>Planifier et prioriser mes t\xE2ches sans d\xE9pendre d\u2019un encadrement constant,</li>
+          <li>Utiliser les ressources disponibles pour me former et progresser seul.</li>
+        </ul>
+        <p>
+          Je suis \xE9galement conscient que l\u2019autonomie se d\xE9veloppe en continu. J\u2019essaie donc de renforcer cette comp\xE9tence au quotidien,
+          en me fixant des objectifs clairs, en documentant ce que je fais, et en apprenant de mes erreurs.
+          Mon objectif est de devenir un profil encore plus <strong>proactif, adaptable et moteur dans une \xE9quipe</strong>,
+          capable de contribuer pleinement \xE0 la r\xE9ussite des projets, tout en continuant \xE0 progresser personnellement.
+        </p>
+      `}]}ngOnInit(){this.skillId=this.route.snapshot.paramMap.get("id")||"",this.skill=this.allSkills.find(s=>s.id===this.skillId)}static{this.\u0275fac=function(n){return new(n||e)(c(q))}}static{this.\u0275cmp=u({type:e,selectors:[["app-skill-detail"]],standalone:!0,features:[f],decls:2,vars:2,consts:[["class","py-16 px-6 md:px-24 bg-white text-gray-800 min-h-[60vh]",4,"ngIf"],["class","py-20 text-center text-gray-500",4,"ngIf"],[1,"py-16","px-6","md:px-24","bg-white","text-gray-800","min-h-[60vh]"],[1,"max-w-4xl","mx-auto","space-y-10"],[1,"text-center","my-4"],[1,"text-4xl","font-bold","text-red-600","mb-2"],[1,"prose","prose-lg","max-w-none","text-gray-700","mx-auto",3,"innerHTML"],[1,"py-20","text-center","text-gray-500"]],template:function(n,l){n&1&&d(0,x,6,2,"section",0)(1,S,3,0,"section",1),n&2&&(t("ngIf",l.skill),i(),t("ngIf",!l.skill))},dependencies:[b,h],styles:["[_nghost-%COMP%]{display:block;background:linear-gradient(to bottom,#fff,#f8f8f8)}"]})}}return e})();export{D as SkillDetailComponent};
