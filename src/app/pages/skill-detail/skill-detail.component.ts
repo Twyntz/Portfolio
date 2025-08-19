@@ -651,6 +651,122 @@ export class SkillDetailComponent implements OnInit {
       </p>
   `,
     },
+    {
+      id: 'symfony',
+      name: 'Symfony',
+      icon: 'assets/img/symfony.png',
+      html: `
+        <h2>Introduction</h2>
+        <p>
+          <strong>Symfony</strong> est un framework PHP open source reconnu pour sa robustesse, sa modularité et son respect des bonnes pratiques du développement web. Utilisé par de nombreuses entreprises et projets d’envergure, il s’appuie sur l’architecture MVC (Modèle-Vue-Contrôleur) et offre un ensemble d’outils puissants pour construire des applications web sécurisées, évolutives et maintenables.
+        </p>
+
+        <p>
+          Grâce à son écosystème riche (Doctrine, Twig, composants Symfony réutilisables), Symfony permet un développement structuré et professionnel, tout en favorisant la qualité du code et la performance applicative.
+        </p>
+
+        <h2>Mon expérience vécue</h2>
+
+        <p>
+          J’ai été amené à travailler avec Symfony lors de mon passage chez <strong>Interpane</strong>, dans le cadre d’un projet de refonte complète de leur logiciel de gestion de production assistée par ordinateur (GPAO).
+        </p>
+
+        <p>
+          L’ancien système tournait encore sous PHP 3, avec un code vieillissant, difficile à maintenir et à faire évoluer. L’objectif était donc de moderniser totalement l’application, tant sur le plan technique que fonctionnel.
+        </p>
+
+        <p>
+          J’ai choisi Symfony comme socle du nouveau logiciel afin de bénéficier d’un cadre solide, de bonnes pratiques de développement et de la puissance de ses composants. Ce projet m’a amené à :
+        </p>
+
+        <ul class="list-disc list-inside ml-4">
+          <li>Repenser l’architecture complète du logiciel sous forme d’une application web moderne,</li>
+          <li>Migrer progressivement les anciennes pages vers des pages Symfony,</li>
+          <li>Utiliser <strong>Doctrine</strong> pour gérer la base de données de manière fiable et évolutive,</li>
+          <li>Intégrer des vues dynamiques avec le moteur de templates <strong>Twig</strong>,</li>
+          <li>Documenter l’ensemble du projet afin d’en faciliter la maintenance future.</li>
+        </ul>
+
+        <p>
+          Au terme de mon passage, j’ai livré une version modernisée du logiciel, accompagnée d’une documentation claire pour permettre à l’équipe de continuer à l’enrichir.
+        </p>
+
+        <h2>Mon niveau de compétence</h2>
+
+        <p>
+          Cette expérience m’a permis d’acquérir de solides bases sur Symfony, en particulier sur :
+        </p>
+
+        <ul class="list-disc list-inside ml-4">
+          <li>La structuration d’une application Symfony (routing, contrôleurs, services…)</li>
+          <li>L’intégration avec <strong>Doctrine</strong> pour le mapping objet-relationnel (ORM)</li>
+          <li>L’utilisation de <strong>Twig</strong> pour des interfaces propres et dynamiques</li>
+          <li>La gestion des formulaires, des validations, et des entités complexes</li>
+          <li>La séparation claire des responsabilités (MVC) et l’architecture modulaire</li>
+        </ul>
+
+        <p>
+          Je considère aujourd’hui Symfony comme un outil fiable et adapté aux projets métiers complexes, en particulier lorsqu’il s’agit de créer une application web sur mesure. Cette expérience a renforcé ma rigueur et mon sens de l’organisation dans le développement back-end.
+        </p>
+      `,
+    },
+    {
+      id: 'autonomie',
+      name: 'Autonomie',
+      icon: 'assets/img/autonomie.png',
+      html: `
+        <h2>Introduction</h2>
+        <p>
+          L’autonomie est une compétence clé dans le monde professionnel, en particulier dans les métiers du numérique où les projets sont souvent complexes, évolutifs et impliquent des équipes distribuées.
+          Être autonome, c’est savoir organiser son travail, prendre des décisions pertinentes sans supervision constante, résoudre des problèmes de manière proactive et rester efficace même dans des environnements incertains ou en évolution rapide.
+        </p>
+        <p>
+          Cette capacité demande une bonne gestion du temps, de la rigueur, mais aussi une forme de curiosité et d’initiative :
+          chercher des solutions par soi-même, apprendre de nouvelles choses sans attendre qu’on nous les enseigne, anticiper les besoins du projet ou de l’entreprise.
+          Dans un secteur où les technologies évoluent sans cesse, être autonome est un atout précieux pour gagner en efficacité et en crédibilité.
+        </p>
+        <p>
+          L’autonomie n’exclut évidemment pas le travail en équipe. Au contraire, elle le renforce :
+          un collaborateur autonome sait quand il doit avancer seul, mais aussi quand il est nécessaire de consulter, d’alerter ou de coopérer.
+          C’est cette capacité à équilibrer indépendance et collaboration qui fait toute la valeur d’un professionnel autonome.
+        </p>
+
+        <h2>Mon expérience vécue</h2>
+        <p>
+          Mon autonomie s’est particulièrement développée au sein de l’entreprise <strong>Tschoeppe</strong>, où je travaille actuellement.
+          Suite au départ de plusieurs responsables du service informatique, je me suis retrouvé en charge de sujets importants sans supervision directe pendant plusieurs semaines.
+          J’ai dû prendre en main un logiciel de dessin 2D complexe, analyser et corriger des bugs critiques, tout en poursuivant le développement de nouvelles fonctionnalités.
+          Cette situation m’a permis de prouver ma capacité à <strong>gérer des responsabilités importantes de manière autonome</strong> et à m’adapter rapidement à un contexte évolutif.
+        </p>
+        <p>
+          Chez <strong>Interpane</strong>, j’ai eu à moderniser un ancien logiciel de GPAO en PHP 3. En l’absence de documentation et de référent technique,
+          j’ai pris l’initiative de migrer le projet vers Symfony, de redéfinir son architecture et de créer une documentation claire.
+          Cette décision a grandement facilité la maintenance future du logiciel.
+        </p>
+        <p>
+          Enfin, chez <strong>DGS Création</strong>, j’ai géré intégralement certains projets de sites e-commerce et vitrine :
+          de l’intégration à la création de modules personnalisés, jusqu’à la formation du client.
+          J’étais souvent seul à assurer l’ensemble du développement, tout en respectant les maquettes validées et les délais impartis.
+        </p>
+
+        <h2>Mon niveau de compétence</h2>
+        <p>
+          Grâce à ces différentes expériences, je me considère aujourd’hui comme <strong>autonome et fiable</strong> dans mon travail. Je suis capable de :
+        </p>
+        <ul>
+          <li>Comprendre un besoin ou un problème de manière indépendante,</li>
+          <li>Proposer des solutions réalistes et adaptées,</li>
+          <li>Planifier et prioriser mes tâches sans dépendre d’un encadrement constant,</li>
+          <li>Utiliser les ressources disponibles pour me former et progresser seul.</li>
+        </ul>
+        <p>
+          Je suis également conscient que l’autonomie se développe en continu. J’essaie donc de renforcer cette compétence au quotidien,
+          en me fixant des objectifs clairs, en documentant ce que je fais, et en apprenant de mes erreurs.
+          Mon objectif est de devenir un profil encore plus <strong>proactif, adaptable et moteur dans une équipe</strong>,
+          capable de contribuer pleinement à la réussite des projets, tout en continuant à progresser personnellement.
+        </p>
+      `,
+    }
   ];
 
   constructor(private route: ActivatedRoute) {}

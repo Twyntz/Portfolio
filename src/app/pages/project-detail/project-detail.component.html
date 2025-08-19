@@ -1,0 +1,156 @@
+<section class="py-20 px-6 md:px-24 bg-white text-gray-800 min-h-[60vh]" *ngIf="project">
+  <div class="max-w-5xl mx-auto space-y-12">
+    <!-- Titre / sous-titre / cover / meta -->
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-red-600 mb-3">{{ project.name }}</h1>
+      <p class="text-lg text-gray-600" *ngIf="project.subtitle">{{ project.subtitle }}</p>
+
+      <div class="flex flex-wrap gap-2 justify-center mt-6" *ngIf="project.meta?.length">
+        <span *ngFor="let m of project.meta"
+              class="px-3 py-1 rounded-full bg-blue-100 text-blue-700 text-sm font-medium">
+          {{ m.label }} : {{ m.value }}
+        </span>
+      </div>
+
+      <img *ngIf="project.cover" [src]="project.cover" [alt]="project.name"
+           class="w-full rounded-2xl shadow mt-8">
+    </div>
+
+    <!-- Technologies -->
+    <div *ngIf="project.technologies?.length" class="bg-gray-50 rounded-2xl p-6">
+      <h2 class="text-2xl font-semibold mb-4">Technologies utilisées</h2>
+      <div class="flex flex-wrap gap-3">
+        <span *ngFor="let t of project.technologies"
+              class="px-3 py-1 rounded-xl bg-white border text-gray-700 shadow-sm">
+          {{ t }}
+        </span>
+      </div>
+    </div>
+
+    <!-- 1. Présentation -->
+    <div class="prose prose-lg max-w-none text-gray-700">
+      <h2 class="text-2xl font-semibold">Présentation</h2>
+      <p>{{ project.presentation }}</p>
+    </div>
+
+    <!-- 2. Objectifs / Contexte / Enjeux / Risques -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-gray-50 rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-3">Contexte</h3>
+        <p class="text-gray-700">{{ project.contexte_objectifs_enjeux_risques.contexte }}</p>
+        <h3 class="text-xl font-semibold mt-6 mb-3">Objectifs</h3>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+          <li *ngFor="let o of project.contexte_objectifs_enjeux_risques.objectifs">{{ o }}</li>
+        </ul>
+      </div>
+      <div class="bg-gray-50 rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-3">Enjeux</h3>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700" *ngIf="project.contexte_objectifs_enjeux_risques.enjeux?.length; else noEnjeux">
+          <li *ngFor="let e of project.contexte_objectifs_enjeux_risques.enjeux">{{ e }}</li>
+        </ul>
+        <ng-template #noEnjeux><p class="text-gray-500">—</p></ng-template>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3">Risques</h3>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700" *ngIf="project.contexte_objectifs_enjeux_risques.risques?.length; else noRisques">
+          <li *ngFor="let r of project.contexte_objectifs_enjeux_risques.risques">{{ r }}</li>
+        </ul>
+        <ng-template #noRisques><p class="text-gray-500">—</p></ng-template>
+      </div>
+    </div>
+
+    <!-- 3. Étapes -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Étapes — ce que j’ai fait</h2>
+      <ol class="list-decimal pl-6 space-y-2 text-gray-700">
+        <li *ngFor="let step of project.etapes">{{ step }}</li>
+      </ol>
+    </div>
+
+    <!-- 4. Acteurs — interactions -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Acteurs — interactions</h2>
+      <div class="grid md:grid-cols-2 gap-4">
+        <div *ngFor="let a of project.acteurs_interactions" class="border rounded-xl p-4">
+          <p class="font-semibold">{{ a.acteur }}</p>
+          <p class="text-gray-700">Rôle : {{ a.role }}</p>
+          <p class="text-gray-600" *ngIf="a.interactions">Interactions : {{ a.interactions }}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Résultats -->
+    <div class="grid md:grid-cols-2 gap-6">
+      <div class="bg-green-50 rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-3">Résultats — pour moi</h3>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+          <li *ngFor="let x of project.resultats.pour_moi">{{ x }}</li>
+        </ul>
+      </div>
+      <div class="bg-green-50 rounded-2xl p-6">
+        <h3 class="text-xl font-semibold mb-3">Résultats — pour l’entreprise</h3>
+        <ul class="list-disc pl-5 space-y-1 text-gray-700">
+          <li *ngFor="let x of project.resultats.pour_entreprise">{{ x }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 6. Lendemains -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Les lendemains du projet</h2>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-gray-50 rounded-2xl p-6">
+          <h4 class="font-semibold mb-2">Immédiat</h4>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700" *ngIf="project.lendemains.immediat?.length; else none1">
+            <li *ngFor="let i of project.lendemains.immediat">{{ i }}</li>
+          </ul>
+          <ng-template #none1><p class="text-gray-500">—</p></ng-template>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6">
+          <h4 class="font-semibold mb-2">À distance</h4>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700" *ngIf="project.lendemains.a_distance?.length; else none2">
+            <li *ngFor="let i of project.lendemains.a_distance">{{ i }}</li>
+          </ul>
+          <ng-template #none2><p class="text-gray-500">—</p></ng-template>
+        </div>
+        <div class="bg-gray-50 rounded-2xl p-6">
+          <h4 class="font-semibold mb-2">Aujourd’hui</h4>
+          <ul class="list-disc pl-5 space-y-1 text-gray-700" *ngIf="project.lendemains.aujourdhui?.length; else none3">
+            <li *ngFor="let i of project.lendemains.aujourdhui">{{ i }}</li>
+          </ul>
+          <ng-template #none3><p class="text-gray-500">—</p></ng-template>
+        </div>
+      </div>
+    </div>
+
+    <!-- 7. Mon regard critique -->
+    <div class="prose prose-lg max-w-none text-gray-700">
+      <h2 class="text-2xl font-semibold">Mon regard critique</h2>
+      <p>{{ project.regard_critique }}</p>
+    </div>
+
+    <!-- Compétences liées -->
+    <div>
+      <h2 class="text-2xl font-semibold mb-4">Compétences rattachées</h2>
+      <div class="flex flex-wrap gap-3">
+        <a *ngFor="let c of project.competences"
+           [routerLink]="['/competences', c.id]"
+           class="px-3 py-2 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 transition font-medium">
+          {{ c.label }}
+        </a>
+      </div>
+    </div>
+
+    <div class="text-center">
+      <a routerLink="/projets" class="inline-block mt-6 text-red-600 font-semibold hover:underline">
+        ← Retour à la liste
+      </a>
+    </div>
+  </div>
+</section>
+
+<section *ngIf="!project" class="py-20 text-center text-gray-500">
+  <p>Projet introuvable.</p>
+  <a routerLink="/projets" class="inline-block mt-4 text-red-600 font-semibold hover:underline">
+    ← Retour à la liste
+  </a>
+</section>

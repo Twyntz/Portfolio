@@ -1,32 +1,33 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent {
   projects = [
     {
-      title: 'Portfolio',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id neque non risus luctus.',
+      title: 'Site WordPress',
+      description: 'Réalisation sur mesure d’un site vitrine WordPress personnalisé sans constructeur visuel.',
       image: 'assets/img/portfolio.png',
-      link: 'https://github.com/Twyntz/portfolio'
+      link: 'https://twyntz.github.io/Portfolio/'
     },
     {
       title: 'Ubertishop',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae magna eu nisi cursus.',
+      description: 'Site e-commerce pour la marque Uberti avec gestion des produits et commandes.',
       image: 'assets/img/uberti.png',
       link: 'https://uberti.shop/'
     },
     {
-      title: 'Lorem',
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel quam ut risus tincidunt.',
+      title: 'Tschoeppe Live',
+      description: 'Logiciel de dessin en 2D et génération de portail en 3D.',
       image: 'assets/img/portfolio.png',
-      link: 'https://github.com/Twyntz/finance-dashboard'
+      link: ''
     }
   ];
 }

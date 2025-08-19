@@ -25,12 +25,13 @@ export class SkillsComponent {
     { id: 'java',        name: 'Java',        icon: 'assets/img/java.svg' },
     { id: 'docker',      name: 'Docker',      icon: 'assets/img/docker.svg' },
     { id: 'wordpress',   name: 'Wordpress',   icon: 'assets/img/wordpress.png' },
-    { id: 'prestashop',  name: 'Prestashop',  icon: 'assets/img/prestashop.png' },
+    { id: 'prestashop',  name: 'Prestashop',  icon: 'assets/img/prestashop.png' }
   ];
 
   nonTechnicalSkills: Skill[] = [
     { id: 'communication',    name: 'Communication',     icon: 'assets/img/communication.png' },
     { id: 'gestion-projet',   name: 'Gestion de projet', icon: 'assets/img/gestion_de_projet.png' },
     { id: 'relation-client',  name: 'Relation Client',   icon: 'assets/img/relation_client.png' },
+    { id: 'autonomie',  name: 'Autonomie',   icon: 'assets/img/autonomie.png' }
   ];
 }
