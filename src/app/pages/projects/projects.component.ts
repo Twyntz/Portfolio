@@ -18,27 +18,27 @@ export class ProjectsComponent {
     },
     {
       id: 2,
-      title: 'Tschoeppe Live',
-      shortDesc: 'Logiciel de dessin en 2D et génération de portail en 3D.',
-      image: 'assets/projects/tschoeppe-live.jpg'
+      title: 'GPAO - Interpane',
+      shortDesc: 'Logiciel de Gestion de Production Assistée par Ordinateur (GPAO) pour l’usine Interpane.',
+      image: 'assets/img/interpane.png'
     },
     {
       id: 3,
-      title: 'Synergie Factory',
-      shortDesc: 'Application de gestion et de suivi des formations pour partenaires et collaborateurs.',
-      image: 'assets/projects/synergie-factory.jpg'
-    },
-    {
-      id: 4,
-      title: 'Site WordPress',
-      shortDesc: 'Réalisation sur mesure d’un site vitrine WordPress personnalisé sans constructeur visuel.',
-      image: 'assets/projects/wordpress.jpg'
+      title: 'LD Eclairage',
+      shortDesc: 'Site vitrine WordPress : catalogue produits + demande de devis (WooCommerce en mode catalogue).',
+      image: 'assets/img/ld-eclairage.png'
     },
     {
       id: 5,
-      title: 'Logiciel GPAO - Interpane',
+      title: 'Tschoeppe Live',
       shortDesc: 'Logiciel de Gestion de Production Assistée par Ordinateur (GPAO) pour l’usine Interpane.',
       image: 'assets/img/interpane.png'
+    },
+    {
+      id: 5,
+      title: 'Synergie Factory',
+      shortDesc: 'Application de gestion et de suivi des formations pour partenaires et collaborateurs.',
+      image: 'assets/projects/synergie-factory.jpg'
     }
   ];
 }

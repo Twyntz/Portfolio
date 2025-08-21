@@ -12,21 +12,21 @@ import { RouterModule } from '@angular/router';
 export class ProjectsComponent {
   projects = [
     {
-      title: 'Site WordPress',
-      description: 'Réalisation sur mesure d’un site vitrine WordPress personnalisé sans constructeur visuel.',
-      image: 'assets/img/portfolio.png',
+      title: 'LD Éclairage',
+      description: 'Site vitrine WordPress : catalogue produits + demande de devis (WooCommerce en mode catalogue).',
+      image: 'assets/img/ld-eclairage.png',
       link: 'https://twyntz.github.io/Portfolio/'
     },
     {
-      title: 'Ubertishop',
+      title: 'Uberti.shop',
       description: 'Site e-commerce pour la marque Uberti avec gestion des produits et commandes.',
       image: 'assets/img/uberti.png',
       link: 'https://uberti.shop/'
     },
     {
-      title: 'Tschoeppe Live',
-      description: 'Logiciel de dessin en 2D et génération de portail en 3D.',
-      image: 'assets/img/portfolio.png',
+      title: 'GPAO - Interpane',
+      description: 'Modernisation d’un logiciel de GPAO : refonte d’interface, DataTables, Chart.js, ODBC, PHP 8.',
+      image: 'assets/img/interpane.png',
       link: ''
     }
   ];

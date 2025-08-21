@@ -6,9 +6,9 @@ import { gsap } from 'gsap';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss'
+  styleUrls: ['./header.component.scss'] // <- plural
 })
 export class HeaderComponent implements AfterViewInit {
   openMobileNav = false;
@@ -37,5 +37,16 @@ export class HeaderComponent implements AfterViewInit {
         ease: 'power2.in'
       });
     }
+  }
+
+  closeMobileNav(): void {
+    if (!this.openMobileNav) return;
+    this.openMobileNav = false;
+    gsap.to(this.mobileMenu.nativeElement, {
+      duration: 0.35,
+      y: -20,
+      autoAlpha: 0,
+      ease: 'power2.in'
+    });
   }
 }

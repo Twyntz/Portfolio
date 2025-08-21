@@ -11,11 +11,13 @@ export const routes: Routes = [
   },
   {
     path: 'projets',
-    component: ProjectsComponent
+    loadComponent: () =>
+      import('./pages/projects/projects.component').then(m => m.ProjectsComponent)
   },
   {
     path: 'projets/:id',
     loadComponent: () =>
       import('./pages/project-detail/project-detail.component').then(m => m.ProjectDetailComponent)
   },
+  { path: '**', redirectTo: '' }
 ];

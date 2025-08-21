@@ -2,15 +2,15 @@
   <div class="flex justify-between items-center container h-full mx-auto px-6 lg:px-8">
 
     <!-- Logo -->
-    <a routerLink="/" class="text-3xl font-bold text-gray-800 hover:text-red-600">TU</a>
+    <a [routerLink]="['/']" class="text-3xl font-bold text-gray-800 hover:text-red-600">TU</a>
 
     <!-- Menu desktop -->
     <nav class="hidden md:flex space-x-8 text-gray-800 font-medium">
-      <a routerLink="/#profile" class="hover:text-red-600">Profil</a>
-      <a routerLink="/#skills" class="hover:text-red-600">Compétences</a>
-      <a routerLink="/#projects" class="hover:text-red-600">Réalisation</a>
-      <a routerLink="/#career" class="hover:text-red-600">Parcours</a>
-      <a routerLink="/#contact" class="hover:text-red-600">Contact</a>
+      <a [routerLink]="['/']" fragment="profil" class="hover:text-red-600">Profil</a>
+      <a [routerLink]="['/']" fragment="skills" class="hover:text-red-600">Compétences</a>
+      <a [routerLink]="['/']" fragment="projects" class="hover:text-red-600">Réalisation</a>
+      <a [routerLink]="['/']" fragment="parcours" class="hover:text-red-600">Parcours</a>
+      <a [routerLink]="['/']" fragment="contact" class="hover:text-red-600">Contact</a>
     </nav>
 
     <!-- Bouton Mon CV -->
@@ -30,14 +30,14 @@
     </button>
   </div>
 
-  <!-- Menu mobile avec GSAP (déjà en animation) -->
+  <!-- Menu mobile avec GSAP -->
   <nav #mobileMenu
        class="md:hidden bg-white border-t flex flex-col space-y-2 p-2 text-gray-800 font-medium absolute w-full left-0 top-16 z-40">
-    <a routerLink="/#profile" class="hover:text-red-600">Profil</a>
-    <a routerLink="/#skills" class="hover:text-red-600">Compétences</a>
-    <a routerLink="/#projects" class="hover:text-red-600">Réalisation</a>
-    <a routerLink="/#career" class="hover:text-red-600">Parcours</a>
-    <a routerLink="/#contact" class="hover:text-red-600">Contact</a>
-    <a href="assets/mon-cv.pdf" target="_blank" download class="hover:text-red-600">Mon CV</a>
+    <a [routerLink]="['/']" fragment="profil" class="hover:text-red-600" (click)="closeMobileNav()">Profil</a>
+    <a [routerLink]="['/']" fragment="skills" class="hover:text-red-600" (click)="closeMobileNav()">Compétences</a>
+    <a [routerLink]="['/']" fragment="projects" class="hover:text-red-600" (click)="closeMobileNav()">Réalisation</a>
+    <a [routerLink]="['/']" fragment="parcours" class="hover:text-red-600" (click)="closeMobileNav()">Parcours</a>
+    <a [routerLink]="['/']" fragment="contact" class="hover:text-red-600" (click)="closeMobileNav()">Contact</a>
+    <a href="assets/mon-cv.pdf" target="_blank" download class="hover:text-red-600" (click)="closeMobileNav()">Mon CV</a>
   </nav>
 </header>
