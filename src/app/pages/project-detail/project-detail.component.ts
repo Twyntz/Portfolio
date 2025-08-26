@@ -44,8 +44,6 @@ type ProjectDetail = {
 })
 export class ProjectDetailComponent {
   project?: ProjectDetail;
-
-  // ====== Données: Uberti + Interpane + LD Éclairage ======
   private projects: ProjectDetail[] = [
     // ========= 1) Uberti =========
     {
@@ -221,9 +219,9 @@ export class ProjectDetailComponent {
         'Ce projet a été réalisé tout au début de mon DUT MMI. Avec le recul et mon niveau actuel de Master, je referais plusieurs points : un design system plus abouti (composants réutilisables, accessibilité RGAA, responsive grid), une architecture back plus solide (couches service/repository, validations, gestion d’erreurs), une qualité renforcée (tests unitaires/intégration, linting, CI/CD), ainsi que davantage de sécurité et d’observabilité (journalisation, métriques, gestion des secrets).',
       // Compétences & technologies rattachées
       competences: [
-        { id: 'php', label: 'PHP 8' },
+        { id: 'php', label: 'PHP' },
         { id: 'symfony', label: 'Symfony' },
-        { id: 'twig', label: 'Twig' },
+        { id: 'html', label: 'HTML' },
         { id: 'sql', label: 'SQL' },
         { id: 'css', label: 'CSS' },
         { id: 'javascript', label: 'JavaScript' },
@@ -237,7 +235,7 @@ export class ProjectDetailComponent {
       id: 3,
       name: 'LD Éclairage',
       subtitle: 'Site vitrine WordPress “catalogue + demande de devis” (ACF, WooCommerce en mode catalogue)',
-      cover: 'assets/img/ld-eclairage.png',
+      cover: 'assets/img/ld-eclairage.jpg',
       meta: [
         { label: 'Client', value: 'LD Éclairage (Lutterbach)' },
         { label: 'Contexte', value: 'Licence Pro DWEB — Apprentissage' },
@@ -317,6 +315,160 @@ export class ProjectDetailComponent {
         { id: 'mysql', label: 'MySQL' },
         { id: 'css', label: 'CSS' },
         { id: 'javascript', label: 'JavaScript' },
+        { id: 'relation-client', label: 'Relation client' },
+        { id: 'communication', label: 'Communication' },
+      ]
+    },
+    {
+      id: 4,
+      name: 'Tschoeppe Live',
+      subtitle: 'Évolution & refonte d’un logiciel métier (Java)',
+      cover: 'assets/img/tschoeppe-live.png',
+      meta: [
+        { label: 'Client', value: 'Tschoeppe' },
+        { label: 'Type', value: 'Logiciel métier' },
+        { label: 'Période', value: '2024 — 2025' }
+      ],
+      presentation:
+        'Logiciel Java utilisé par commerciaux, service client et revendeurs : configuration de portails sur-mesure, génération de devis, dessin 2D/3D et intégration photo.',
+      contexte_objectifs_enjeux_risques: {
+        contexte:
+          'Reprise du projet en autonomie dans un contexte de réorganisation IT et d’arrêt du prestataire historique (récupération d’urgence de l’ancien système).',
+        objectifs: [
+          'Assurer la continuité de service et la maintenance.',
+          'Intégrer de nouveaux modèles et améliorer les filtres de configuration.',
+          'Préparer une refonte technique et graphique complète.'
+        ],
+        enjeux: [
+          'Outil critique pour les ventes et le SAV.',
+          'Adoption par des profils utilisateurs variés (commerciaux, SAV, revendeurs).',
+          'Stabiliser un code historique.'
+        ],
+        risques: [
+          'Dette technique et dépendances 2D/3D.',
+          'Documentation partielle.',
+          'Régressions possibles lors des évolutions.'
+        ]
+      },
+      etapes: [
+        'Cartographie fonctionnelle et mise en place d’un rythme de releases (~2/semaine).',
+        'Ajouts fonctionnels et refonte progressive de l’interface.',
+        'Restauration de l’ancien système et sécurisation de l’hébergement.',
+        'Mise en place d’un canal support et d’une documentation technique.'
+      ],
+      acteurs_interactions: [
+        { acteur: 'Commerciaux / SAV / Revendeurs', role: 'Utilisateurs finaux', interactions: 'Retours terrain et priorisation' },
+        { acteur: 'Moi-même', role: 'Développement, maintenance, refonte', interactions: 'Conception, implémentation et support' }
+      ],
+      resultats: {
+        pour_moi: [
+          'Autonomie et rigueur de production.',
+          'Montée en version Java (8 → 22) et pratique SQL.',
+          'Amélioration de la communication avec des profils non techniques.'
+        ],
+        pour_entreprise: [
+          'Traitement des retours en moins d’une semaine.',
+          'Releases régulières et prévisibles.',
+          'Arborescence fonctionnelle et UI modernisées.'
+        ]
+      },
+      lendemains: {
+        immediat: ['Poursuite des releases incrémentales', 'Renforcement sauvegardes et hébergement'],
+        a_distance: ['Design system, accessibilité et perfs', 'Tests automatisés + CI/CD'],
+        aujourdhui: ['Projet en cours — refonte structurante en préparation']
+      },
+      regard_critique:
+        'Des compromis rapides ont sécurisé la production ; prochaines étapes : architecture en couches, tests, CI/CD, télémétrie et design system accessible.',
+      competences: [
+        { id: 'java', label: 'Java (8→22)' },
+        { id: 'sql', label: 'SQL' },
+        { id: 'gestion-projet', label: 'Gestion de projet' },
+        { id: 'autonomie', label: 'Autonomie' },
+        { id: 'communication', label: 'Communication' },
+        { id: 'relation-client', label: 'Relation client' }
+      ]
+    },
+    {
+      id: 5,
+      name: 'Atelier des Créatrices Solidaires',
+      subtitle: 'Site associatif : vitrine + (future) boutique solidaire',
+      cover: 'assets/img/atelier.png',
+      meta: [
+        { label: 'Client', value: 'Association Atelier des Créatrices Solidaires' },
+        { label: 'Type', value: 'Site vitrine associatif' },
+        { label: 'Période', value: '2023 — 2024' }
+      ],
+      presentation:
+        'Plateforme web destinée à présenter le collectif, ses actions solidaires et ses créations. Le site met en valeur les projets, facilite les prises de contact/adhésions et prépare l’arrivée d’une boutique solidaire pour financer les initiatives.',
+      contexte_objectifs_enjeux_risques: {
+        contexte:
+          'Association en croissance, forte activité terrain mais visibilité numérique limitée. Besoin d’un espace clair pour présenter les actions, recruter des bénévoles et centraliser les demandes.',
+        objectifs: [
+          'Offrir une vitrine claire : mission, actions, galerie des créations.',
+          'Simplifier le contact (bénévolat, dons, partenariats).',
+          'Préparer un module boutique solidaire activable ultérieurement.',
+          'Assurer une administration simple et autonome.'
+        ],
+        enjeux: [
+          'Crédibilité et transparence de l’association en ligne.',
+          'Accessibilité et lisibilité pour un public non-tech.',
+          'Évolutivité vers une boutique (sans réécrire le socle).'
+        ],
+        risques: [
+          'Sous-estimation des besoins éditoriaux (actualités, médias).',
+          'Complexité potentielle si la boutique arrive trop vite.',
+          'Charge bénévole limitée pour la maintenance de contenu.'
+        ]
+      },
+      etapes: [
+        'Cadrage des contenus (pages statiques, actualités, galerie).',
+        'Conception d’une structure modulaire (pages + blocs réutilisables).',
+        'Intégration front responsive et optimisation performance de base.',
+        'Mise en place de formulaires (contact / adhésion / partenariats).',
+        'Pré-câblage technique pour une future boutique solidaire.',
+        'Rédaction d’une mini-documentation d’édition pour les bénévoles.'
+      ],
+      acteurs_interactions: [
+        { acteur: 'Bureau de l’association', role: 'Pilotage éditorial', interactions: 'Ateliers de cadrage, validations' },
+        { acteur: 'Bénévoles / créatrices', role: 'Fourniture contenus (photos, textes)', interactions: 'Allers-retours asynchrones' },
+        { acteur: 'Moi-même', role: 'Conception & développement', interactions: 'Mises à jour, support et conseils' }
+      ],
+      resultats: {
+        pour_moi: [
+          'Expérience de cadrage avec une structure associative.',
+          'Mise en place d’un socle éditorial simple et durable.',
+          'Préparation technique d’une évolution e-commerce maîtrisée.'
+        ],
+        pour_entreprise: [
+          'Visibilité renforcée (présentation claire des actions).',
+          'Process de contact simplifié (moins d’allers-retours mail).',
+          'Base prête pour activer une boutique solidaire plus tard.'
+        ]
+      },
+      lendemains: {
+        immediat: [
+          'Remplissage continu (actualités, galerie).',
+          'Affinage des formulaires et tracking basique (conversions).'
+        ],
+        a_distance: [
+          'Activation de la boutique (produits solidaires, dons).',
+          'SEO local et articles “coulisses” pour crédibiliser l’action.'
+        ],
+        aujourdhui: [
+          'Socle éditorial stable avec marge d’évolution contrôlée.'
+        ]
+      },
+      regard_critique:
+        'Pour une v2, j’industrialiserais un design system accessible (RGAA), ajouterais des tests visuels/E2E et un petit pipeline CI pour fiabiliser les mises à jour opérées par des bénévoles.',
+      competences: [
+        { id: 'wordpress', label: 'WordPress' },
+        { id: 'html', label: 'HTML' },
+        { id: 'css', label: 'CSS' },
+        { id: 'php', label: 'PHP' },
+        { id: 'sql', label: 'SQL' },
+        { id: 'javascipt', label: 'Javascript' },
+        { id: 'gestion-projet', label: 'Gestion de projet' },
+        { id: 'communication', label: 'Communication' }
       ]
     }
   ];

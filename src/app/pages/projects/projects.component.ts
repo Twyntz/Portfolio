@@ -18,7 +18,7 @@ export class ProjectsComponent {
     },
     {
       id: 2,
-      title: 'GPAO - Interpane',
+      title: 'Logiciel de Gestion de Production Assistée par Ordinateur',
       shortDesc: 'Logiciel de Gestion de Production Assistée par Ordinateur (GPAO) pour l’usine Interpane.',
       image: 'assets/img/interpane.png'
     },
@@ -29,16 +29,16 @@ export class ProjectsComponent {
       image: 'assets/img/ld-eclairage.png'
     },
     {
-      id: 5,
+      id: 4,
       title: 'Tschoeppe Live',
-      shortDesc: 'Logiciel de Gestion de Production Assistée par Ordinateur (GPAO) pour l’usine Interpane.',
+      shortDesc: 'Logiciel Java utilisé par commerciaux, service client et revendeurs : configuration de portails sur-mesure, génération de devis, dessin 2D/3D et intégration photo.',
       image: 'assets/img/interpane.png'
     },
     {
       id: 5,
-      title: 'Synergie Factory',
-      shortDesc: 'Application de gestion et de suivi des formations pour partenaires et collaborateurs.',
-      image: 'assets/projects/synergie-factory.jpg'
+      title: 'Atelier des créatrices solidaire',
+      shortDesc: 'Marketplace multi-vendeurs (WordPress + WooCommerce + Dokan)',
+      image: 'assets/img/atelier.png'
     }
   ];
 }

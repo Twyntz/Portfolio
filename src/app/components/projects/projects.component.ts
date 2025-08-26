@@ -5,30 +5,48 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule,RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
 export class ProjectsComponent {
-  projects = [
+  // Cartes utilisées sur la page d'accueil
+  projects = [ 
     {
       title: 'LD Éclairage',
-      description: 'Site vitrine WordPress : catalogue produits + demande de devis (WooCommerce en mode catalogue).',
+      description:
+        'Site vitrine WordPress : catalogue produits + demande de devis (WooCommerce en mode catalogue).',
       image: 'assets/img/ld-eclairage.png',
       link: 'https://twyntz.github.io/Portfolio/'
     },
     {
       title: 'Uberti.shop',
-      description: 'Site e-commerce pour la marque Uberti avec gestion des produits et commandes.',
+      description:
+        'Site e-commerce pour la marque Uberti avec gestion des produits et commandes.',
       image: 'assets/img/uberti.png',
       link: 'https://uberti.shop/'
     },
     {
       title: 'GPAO - Interpane',
-      description: 'Modernisation d’un logiciel de GPAO : refonte d’interface, DataTables, Chart.js, ODBC, PHP 8.',
+      description:
+        'Modernisation d’un logiciel de GPAO : refonte d’interface, DataTables, Chart.js, ODBC, PHP 8.',
       image: 'assets/img/interpane.png',
-      link: ''
+      link: '' // pas de site public
     }
   ];
-}
 
+  // Correspondance titre -> id de la fiche /projets/:id
+  private readonly titleToId: Record<string, number> = {
+    'Uberti.shop': 1,
+    'GPAO - Interpane': 2,
+    'LD Éclairage': 3
+  };
+
+  getProjectId(title: string): number {
+    return this.titleToId[title] ?? 0; // 0 => route inopérante si titre non mappé
+  }
+
+  trackByTitle(_: number, p: { title: string }) {
+    return p.title;
+  }
+}
