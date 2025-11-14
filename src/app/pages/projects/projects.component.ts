@@ -32,7 +32,7 @@ export class ProjectsComponent {
       id: 4,
       title: 'Tschoeppe Live',
       shortDesc: 'Logiciel Java utilisé par commerciaux, service client et revendeurs : configuration de portails sur-mesure, génération de devis, dessin 2D/3D et intégration photo.',
-      image: 'assets/img/interpane.png'
+      image: 'assets/img/Tlive.png'
     },
     {
       id: 5,

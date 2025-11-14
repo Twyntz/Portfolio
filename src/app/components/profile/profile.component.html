@@ -3,19 +3,33 @@
 
   <div class="flex flex-col md:flex-row gap-10">
     <!-- Bloc infos profil animé -->
-    <div #profileCard class="bg-gray-800 text-white p-6 rounded-lg w-full md:w-1/3 text-center space-y-6 text-lg font-medium shadow-xl">
+    <div
+      #profileCard
+      class="bg-gray-800 text-white p-6 rounded-lg w-full md:w-1/3 text-center space-y-6 text-lg font-medium shadow-xl"
+    >
       <!-- Image de profil -->
-      <img src="assets/img/teo.png" alt="Photo de Téo Ulgen"
-           class="w-24 h-24 mx-auto rounded-full object-cover border-4 border-white shadow-md" />
+      <img
+        src="assets/img/teo.png"
+        alt="Photo de Téo Ulgen"
+        class="w-24 h-24 mx-auto rounded-full object-cover border-4 border-white shadow-md"
+      />
 
       <!-- Statut -->
-      <span class="inline-block px-3 py-1 text-sm bg-orange-500 text-white rounded-full font-semibold">En mission</span>
+      <span
+        class="inline-block px-3 py-1 text-sm bg-orange-500 text-white rounded-full font-semibold"
+      >
+        En mission
+      </span>
 
       <!-- Infos dynamiques -->
       <div *ngFor="let item of profileInfo">
         <ng-container *ngIf="item.link; else plainText">
-          <a [href]="item.link" target="_blank" rel="noopener noreferrer"
-             class="hover:underline hover:text-red-400 transition-colors duration-200">
+          <a
+            [href]="item.link"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hover:underline hover:text-red-400 transition-colors duration-200"
+          >
             {{ item.label }}
           </a>
         </ng-container>
@@ -25,24 +39,106 @@
       </div>
     </div>
 
-    <!-- Bloc description -->
-    <div class="w-full md:w-2/3 text-justify space-y-6 text-gray-800">
-      <p>
-        Depuis la fin de mon lycée, j’ai développé un vrai intérêt pour le développement web. J’ai commencé à apprendre en autonomie, poussé par la curiosité de comprendre comment fonctionnent les sites que nous utilisons tous les jours. 
-        <strong>C’est à l’IUT de Haguenau</strong> que j’ai vraiment pu structurer mes connaissances, consolider mes bases et découvrir les bonnes pratiques du métier.
-      </p>
+    <!-- Bloc description structuré -->
+    <article class="w-full md:w-2/3 text-justify space-y-6 text-gray-800">
+      <!-- Mes valeurs -->
+      <section class="space-y-3">
+        <h3 class="text-2xl font-semibold text-red-600">Mes valeurs</h3>
+        <p>
+          Animé par l’envie d’apprendre et de comprendre, un soin particulier est
+          accordé à la rigueur et à la responsabilité dans le travail. L’ingénierie
+          logicielle est envisagée autant comme une discipline technique que comme une
+          démarche consciente&nbsp;: concevoir des solutions fiables, maintenables et
+          vraiment utiles à leurs utilisateurs.
+        </p>
+        <p>
+          L’honnêteté intellectuelle, la capacité à reconnaître un problème et la
+          volonté de le résoudre proprement sont au cœur de la manière de travailler.
+          Les environnements où la collaboration, la transparence et la qualité sont
+          valorisées constituent un véritable moteur au quotidien.
+        </p>
+      </section>
 
-      <p>
-        Mon objectif aujourd’hui est de <strong>devenir un développeur full stack compétent</strong>, capable de contribuer à des projets concrets avec rigueur et sens du détail. J’aimerais évoluer dans des environnements où l’on valorise autant la qualité du code que la compréhension des besoins métiers.
-      </p>
+      <!-- Mon projet professionnel et personnel -->
+      <section class="space-y-3">
+        <h3 class="text-2xl font-semibold text-red-600">
+          Mon projet professionnel et personnel
+        </h3>
+        <p>
+          Le projet professionnel s’oriente vers le métier de
+          <strong>développeur full stack</strong>, capable d’intervenir à différentes
+          étapes d’un projet&nbsp;: analyse du besoin, conception, développement,
+          optimisation et déploiement.
+        </p>
+        <p>
+          L’objectif est d’évoluer au sein d’une organisation où la compréhension des
+          enjeux métiers occupe une place aussi centrale que la qualité du code
+          produit. Sur le plan personnel, une attention particulière est portée au
+          développement d’une expertise sur des technologies modernes, tout en
+          cultivant une vision plus large du numérique&nbsp;: architecture logicielle,
+          bonnes pratiques DevOps et démarches de développement durable.
+        </p>
+      </section>
 
-      <p>
-        Avec mes années d’alternance et mes différents projets, j’ai appris à <strong>être autonome</strong>, à <strong>communiquer avec des interlocuteurs variés</strong>, et à trouver ma place dans une équipe. J’aime aller au bout des choses, livrer un travail propre, et continuer à progresser sur le plan technique comme humain.
-      </p>
+      <!-- Mes principales qualités humaines -->
+      <section class="space-y-3">
+        <h3 class="text-2xl font-semibold text-red-600">
+          Mes principales qualités humaines
+        </h3>
+        <p>
+          Les expériences en alternance et les projets menés ont permis de consolider
+          plusieurs qualités essentielles pour exercer le métier d’ingénieur logiciel.
+        </p>
+        <p>
+          Parmi elles&nbsp;:
+        </p>
+        <ul class="list-disc list-inside space-y-1">
+          <li>
+            <strong>Autonomie</strong>, pour avancer efficacement tout en sachant à
+            quel moment solliciter l’avis d’un pair&nbsp;;
+          </li>
+          <li>
+            <strong>Fiabilité</strong>, grâce à une attention constante portée aux
+            détails et à la qualité du travail livré&nbsp;;
+          </li>
+          <li>
+            <strong>Communication</strong>, facilitée par l’habitude d’échanger avec
+            des interlocuteurs aux profils variés (métiers, techniques, support)&nbsp;;
+          </li>
+          <li>
+            <strong>Esprit d’équipe</strong>, développé aussi bien dans le cadre de
+            projets collaboratifs que d’activités sportives.
+          </li>
+        </ul>
+        <p>
+          Ces qualités permettent d’aborder les missions avec sérieux, implication et
+          ouverture, dans une logique de progression continue.
+        </p>
+      </section>
 
-      <p>
-        En dehors du développement, je m’intéresse beaucoup à la <strong>lecture</strong> — notamment les romans — ainsi qu’au <strong>football</strong>, que je pratique en club depuis plusieurs années. Je suis également passionné par les <strong>jeux vidéo</strong>, à la fois comme moyen de détente et comme source d’inspiration en termes d’ergonomie, de design et de narration.
-      </p>
-    </div>
-  </div>                                    
+      <!-- Mes centres d’intérêt -->
+      <section class="space-y-3">
+        <h3 class="text-2xl font-semibold text-red-600">
+          Mes principaux centres d’intérêt
+        </h3>
+        <p>
+          Les centres d’intérêt contribuent à l’équilibre personnel et nourrissent la
+          curiosité au quotidien. La <strong>lecture</strong>, et en particulier les
+          romans, tient une place importante et développe à la fois l’imaginaire et la
+          capacité d’analyse.
+        </p>
+        <p>
+          Le <strong>football</strong>, pratiqué en club depuis plusieurs années,
+          renforce la discipline, la persévérance et l’esprit collectif, des qualités
+          directement transposables au travail en équipe sur des projets numériques.
+        </p>
+        <p>
+          Les <strong>jeux vidéo</strong> représentent enfin à la fois un loisir et
+          une source d’inspiration. Ils constituent un terrain d’observation privilégié
+          en matière d’ergonomie, de design d’interface et de narration interactive,
+          des dimensions qui nourrissent la réflexion sur l’expérience utilisateur.
+        </p>
+      </section>
+    </article>
+  </div>
 </section>
