@@ -43,7 +43,6 @@ export class ParcoursComponent {
       internalLinks: [
         { label: 'Java',         route: '/competences/java' },
         { label: 'Docker',       route: '/competences/docker' },
-        { label: 'IA / XML',     route: '/realisations/ia-xml' }
       ]
     },
     {
