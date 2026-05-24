@@ -1,45 +1,188 @@
 <section id="skills" class="py-16 px-6 md:px-16 bg-gradient-to-b from-slate-50 to-slate-100 text-slate-800">
+
   <!-- Titre -->
   <div class="text-center mb-12">
     <h2 class="text-3xl md:text-4xl font-extrabold text-red-600">Mes Compétences</h2>
-    <p class="text-slate-500 mt-2">Techniques et non techniques</p>
+    <p class="text-slate-500 mt-2 text-sm">10 compétences — techniques et humaines</p>
   </div>
 
-  <!-- COMPÉTENCES TECHNIQUES -->
+  <!-- ══════════════════════════════════════════
+       RADARS SVG — schéma synthétique (Point 1)
+  ══════════════════════════════════════════ -->
+  <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+
+    <!-- Radar Techniques -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-widest text-red-500">Techniques</h3>
+          <p class="text-xs text-gray-400 mt-0.5">6 compétences — niveau sur 10</p>
+        </div>
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-red-50 text-red-600 border border-red-100">
+          6 / 10
+        </span>
+      </div>
+
+      <div class="px-8">
+        <svg [attr.viewBox]="'0 0 ' + SIZE + ' ' + SIZE"
+             class="w-full"
+             overflow="visible"
+             aria-hidden="true">
+          <polygon
+            *ngFor="let l of LEVELS"
+            [attr.points]="gridPolygon(l, technicalSkills.length)"
+            fill="none" stroke="#e5e7eb" stroke-width="1"
+          />
+          <line
+            *ngFor="let s of technicalSkills; let i = index"
+            [attr.x1]="SIZE / 2" [attr.y1]="SIZE / 2"
+            [attr.x2]="axisEnd(i, technicalSkills.length).x"
+            [attr.y2]="axisEnd(i, technicalSkills.length).y"
+            stroke="#e5e7eb" stroke-width="1"
+          />
+          <polygon
+            [attr.points]="dataPolygon(technicalSkills)"
+            fill="rgba(226,75,74,0.15)"
+            stroke="rgb(226,75,74)"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <circle
+            *ngFor="let p of dataPoints(technicalSkills)"
+            [attr.cx]="p.x" [attr.cy]="p.y" r="4"
+            fill="rgb(226,75,74)"
+          />
+          <text
+            *ngFor="let s of technicalSkills; let i = index"
+            [attr.x]="labelPos(i, technicalSkills.length).x"
+            [attr.y]="labelPos(i, technicalSkills.length).y"
+            [attr.text-anchor]="textAnchor(i, technicalSkills.length)"
+            dominant-baseline="middle"
+            font-size="10" fill="#4b5563" font-weight="500"
+          >{{ s.name }}</text>
+        </svg>
+      </div>
+
+      <div class="mt-4 space-y-2">
+        <div *ngFor="let s of technicalSkills" class="flex items-center gap-3">
+          <span class="text-xs text-gray-600 w-24 flex-shrink-0 truncate">{{ s.name }}</span>
+          <div class="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-red-500 rounded-full" [style.width]="levelPercent(s.level)"></div>
+          </div>
+          <span class="text-xs text-gray-400 w-20 text-right flex-shrink-0">
+            {{ s.level }}/10 · {{ levelLabel(s.level) }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Radar Humaines -->
+    <div class="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-widest text-gray-500">Humaines</h3>
+          <p class="text-xs text-gray-400 mt-0.5">4 compétences — niveau sur 10</p>
+        </div>
+        <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-gray-100 text-gray-600 border border-gray-200">
+          4 / 10
+        </span>
+      </div>
+
+      <div class="px-8">
+        <svg [attr.viewBox]="'0 0 ' + SIZE + ' ' + SIZE"
+             class="w-full"
+             overflow="visible"
+             aria-hidden="true">
+          <polygon
+            *ngFor="let l of LEVELS"
+            [attr.points]="gridPolygon(l, nonTechnicalSkills.length)"
+            fill="none" stroke="#e5e7eb" stroke-width="1"
+          />
+          <line
+            *ngFor="let s of nonTechnicalSkills; let i = index"
+            [attr.x1]="SIZE / 2" [attr.y1]="SIZE / 2"
+            [attr.x2]="axisEnd(i, nonTechnicalSkills.length).x"
+            [attr.y2]="axisEnd(i, nonTechnicalSkills.length).y"
+            stroke="#e5e7eb" stroke-width="1"
+          />
+          <polygon
+            [attr.points]="dataPolygon(nonTechnicalSkills)"
+            fill="rgba(136,135,128,0.15)"
+            stroke="rgb(136,135,128)"
+            stroke-width="2"
+            stroke-linejoin="round"
+          />
+          <circle
+            *ngFor="let p of dataPoints(nonTechnicalSkills)"
+            [attr.cx]="p.x" [attr.cy]="p.y" r="4"
+            fill="rgb(136,135,128)"
+          />
+          <text
+            *ngFor="let s of nonTechnicalSkills; let i = index"
+            [attr.x]="labelPos(i, nonTechnicalSkills.length).x"
+            [attr.y]="labelPos(i, nonTechnicalSkills.length).y"
+            [attr.text-anchor]="textAnchor(i, nonTechnicalSkills.length)"
+            dominant-baseline="middle"
+            font-size="10" fill="#4b5563" font-weight="500"
+          >{{ s.name }}</text>
+        </svg>
+      </div>
+
+      <div class="mt-4 space-y-2">
+        <div *ngFor="let s of nonTechnicalSkills" class="flex items-center gap-3">
+          <span class="text-xs text-gray-600 w-24 flex-shrink-0 truncate">{{ s.name }}</span>
+          <div class="flex-1 h-1.5 bg-gray-100 rounded-full overflow-hidden">
+            <div class="h-full bg-gray-400 rounded-full" [style.width]="levelPercent(s.level)"></div>
+          </div>
+          <span class="text-xs text-gray-400 w-20 text-right flex-shrink-0">
+            {{ s.level }}/10 · {{ levelLabel(s.level) }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════════════════════════════
+       GRILLES DE CARTES — navigation
+  ══════════════════════════════════════ -->
   <div class="max-w-7xl mx-auto">
-    <div class="flex items-center justify-between mb-6">
-      <h3 class="section-heading">Compétences techniques</h3>
-      <span class="section-line"></span>
-    </div>
 
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-      <a
-        *ngFor="let s of technicalSkills"
+    <div class="flex items-center gap-4 mb-6">
+      <h3 class="section-heading whitespace-nowrap">Compétences techniques</h3>
+      <span class="section-line flex-1"></span>
+    </div>
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      
+      <a  *ngFor="let s of technicalSkills"
         [routerLink]="['/competences', s.id]"
-        class="card-skill"
+        class="card-skill group"
       >
         <img [src]="s.icon" [alt]="s.name" class="card-skill__icon" />
         <span class="card-skill__label">{{ s.name }}</span>
+        <span class="text-xs text-red-400 font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          {{ s.level }}/10
+        </span>
       </a>
     </div>
-  </div>
 
-  <!-- COMPÉTENCES NON TECHNIQUES -->
-  <div class="max-w-7xl mx-auto mt-12">
-    <div class="flex items-center justify-between mb-6">
-      <h3 class="section-heading">Compétences non techniques</h3>
-      <span class="section-line"></span>
+    <div class="flex items-center gap-4 mb-6 mt-12">
+      <h3 class="section-heading whitespace-nowrap">Compétences humaines</h3>
+      <span class="section-line flex-1"></span>
     </div>
-
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6">
-      <a
-        *ngFor="let s of nonTechnicalSkills"
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+      
+      <a  *ngFor="let s of nonTechnicalSkills"
         [routerLink]="['/competences', s.id]"
-        class="card-skill"
+        class="card-skill group"
       >
         <img [src]="s.icon" [alt]="s.name" class="card-skill__icon" />
         <span class="card-skill__label">{{ s.name }}</span>
+        <span class="text-xs text-gray-400 font-medium mt-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          {{ s.level }}/10
+        </span>
       </a>
     </div>
+
   </div>
 </section>

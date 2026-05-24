@@ -1,4 +1,29 @@
 :host {
   display: block;
-  background: linear-gradient(to bottom, #fff, #f8f8f8);
 }
+
+// Numéros décoratifs des sections
+.section-number {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1;
+  opacity: 0.07;
+  position: absolute;
+  top: -0.5rem;
+  left: -0.5rem;
+  pointer-events: none;
+  user-select: none;
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(16px); opacity: 0.4; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.skill-section {
+  animation: fadeUp 0.4s ease both;
+}
+.skill-section:nth-child(2) { animation-delay: 0.08s; }
+.skill-section:nth-child(3) { animation-delay: 0.16s; }
+.skill-section:nth-child(4) { animation-delay: 0.24s; }
+.skill-section:nth-child(5) { animation-delay: 0.32s; }

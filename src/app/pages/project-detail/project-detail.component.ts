@@ -162,8 +162,6 @@ export class ProjectDetailComponent {
       competences: [
         { id: 'prestashop', label: 'PrestaShop' },
         { id: 'html', label: 'HTML' },
-        { id: 'css', label: 'CSS' },
-        { id: 'javascript', label: 'JavaScript' },
         { id: 'relation-client', label: 'Relation client' },
         { id: 'gestion-projet', label: 'Gestion de projet' },
       ],
@@ -314,11 +312,6 @@ export class ProjectDetailComponent {
       // ─────────────────────────────────────────────────────────────
       competences: [
         { id: 'php', label: 'PHP' },
-        { id: 'symfony', label: 'Symfony' },
-        { id: 'html', label: 'HTML' },
-        { id: 'sql', label: 'SQL' },
-        { id: 'css', label: 'CSS' },
-        { id: 'javascript', label: 'JavaScript' },
         { id: 'gestion-projet', label: 'Gestion de projets' },
         { id: 'autonomie', label: 'Autonomie' },
       ],
@@ -479,9 +472,6 @@ export class ProjectDetailComponent {
       competences: [
         { id: 'wordpress', label: 'WordPress' },
         { id: 'php', label: 'PHP' },
-        { id: 'mysql', label: 'MySQL' },
-        { id: 'css', label: 'CSS' },
-        { id: 'javascript', label: 'JavaScript' },
         { id: 'relation-client', label: 'Relation client' },
         { id: 'communication', label: 'Communication' },
       ],
@@ -613,7 +603,6 @@ export class ProjectDetailComponent {
       // ─────────────────────────────────────────────────────────────
       competences: [
         { id: 'java', label: 'Java (8→22)' },
-        { id: 'sql', label: 'SQL' },
         { id: 'gestion-projet', label: 'Gestion de projet' },
         { id: 'autonomie', label: 'Autonomie' },
         { id: 'communication', label: 'Communication' },
@@ -755,11 +744,7 @@ export class ProjectDetailComponent {
       // ─────────────────────────────────────────────────────────────
       competences: [
         { id: 'wordpress', label: 'WordPress' },
-        { id: 'html', label: 'HTML' },
-        { id: 'css', label: 'CSS' },
         { id: 'php', label: 'PHP' },
-        { id: 'sql', label: 'SQL' },
-        { id: 'javascipt', label: 'Javascript' },
         { id: 'gestion-projet', label: 'Gestion de projet' },
         { id: 'communication', label: 'Communication' },
       ],

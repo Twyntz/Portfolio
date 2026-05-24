@@ -1,21 +1,223 @@
-<section id="parcours" class="py-20 px-6 md:px-0 bg-gradient-to-b from-gray-50 to-gray-200 text-gray-800">
-  <h2 class="text-4xl font-bold text-red-600 mb-16 text-center">Mon Parcours</h2>
+<section id="parcours" class="py-20 bg-gray-50 text-gray-800">
+  <div class="max-w-3xl mx-auto px-4 md:px-6">
 
-  <div class="relative max-w-3xl mx-auto border-l-2 border-red-500 pl-8 space-y-20">
-    <div #timelineBlock
-         *ngFor="let step of parcoursScolaire.concat(parcoursPro); let i = index"
-         class="timeline-entry"
-         [attr.data-index]="i">
-      <div class="flex items-center gap-4 mb-3">
-        <div class="h-px bg-red-500 flex-1"></div>
-        <span class="text-sm font-semibold text-red-600">{{ step.year }}</span>
-        <div class="h-px bg-red-500 flex-1"></div>
+    <!-- ── En-tête ──────────────────────────────────────────────────── -->
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold text-red-600 tracking-tight mb-2">Mon Parcours</h2>
+      <p class="text-gray-400 text-sm">Anti-chronologique — expériences & formations</p>
+    </div>
+
+    <!-- ════════════════════════════════════════════════
+         SECTION 1 — Expériences professionnelles
+    ═════════════════════════════════════════════════ -->
+    <div class="mb-14">
+
+      <!-- Label section -->
+      <div class="flex items-center gap-3 mb-8">
+        <span class="w-2.5 h-2.5 rounded-full bg-red-500 flex-shrink-0"></span>
+        <span class="text-xs font-bold uppercase tracking-widest text-red-500 whitespace-nowrap">
+          Expériences professionnelles
+        </span>
+        <span class="flex-1 h-px bg-red-100"></span>
       </div>
-      <div class="bg-white shadow-md rounded-lg p-6">
-        <h3 class="text-lg font-semibold text-gray-900 mb-1">{{ step.title }}</h3>
-        <p class="text-sm italic text-gray-600 mb-2">{{ step.subtitle }}</p>
-        <p class="text-sm text-gray-700 leading-relaxed">{{ step.description }}</p>
+
+      <!-- Timeline -->
+      <div class="relative pl-6">
+        <!-- Ligne verticale rouge -->
+        <div class="absolute left-[4px] top-0 bottom-0 w-px bg-red-100"></div>
+
+        <div class="space-y-5">
+          <div *ngFor="let item of parcoursPro" class="relative parcours-card">
+
+            <!-- Pastille -->
+            <div class="absolute -left-[1.35rem] top-[1.35rem] w-2.5 h-2.5 rounded-full bg-red-500 ring-4 ring-red-50 border border-red-300"></div>
+
+            <!-- Carte -->
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-l-red-400 overflow-hidden">
+
+              <!-- Header -->
+              <div class="p-5 pb-0">
+                <div class="flex items-start gap-4">
+
+                  <!-- Logo -->
+                  <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+                    <img [src]="item.logo" [alt]="'Logo ' + item.subtitle"
+                         class="w-full h-full object-contain p-1" loading="lazy"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+                    <span class="hidden w-full h-full items-center justify-center text-xs font-bold text-gray-300 text-center" style="display:none">
+                      {{ item.subtitle | slice:0:2 | uppercase }}
+                    </span>
+                  </div>
+
+                  <div class="flex-1 min-w-0">
+                    <!-- Badges -->
+                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                      <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-red-50 text-red-700">
+                        {{ item.year }}
+                      </span>
+                      <span class="text-xs px-2 py-0.5 rounded-full border border-red-100 text-red-500 font-medium">
+                        {{ item.status }}
+                      </span>
+                    </div>
+                    <!-- Titre -->
+                    <h3 class="text-sm font-semibold text-gray-900 leading-snug">{{ item.title }}</h3>
+                    <!-- Lien externe -->
+                    <a [href]="item.websiteUrl" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-1 text-xs text-red-400 hover:text-red-600 hover:underline mt-0.5 transition-colors">
+                      <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                      </svg>
+                      {{ item.subtitle }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Corps -->
+              <div class="p-5 space-y-3">
+
+                <p class="text-xs text-gray-500 leading-relaxed">{{ item.description }}</p>
+
+                <!-- Missions -->
+                <div *ngIf="item.missions.length > 0">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Missions</p>
+                  <ul class="space-y-1.5">
+                    <li *ngFor="let m of item.missions"
+                        class="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                      <span class="mt-[5px] w-1 h-1 rounded-full bg-red-300 flex-shrink-0"></span>
+                      {{ m }}
+                    </li>
+                  </ul>
+                </div>
+
+                <!-- Vision -->
+                <blockquote class="border-l-2 border-red-200 pl-3 py-0.5 italic text-xs text-gray-400 leading-relaxed bg-red-50 rounded-r-lg">
+                  {{ item.vision }}
+                </blockquote>
+
+                <!-- Liens internes -->
+                <div *ngIf="item.internalLinks.length > 0">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Compétences & réalisations</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <a *ngFor="let link of item.internalLinks"
+                       [routerLink]="link.route"
+                       class="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-white border border-gray-200 text-gray-500 hover:bg-red-600 hover:text-white hover:border-red-600 transition-all duration-150 font-medium shadow-sm">
+                      <svg class="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                      </svg>
+                      {{ link.label }}
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- ════════════════════════════════════════════════
+         SECTION 2 — Formation scolaire
+    ═════════════════════════════════════════════════ -->
+    <div>
+
+      <!-- Label section -->
+      <div class="flex items-center gap-3 mb-8">
+        <span class="w-2.5 h-2.5 rounded-full bg-slate-400 flex-shrink-0"></span>
+        <span class="text-xs font-bold uppercase tracking-widest text-slate-500 whitespace-nowrap">
+          Formation scolaire
+        </span>
+        <span class="flex-1 h-px bg-slate-200"></span>
+      </div>
+
+      <!-- Timeline -->
+      <div class="relative pl-6">
+        <div class="absolute left-[4px] top-0 bottom-0 w-px bg-slate-200"></div>
+
+        <div class="space-y-5">
+          <div *ngFor="let item of parcoursScolaire" class="relative parcours-card">
+
+            <div class="absolute -left-[1.35rem] top-[1.35rem] w-2.5 h-2.5 rounded-full bg-slate-400 ring-4 ring-slate-50 border border-slate-200"></div>
+
+            <div class="bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-200 border-l-4 border-l-slate-300 overflow-hidden">
+
+              <!-- Header -->
+              <div class="p-5 pb-0">
+                <div class="flex items-start gap-4">
+
+                  <div class="flex-shrink-0 w-11 h-11 rounded-xl bg-gray-50 border border-gray-100 flex items-center justify-center overflow-hidden">
+                    <img [src]="item.logo" [alt]="'Logo ' + item.subtitle"
+                         class="w-full h-full object-contain p-1" loading="lazy"
+                         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+                    <span class="hidden w-full h-full items-center justify-center text-xs font-bold text-gray-300 text-center" style="display:none">
+                      {{ item.subtitle | slice:0:2 | uppercase }}
+                    </span>
+                  </div>
+
+                  <div class="flex-1 min-w-0">
+                    <div class="flex items-center gap-2 flex-wrap mb-1">
+                      <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-slate-50 text-slate-600">
+                        {{ item.year }}
+                      </span>
+                      <span class="text-xs px-2 py-0.5 rounded-full border border-slate-200 text-slate-400 font-medium">
+                        {{ item.status }}
+                      </span>
+                    </div>
+                    <h3 class="text-sm font-semibold text-gray-900 leading-snug">{{ item.title }}</h3>
+                    <a [href]="item.websiteUrl" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-1 text-xs text-slate-400 hover:text-slate-600 hover:underline mt-0.5 transition-colors">
+                      <svg class="w-3 h-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+                      </svg>
+                      {{ item.subtitle }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Corps -->
+              <div class="p-5 space-y-3">
+
+                <p class="text-xs text-gray-500 leading-relaxed">{{ item.description }}</p>
+
+                <div *ngIf="item.missions.length > 0">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Contenu de la formation</p>
+                  <ul class="space-y-1.5">
+                    <li *ngFor="let m of item.missions"
+                        class="flex items-start gap-2 text-xs text-gray-600 leading-snug">
+                      <span class="mt-[5px] w-1 h-1 rounded-full bg-slate-300 flex-shrink-0"></span>
+                      {{ m }}
+                    </li>
+                  </ul>
+                </div>
+
+                <blockquote class="border-l-2 border-slate-200 pl-3 py-0.5 italic text-xs text-gray-400 leading-relaxed bg-slate-50 rounded-r-lg">
+                  {{ item.vision }}
+                </blockquote>
+
+                <div *ngIf="item.internalLinks.length > 0">
+                  <p class="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-2">Compétences associées</p>
+                  <div class="flex flex-wrap gap-1.5">
+                    <a *ngFor="let link of item.internalLinks"
+                       [routerLink]="link.route"
+                       class="inline-flex items-center gap-1 text-xs px-2.5 py-1 rounded-full bg-white border border-gray-200 text-gray-500 hover:bg-slate-600 hover:text-white hover:border-slate-600 transition-all duration-150 font-medium shadow-sm">
+                      <svg class="w-2.5 h-2.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                      </svg>
+                      {{ link.label }}
+                    </a>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>

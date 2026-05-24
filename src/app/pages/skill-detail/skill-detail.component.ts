@@ -1,778 +1,463 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+
+interface Anecdote {
+  texte: string;
+  resultat: string;
+  valeurAjoutee: string;
+  realisationLink?: { label: string; route: string };
+}
+
+interface SkillDetail {
+  id: string;
+  name: string;
+  icon: string;
+  category: 'technique' | 'humaine';
+  level: number;
+  tagline: string;
+  definition: string;
+  anecdotes: Anecdote[];
+  autocritique: {
+    niveau: { score: number; label: string; detail: string };
+    importance: string;
+    vitesse: string;
+    recul: string;
+  };
+  evolution: {
+    objectif: string;
+    formations: string;
+  };
+  realisations: { label: string; route: string }[];
+}
 
 @Component({
   selector: 'app-skill-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './skill-detail.component.html',
   styleUrls: ['./skill-detail.component.scss'],
 })
 export class SkillDetailComponent implements OnInit {
-  skillId: string = '';
-  skill: any;
+  skill: SkillDetail | undefined;
 
-  allSkills = [
-    {
-      id: 'html',
-      name: 'HTML',
-      icon: 'assets/img/html.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>HTML (HyperText Markup Language) est le langage fondamental du web. Il permet de structurer le contenu des pages en définissant les différents éléments tels que les titres, paragraphes, tableaux, images, formulaires ou liens. Il constitue la base de tout site ou application web, sur laquelle viennent s’ajouter les feuilles de style (CSS) et les scripts (JavaScript) pour créer des interfaces modernes et interactives.</p>
-
-      <p>Facile à prendre en main mais exigeant pour une utilisation optimale, HTML est essentiel pour assurer une bonne lisibilité du code, une accessibilité correcte, et une compatibilité multi-navigateurs. Dans un environnement professionnel, sa maîtrise est indispensable pour garantir des pages bien structurées, maintenables et performantes.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai eu l’occasion de travailler avec HTML sur un grand nombre de projets web, notamment lors de mon expérience chez DGS Création, mais également dans le cadre de projets personnels ou académiques.</p>
-
-      <p>Chez DGS Création, j’ai participé à la réalisation de nombreux sites web, qu’ils soient vitrines ou e-commerce, en m’appuyant sur des technologies comme WordPress, PrestaShop ou encore Symfony. Dans chacun de ces projets, HTML constituait l’élément central pour construire l’ossature des pages, intégrer les maquettes graphiques, créer des formulaires fonctionnels, ou encore structurer le contenu de manière cohérente.</p>
-
-      <p>Un point auquel je portais une attention particulière était l’impact du HTML sur le référencement naturel (SEO). Je veillais toujours à utiliser les balises sémantiques appropriées (&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;article&gt;, &lt;h1&gt;, &lt;p&gt;, etc.), à structurer correctement les titres et sous-titres (&lt;h1&gt; à &lt;h6&gt;), et à optimiser le contenu pour les moteurs de recherche tout en restant accessible pour les utilisateurs. J'étais également attentif à l'attribut alt des images, aux balises de méta-informations, et à la hiérarchie logique du contenu, afin de garantir une indexation efficace par les moteurs de recherche.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Grâce à ces expériences, j’ai acquis une maîtrise solide des fondamentaux de HTML, ainsi qu’une bonne compréhension des pratiques modernes :</p>
-      <ul>
-        <li>Utilisation des balises sémantiques pour améliorer la clarté du code et le SEO,</li>
-        <li>Création de structures modulaires, réutilisables et compatibles avec des frameworks front-end,</li>
-        <li>Intégration de formulaires, d’éléments multimédias et de contenus dynamiques,</li>
-        <li>Sensibilisation aux normes d’accessibilité et à la structuration logique des pages.</li>
-      </ul>
-      <p>Je suis également à l’aise pour collaborer avec des designers, intégrer des maquettes en HTML/CSS, et adapter les structures HTML à différents contextes techniques (CMS, frameworks, responsive design…).</p>
-
-      <p>À court terme, je souhaite continuer à perfectionner ma pratique du HTML, notamment en approfondissant les aspects liés à l’accessibilité web (WCAG, ARIA) et à l’intégration front-end moderne avec des frameworks comme Angular, que j’utilise dans mon projet de fin d’études. Ma priorité est de concevoir des interfaces robustes, évolutives et respectueuses des standards du web.</p>
-    `,
-    },
-    {
-      id: 'php',
-      name: 'PHP',
-      icon: 'assets/img/php.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>PHP (Hypertext Preprocessor) est un langage de programmation open source largement utilisé pour le développement web côté serveur. Apprécié pour sa simplicité, sa flexibilité et sa grande compatibilité avec les serveurs et bases de données, il reste aujourd’hui un pilier incontournable dans la création de sites et d’applications dynamiques. Malgré l’émergence de technologies plus récentes, PHP continue d’alimenter une grande partie du web mondial, notamment à travers des plateformes populaires comme WordPress, Drupal ou Prestashop.</p>
-
-      <p>Ce langage permet aux développeurs d’interagir facilement avec des bases de données, de gérer des sessions, de traiter des formulaires et de générer dynamiquement du contenu HTML. Grâce à son vaste écosystème, de nombreux frameworks PHP tels que Laravel, Symfony ou CodeIgniter ont vu le jour, offrant des outils puissants pour structurer le code, accélérer le développement, et respecter les bonnes pratiques.</p>
-
-      <p>Avec les mises à jour régulières du langage, dont les plus récentes (comme PHP 8 et PHP 8.1) apportent des améliorations majeures en termes de performance et de lisibilité, PHP reste un choix pertinent aussi bien pour les projets simples que pour les applications web complexes. Sa communauté active et ses innombrables ressources en font un langage accessible, que ce soit pour un développeur débutant ou confirmé.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>PHP est un langage que j’ai eu l’occasion de pratiquer dans plusieurs contextes professionnels, aussi bien dans sa forme « pure » qu’à travers l’utilisation de frameworks comme Symfony, ou de CMS tels que WordPress et PrestaShop. Grâce à sa syntaxe simple et sa large communauté, PHP m’a permis de développer rapidement des solutions web robustes et évolutives.</p>
-
-      <p>Ma première véritable expérience avec PHP a eu lieu chez Interpane, lors d’une mission de refonte d’un logiciel interne de gestion de production assistée par ordinateur (GPAO). Le logiciel existant avait été développé sous PHP 3, une version obsolète et difficile à maintenir. J’ai d’abord étudié l’architecture existante, puis proposé une solution basée sur Symfony, afin de bénéficier d’une structure moderne et mieux organisée. J’ai progressivement migré les fonctionnalités vers ce nouveau socle, tout en améliorant l’ergonomie et la maintenabilité du code. À la fin de mon passage dans l’entreprise, j’ai livré une version stable du nouveau logiciel accompagnée d’une documentation complète, permettant à l’équipe technique de le maintenir et de le faire évoluer sereinement.</p>
-
-      <p>Par la suite, chez DGS Création, j’ai travaillé sur plusieurs projets de sites web pour des clients variés. PHP était au cœur de la plupart de ces projets, que ce soit via WordPress, PrestaShop ou Symfony. J’ai notamment été amené à développer des modules personnalisés pour WordPress et PrestaShop, afin de répondre à des besoins métiers spécifiques, comme la gestion d’options produit complexes ou l’intégration de passerelles de paiement. J’ai également participé à la création de sites sur mesure en Symfony, me permettant de concevoir des architectures plus flexibles et orientées métier.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Aujourd’hui, je me considère à l’aise avec PHP, aussi bien en développement « from scratch » qu’en environnement structuré avec un framework ou un CMS. J’ai eu l’occasion d’utiliser le langage pour développer des solutions concrètes, maintenables et adaptées aux besoins de mes clients ou de mon entreprise.</p>
-
-      <p>J’ai notamment acquis de solides compétences en :</p>
-      <ul>
-        <li>Programmation orientée objet avec PHP</li>
-        <li>Utilisation de frameworks comme Symfony</li>
-        <li>Développement de modules personnalisés sur WordPress et PrestaShop</li>
-        <li>Interaction avec des bases de données (MySQL) via PDO ou Doctrine</li>
-        <li>Rédaction de documentation technique pour assurer la pérennité des projets</li>
-      </ul>
-
-      <p>Je continue de perfectionner ma maîtrise du langage, en me tenant informé des bonnes pratiques modernes (comme l’utilisation de namespaces, des design patterns, ou la gestion des dépendances avec Composer), et en travaillant sur des projets variés.</p>
-
-      <p>À l’avenir, j’envisage de renforcer mes compétences PHP en explorant davantage les tests automatisés, l’intégration continue dans des projets PHP, et en consolidant mes bases sur l’optimisation des performances.</p>
-    `,
-    },
-    {
-      id: 'communication',
-      name: 'Communication',
-      icon: 'assets/img/communication.svg',
-      html: `
-      <h2>Introduction</h2>
-      <p>La communication est au cœur de toute activité humaine, qu’elle soit personnelle, sociale ou professionnelle. Elle permet d’échanger des idées, de partager des informations, de collaborer efficacement et de créer des liens de confiance. Dans le monde professionnel, une communication claire et structurée est indispensable au bon fonctionnement des équipes, à la coordination des projets et à la satisfaction des parties prenantes, qu’il s’agisse de collègues, de clients ou de partenaires.</p>
-
-      <p>Avec l’évolution des méthodes de travail et la généralisation des outils numériques, la communication a elle aussi changé de dimension. Elle ne se limite plus aux échanges en présentiel ou aux simples messages écrits : elle passe désormais par des outils collaboratifs, des plateformes de gestion de projet, des visioconférences, ou encore des interfaces utilisateurs pensées pour transmettre des messages implicites. Cela demande non seulement des compétences techniques, mais aussi une capacité à s’adapter à différents contextes, publics et objectifs.</p>
-
-      <p>Dans les métiers du numérique, la communication est souvent perçue comme secondaire par rapport aux compétences techniques. Pourtant, elle est essentielle : que ce soit pour expliquer un concept complexe à un client, documenter proprement un projet, ou assurer une bonne coordination entre développeurs, elle joue un rôle clé dans la réussite d’un projet. Une bonne communication permet de mieux comprendre les attentes, d’éviter les malentendus, et de valoriser le travail accompli.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>Durant mon passage au sein de l’agence web DGS Création, j’ai eu l’opportunité de travailler sur de nombreux projets de sites web, notamment 1envie1vin et Biolaser. En plus de la participation aux phases de développement, j’étais en charge de la formation des clients à l’utilisation de leur back office une fois le site mis en ligne. Cela m’a permis de développer une communication claire, accessible et pédagogique, afin de rendre les clients autonomes dans la gestion de leurs contenus.</p>
-
-      <p>Chez DGS, une réunion était organisée à chaque étape clé du projet pour informer le client de l’avancement et recueillir ses retours. Ces moments d’échange étaient essentiels pour s'assurer que le projet répondait bien aux attentes. Une réunion de suivi était également prévue trois mois après la mise en ligne, afin de faire le point sur les performances du site, d'évaluer la satisfaction du client, et de discuter d’éventuelles évolutions ou ajustements.</p>
-
-      <p>Aujourd’hui, je travaille dans le service informatique de l’entreprise Tschoeppe, où mes missions impliquent de collaborer avec plusieurs autres services, comme le marketing ou le service technique. La communication interne est bien structurée : une réunion a lieu chaque lundi matin avec le dirigeant de l’entreprise, M. Tschoeppe, pour définir les priorités de la semaine et répartir les tâches. En fin de journée, une réunion entre membres du service permet de suivre l’avancement et de partager les difficultés rencontrées.</p>
-
-      <p>Certaines missions, comme le développement de Tlive, exigent une coordination étroite avec le service technique. Des réunions hebdomadaires interservices permettent d’assurer un bon alignement entre les besoins métiers et les contraintes techniques. Enfin, pour maintenir une bonne communication avec les utilisateurs du logiciel, nous rédigeons régulièrement des notes de mise à jour pour leur présenter les nouveautés et les corrections apportées.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Ces différentes expériences m’ont permis de développer des compétences solides en communication, à la fois en interne avec des équipes pluridisciplinaires, et en externe avec des clients ou des utilisateurs finaux.</p>
-
-      <p>Chez DGS Création, j’ai appris à adapter ma communication en fonction de mon interlocuteur. La participation aux réunions clients m’a permis de travailler ma capacité à écouter activement, à reformuler les besoins, et à restituer clairement l’avancement d’un projet. La formation des clients à l’utilisation de leur back office m’a particulièrement aidé à améliorer mes compétences en vulgarisation, en structuration de discours, et en pédagogie. Il fallait expliquer des fonctionnalités techniques de manière simple, en s’assurant que le client puisse les réutiliser en autonomie.</p>
-
-      <p>Chez Tschoeppe, j’ai renforcé ma communication dans un cadre d’équipe technique, avec des échanges fréquents et ciblés pour assurer le bon déroulement des projets. J’ai également eu l’occasion d’écrire des communications utilisateurs via les notes de mise à jour de notre logiciel, ce qui m’a permis de travailler la clarté et la concision à l’écrit.</p>
-
-      <p>Je me considère aujourd’hui à l’aise dans les échanges professionnels et dans la transmission d’informations techniques. Néanmoins, je reste conscient que la communication est une compétence qui se perfectionne continuellement. Je souhaite notamment progresser sur des aspects comme la prise de parole en public, la gestion des situations délicates, ou la présentation de concepts complexes à des publics non techniques.</p>
-
-      <p>À cette fin, je compte continuer à apprendre par la pratique quotidienne, mais également en me formant. Je prévois notamment de lire <em>L’art du storytelling</em>, un ouvrage qui m’aidera à structurer mes idées de façon plus impactante et à rendre mes messages plus captivants, que ce soit à l’oral ou à l’écrit.</p>
-    `,
-    },
-    {
-      id: 'css',
-      name: 'CSS / SCSS',
-      icon: 'assets/img/css.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>CSS (Cascading Style Sheets) est le langage qui permet de styliser et de mettre en forme les pages HTML. Il contrôle la disposition, les couleurs, les polices, les animations et l'adaptation des interfaces aux différents types d’écrans. C’est une compétence incontournable pour tout développeur front-end ou full stack souhaitant créer des interfaces web modernes, cohérentes et accessibles.</p>
-
-      <p>Avec l’évolution des besoins en design web, CSS a su s’enrichir de nombreuses fonctionnalités puissantes comme flexbox, grid, ou encore les animations. Pour améliorer la productivité, des outils comme les frameworks CSS (ex. Tailwind CSS, Bootstrap) et des préprocesseurs comme SCSS sont devenus des standards dans la gestion des styles à grande échelle.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai utilisé CSS dans tous les projets web que j’ai menés, notamment chez DGS Création, où j’ai participé à la réalisation de nombreux sites web sous WordPress, PrestaShop et Symfony. Selon les projets, j’ai combiné différentes approches en fonction des besoins du client et des contraintes techniques.</p>
-
-      <p>J’ai eu l’occasion d’utiliser des frameworks CSS tels que Tailwind CSS, dont j’ai apprécié la rapidité d’intégration et la logique utilitaire très efficace pour le responsive design. Néanmoins, je préfère personnellement travailler avec SCSS, un préprocesseur CSS qui permet une meilleure organisation, lisibilité et maintenabilité du code.</p>
-
-      <p>Grâce à SCSS, j’ai pu :</p>
-      <ul>
-        <li>utiliser des variables, des fonctions et des mixins pour factoriser le style,</li>
-        <li>organiser mon code en fichiers partiels (<code>_buttons.scss</code>, <code>_layout.scss</code>, etc.),</li>
-        <li>créer des systèmes de design system personnalisés faciles à adapter et à maintenir,</li>
-        <li>structurer mes feuilles de style selon une logique modulaire, plus facile à faire évoluer sur le long terme.</li>
-      </ul>
-
-      <p>Même lorsque j’utilisais un framework comme Tailwind, je n’hésitais pas à compléter avec du CSS ou SCSS personnalisé pour affiner des détails visuels, répondre à des besoins spécifiques du client, ou surmonter certaines limitations du framework.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Aujourd’hui, je maîtrise :</p>
-      <ul>
-        <li>les bases avancées de CSS (flexbox, grid, animations, media queries),</li>
-        <li>l’utilisation efficace de Tailwind CSS dans un contexte projet,</li>
-        <li>la structuration et l’optimisation du style avec SCSS,</li>
-        <li>la création de composants visuels personnalisés et réutilisables,</li>
-        <li>les bonnes pratiques en matière d’organisation, de performance et de lisibilité du code CSS.</li>
-      </ul>
-
-      <p>Ma préférence pour SCSS vient de sa capacité à rendre les feuilles de style plus propres, plus modulaires et plus faciles à maintenir, ce qui est essentiel dans les projets professionnels de moyenne ou grande taille. Je l’utilise autant pour améliorer la lisibilité que pour créer des architectures CSS robustes.</p>
-
-      <p>Je souhaite continuer à progresser dans la structuration avancée des styles, notamment en approfondissant des méthodologies comme BEM (Block Element Modifier) ou ITCSS, et en consolidant mes connaissances en accessibilité visuelle et performances front-end.</p>
-    `,
-    },
-    {
-      id: 'docker',
-      name: 'Docker',
-      icon: 'assets/img/docker.svg',
-      html: `
-      <h2>Introduction</h2>
-      <p>Docker est un outil incontournable dans le monde du développement et du déploiement logiciel moderne. Il permet de créer, déployer et exécuter des applications dans des conteneurs légers et portables. Ces conteneurs embarquent tout ce dont l’application a besoin pour fonctionner : code, dépendances, configurations, environnement d’exécution… ce qui garantit une exécution cohérente quel que soit l’environnement (local, test, production).</p>
-
-      <p>Grâce à Docker, les développeurs peuvent standardiser les environnements de développement, simplifier le déploiement, réduire les conflits entre machines, et accélérer l’intégration continue. Associé à des outils comme Docker Compose, il permet également de gérer facilement des applications multi conteneurs, avec une configuration centralisée et réutilisable.</p>
-
-      <p>Dans un contexte professionnel, Docker améliore la productivité, la fiabilité et l’agilité des équipes, et constitue une étape clé vers des architectures modernes comme le DevOps, le CI/CD, ou les microservices.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai été amené à utiliser Docker dans le cadre d’un projet technique mené chez Tschoeppe, suite à la fin du contrat avec un prestataire externe qui gérait jusqu’alors l’infrastructure de notre logiciel de dessin 2D. L’objectif était de reprendre le contrôle complet du système, en migrant les services hébergés sur leurs serveurs vers une nouvelle infrastructure interne, maîtrisée par notre propre équipe.</p>
-
-      <p>Cette opération impliquait de récupérer l’ensemble des données de l’ancien prestataire, puis de reconstruire l’environnement technique nécessaire au bon fonctionnement de deux éléments principaux :</p>
-      <ul>
-        <li>la base de données du logiciel,</li>
-        <li>le site de téléchargement permettant aux utilisateurs d’installer le programme.</li>
-      </ul>
-
-      <p>Pour garantir une installation propre, rapide et indépendante du système hôte, j’ai utilisé Docker afin de créer des images personnalisées pour chacun des services concernés. Une image a été créée pour la base de données, et une autre pour l’interface web permettant le téléchargement de l’installateur.</p>
-
-      <p>Docker nous a permis d’isoler proprement chaque service, de simplifier le déploiement sur notre nouveau serveur, et d’assurer la portabilité de la solution pour de futurs besoins de maintenance ou de migration. Cette première expérience m’a permis de comprendre concrètement l’intérêt de la conteneurisation pour la standardisation des environnements et la stabilité des systèmes.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Mon expérience avec Docker reste encore limitée, mais elle m’a permis de comprendre les fondamentaux de la conteneurisation et d’en percevoir tout l’intérêt dans un contexte professionnel réel.</p>
-
-      <p>Lors du projet mené chez Tschoeppe, j’ai appris à :</p>
-      <ul>
-        <li>créer et configurer des Dockerfiles pour générer des images personnalisées,</li>
-        <li>construire des conteneurs pour des services spécifiques comme une base de données ou un site web statique,</li>
-        <li>manipuler les volumes, ports et réseaux Docker pour assurer le bon fonctionnement des services dans un environnement isolé,</li>
-        <li>déployer ces services de façon reproductible sur un serveur interne, sans dépendance directe à la machine hôte.</li>
-      </ul>
-
-      <p>Cette première utilisation m’a donné une base concrète sur laquelle je souhaite maintenant bâtir une vraie maîtrise. Je suis conscient que Docker offre de nombreuses possibilités que je n’ai pas encore explorées, notamment en matière d’orchestration (Docker Compose, Kubernetes), de CI/CD, de gestion de logs, ou encore de sécurité.</p>
-
-      <p>À court terme, je souhaite approfondir mes connaissances de Docker à travers :</p>
-      <ul>
-        <li>la mise en conteneur de projets personnels ou académiques (comme mon portfolio),</li>
-        <li>l’utilisation de Docker Compose pour gérer des architectures multi-conteneurs,</li>
-        <li>la lecture de ressources ciblées sur les bonnes pratiques DevOps.</li>
-      </ul>
-
-      <p>Docker représente pour moi un outil essentiel à maîtriser dans le développement moderne, et je suis motivé à le pratiquer davantage pour pouvoir l’intégrer pleinement dans mes futurs projets de développement, d’intégration et de déploiement logiciel.</p>
-    `,
-    },
-    {
-      id: 'gestion-projet',
-      name: 'Gestion de projet',
-      icon: 'assets/img/gestion_de_projet.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>La gestion de projet est une compétence clé dans les environnements professionnels modernes, en particulier dans le domaine de l’ingénierie logicielle. Elle consiste à planifier, organiser, piloter et finaliser un projet en respectant des contraintes de temps, de budget et de qualité. Une bonne gestion de projet permet de garantir une vision claire des objectifs, une répartition efficace des ressources et un suivi rigoureux de l’avancement.</p>
-
-      <p>Avec l’évolution rapide des technologies et la complexité croissante des systèmes informatiques, la gestion de projet ne se limite plus à une simple coordination : elle implique aujourd’hui une approche structurée, des outils adaptés, une communication fluide entre les parties prenantes, et une capacité à anticiper et à gérer les imprévus.</p>
-
-      <p>Dans les projets numériques, la maîtrise de la gestion de projet permet non seulement de livrer des produits conformes aux attentes, mais aussi de créer un environnement de travail serein, où chaque membre de l’équipe comprend son rôle, ses priorités et ses responsabilités. Elle constitue ainsi un véritable levier de performance et de réussite collective.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>Durant mon année chez Tschoeppe, j’ai été amené à gérer seul le service informatique pendant un mois, suite au départ de mon responsable. Cette période a coïncidé avec plusieurs projets importants à piloter, notamment la mise en place de la nouvelle infrastructure du logiciel de dessin 2D Tlive, ou encore le projet BSI en collaboration avec le service comptabilité. En parallèle, je devais également assurer les tâches de support technique du service, comme l’intégration des nouveaux collaborateurs et la résolution des incidents ou bugs rencontrés par les différents services de l’entreprise.</p>
-
-      <p>Pour maintenir une activité fluide et éviter les blocages, j’ai dû structurer rigoureusement mon emploi du temps. Je consacrais mes matinées à l’avancement des projets stratégiques, en priorisant d’abord le BSI puis l’infrastructure Tlive. L’après-midi, je me concentrais sur le support et les demandes urgentes des utilisateurs.</p>
-
-      <p>À partir du mois de février, un nouveau responsable a été recruté, suivi d’un second à la fin du mois. Étant devenu la personne référente du service, j’ai naturellement pris en charge la répartition des tâches, en tenant compte de leur priorité et des compétences de chacun. Cette expérience m’a permis de mettre à l’épreuve mes capacités d’organisation, de gestion du stress, mais aussi mon leadership dans un contexte où la continuité du service était primordiale.</p>
-
-      <p>Avec le recul, je suis fier d’avoir pu maintenir le bon fonctionnement du service pendant cette période exigeante. Aujourd’hui encore, de nombreux collaborateurs continuent de me solliciter directement en cas de besoin, ce qui témoigne, selon moi, de la confiance acquise et de la pertinence des choix que j’ai pu faire dans ma manière de gérer les projets, les équipes et les urgences.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>L’expérience vécue chez Tschoeppe, où j’ai assuré seul la gestion du service informatique pendant plusieurs semaines, a été particulièrement formatrice en matière de gestion de projet. J’ai dû planifier mes journées avec rigueur, prioriser les tâches en fonction de leur impact, gérer les imprévus, tout en maintenant un bon niveau de service pour les utilisateurs internes. Cette situation m’a permis d’acquérir une vision plus concrète de ce que signifie piloter un projet dans un contexte réel, avec des délais, des responsabilités et une pression quotidienne.</p>
-
-      <p>J’ai appris à organiser le travail de manière structurée, à définir des objectifs clairs, à anticiper les risques, et à répartir les tâches en tenant compte des compétences de chacun. Le fait d’avoir été sollicité pour guider les nouveaux arrivants dans l’équipe a renforcé ma capacité à coordonner les efforts collectifs, à communiquer efficacement et à prendre des décisions rapides en cas d’urgence.</p>
-
-      <p>Je considère aujourd’hui que j’ai acquis un niveau opérationnel en gestion de projet, fondé sur l’expérience de terrain. Cela m’a permis de développer une approche pragmatique, centrée sur l’efficacité, la réactivité et la collaboration. Néanmoins, je suis conscient que la gestion de projet est une discipline riche, qui demande à être approfondie pour en maîtriser pleinement les outils, les méthodologies (comme Scrum ou Kanban), et les bonnes pratiques.</p>
-
-      <p>C’est pourquoi je prévois, à moyen terme, de compléter mon expérience par des ressources plus théoriques, notamment des lectures comme <em>S’initier à la gestion de projets informatiques</em>. Cela me permettra de mieux formaliser ce que j’ai appris sur le terrain, d’enrichir ma boîte à outils méthodologique, et de gagner en rigueur pour des projets de plus grande envergure.</p>
-
-      <p>En résumé, mes expériences m’ont permis de prendre conscience de l’importance d’une bonne gestion de projet, non seulement pour atteindre les objectifs techniques, mais aussi pour créer un cadre de travail clair, motivant et stable pour toutes les personnes impliquées.</p>
-    `,
-    },
+  private allSkills: SkillDetail[] = [
+    // ─────────────────────────────────────────────────────
+    // JAVA
+    // ─────────────────────────────────────────────────────
     {
       id: 'java',
       name: 'Java',
       icon: 'assets/img/java.svg',
-      html: `
-      <h2>Introduction</h2>
-      <p>Java est un langage de programmation orienté objet, robuste et multiplateforme, largement utilisé dans le développement d’applications d’entreprise, de logiciels embarqués, de systèmes distribués, ou encore d’applications web. Grâce à la machine virtuelle Java (JVM), il garantit une grande portabilité du code, selon le principe bien connu : "Write Once, Run Anywhere".</p>
-
-      <p>Langage mature, Java bénéficie d’un vaste écosystème de bibliothèques, de frameworks (comme Spring, Hibernate, ou Jakarta EE) et d’outils de développement qui en font une technologie de référence, notamment dans les architectures back-end, les systèmes métiers, et les applications critiques.</p>
-
-      <p>Dans un contexte professionnel, Java est apprécié pour sa stabilité, sa scalabilité, et sa maintenabilité, ce qui en fait un choix de prédilection pour les entreprises développant des solutions logicielles complexes et durables.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai commencé à travailler avec Java dans le cadre de mon poste chez Tschoeppe, où ce langage est au cœur du développement de notre logiciel de dessin 2D ainsi que du moteur de rendu 3D associé. Ce logiciel, initialement développé en Java 8, est utilisé quotidiennement par les commerciaux de l’entreprise ainsi que par des revendeurs externes pour concevoir, visualiser et configurer des portails et clôtures sur mesure.</p>
-
-      <p>Dans un premier temps, mes missions ont consisté à intervenir sur la version existante du logiciel, en y intégrant de nouvelles gammes de produits et de nouveaux modèles, mais aussi en corrigeant des bugs récurrents signalés par les utilisateurs. Ce travail m’a permis de me familiariser avec un code legacy complexe et de renforcer ma rigueur dans la lecture, la compréhension et l’amélioration de code existant.</p>
-
-      <p>Depuis juin, nous avons engagé, avec mon nouveau responsable, un travail de refonte progressive du logiciel en migrant le projet vers Java 22. Cette mise à jour permet de moderniser le code, de corriger des failles de sécurité identifiées sur l’ancienne version, et de profiter des nouvelles fonctionnalités offertes par les versions récentes du langage. Cela implique également un travail de réorganisation du projet, de nettoyage du code, et de révision des pratiques de développement, dans une logique d’industrialisation.</p>
-
-      <p>Cette expérience m’a permis de consolider ma compréhension de Java dans un contexte professionnel réel, en me confrontant à des problématiques concrètes telles que la compatibilité de versions, la gestion de la dette technique, et l’optimisation d’un logiciel à forte valeur métier.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Mon expérience chez Tschoeppe m’a permis de développer une maîtrise solide de Java, en particulier dans un contexte industriel et métier, où la fiabilité du logiciel et la lisibilité du code sont essentielles. J’ai appris à travailler sur une base existante développée en Java 8, et je participe activement à la migration vers Java 22, ce qui m’a exposé aux différences de versions, aux nouveautés du langage, ainsi qu’aux enjeux de compatibilité et de sécurité.</p>
-
-      <p>Je suis aujourd’hui à l’aise avec :</p>
-      <ul>
-        <li>la programmation orientée objet (POO) et les principes de conception solides (SOLID),</li>
-        <li>la lecture, l’analyse et la refactorisation de code existant,</li>
-        <li>l’utilisation des classes Java standard, des streams, des lambdas, et des structures de contrôle modernes,</li>
-        <li>la gestion des erreurs et le débogage d’applications complexes,</li>
-        <li>l’intégration de nouvelles fonctionnalités dans un logiciel métier existant.</li>
-      </ul>
-
-      <p>Cette expérience m’a également sensibilisé à l’importance de maintenir un code propre et maintenable, de documenter les changements, et de travailler avec rigueur dans un environnement utilisé en production par des professionnels.</p>
-
-      <p>Je suis conscient que Java est un langage très vaste, et je souhaite encore progresser dans plusieurs domaines, notamment :</p>
-      <ul>
-        <li>l’adoption des nouveautés de Java 17+ (records, pattern matching, virtual threads…),</li>
-        <li>l’utilisation avancée des collections et des flux de données,</li>
-        <li>l’approfondissement de l’écosystème Spring (Spring Boot, Spring Data, etc.),</li>
-        <li>l’intégration de tests automatisés (JUnit, Mockito),</li>
-        <li>et le déploiement d’applications Java modernes via Docker ou dans une architecture CI/CD.</li>
-      </ul>
-
-      <p>À moyen terme, je souhaite être capable de concevoir des applications Java modernes et modulaires, et de maîtriser l’ensemble de la chaîne de développement, du code jusqu’au déploiement.</p>
-    `,
+      category: 'technique',
+      level: 9,
+      tagline: 'Mon langage de prédilection en entreprise',
+      definition: `Java est un langage de programmation orienté objet compilé en bytecode et exécuté sur la JVM (Java Virtual Machine). Créé en 1995, il constitue aujourd'hui l'un des piliers du développement logiciel en entreprise grâce à sa robustesse, sa portabilité et son vaste écosystème. Avec les LTS récentes (Java 17, Java 21) et l'introduction des records, sealed classes et virtual threads (Project Loom), Java connaît une renaissance qui le maintient très compétitif face à des langages plus récents comme Kotlin ou Go. Dans les systèmes d'information d'entreprise, Java reste un choix de référence pour sa maintenabilité à long terme et sa performance.`,
+      anecdotes: [
+        {
+          texte: `Chez Groupe Synergie Développement, je travaille sur la maintenance et l'évolution de Tschoeppe Live, un logiciel de dessin 2D en Java. J'ai repris ce projet sans documentation ni référent technique disponible, en analysant seul une base de code conséquente pour identifier les bugs signalés par les utilisateurs et apporter des corrections robustes sans introduire de régressions.`,
+          resultat: `Correction de plusieurs bugs critiques bloquants en production, stabilisation de l'application et amélioration de la fiabilité perçue par les utilisateurs finaux.`,
+          valeurAjoutee: `Ma capacité à naviguer dans du code legacy sans documentation a permis à l'entreprise de maintenir un outil métier essentiel sans interruption de service, évitant un recours coûteux à un prestataire externe.`,
+          realisationLink: { label: 'Tschoeppe Live', route: '/realisations/4' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 9,
+          label: 'Expert',
+          detail: `Je suis autonome sur Java pour des projets métiers complexes : architecture POO, gestion des exceptions, interaction avec des bases de données, manipulation de fichiers. Je reste en exploration active sur les fonctionnalités Java 21+.`
+        },
+        importance: `Java est ma compétence technique la plus stratégique. C'est le langage de mon CDI actuel chez Synergie Développement, et celui dans lequel j'interviens quotidiennement sur Tschoeppe Live. Son importance dans mon profil est maximale.`,
+        vitesse: `Ma montée en compétence a été rapide et contrainte par le réel : pas de formation formelle, mais l'obligation de reprendre du code legacy en production dès le premier jour. Cette pression a considérablement accéléré mon apprentissage — je n'aurais pas progressé aussi vite dans un contexte purement académique.`,
+        recul: `Ne jamais sous-estimer la lecture du code existant avant toute réécriture. Comprendre les intentions du développeur initial évite des régressions coûteuses. Je me conseillerais également d'investir dans les tests unitaires dès le début d'un projet Java — c'est le meilleur filet de sécurité face à des bases de code complexes.`
+      },
+      evolution: {
+        objectif: `Consolider mes bases sur les fonctionnalités modernes de Java 21 (records, sealed classes, virtual threads) et explorer Spring Boot pour des projets d'API back-end. À moyen terme, conduire l'architecture technique d'un projet Java de bout en bout.`,
+        formations: `Autoformation en cours via la documentation officielle Java 21. Exploration prévue de Spring Framework et des patterns microservices.`
+      },
+      realisations: [
+        { label: 'Tschoeppe Live', route: '/realisations/4' }
+      ]
     },
+
+    // ─────────────────────────────────────────────────────
+    // DOCKER
+    // ─────────────────────────────────────────────────────
     {
-      id: 'javascript',
-      name: 'JavaScript',
-      icon: 'assets/img/js.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>JavaScript est un langage de programmation incontournable dans le développement web. Il permet de rendre les pages web interactives, dynamiques et réactives. Contrairement à HTML et CSS qui définissent la structure et l’apparence d’une page, JavaScript donne vie à l’interface : manipulation du DOM, interactions en temps réel, animations, appels API, gestion des événements, etc.</p>
-
-      <p>Depuis plusieurs années, JavaScript a considérablement évolué avec l’arrivée de normes modernes (ES6+) et de nombreux frameworks et bibliothèques comme React, Vue.js, ou encore Angular, qui facilitent la création d’applications web complexes, performantes et maintenables. De plus, avec l’essor de Node.js, JavaScript ne se limite plus au front-end : il s’impose aussi comme une solution efficace côté serveur, dans des architectures full stack.</p>
-
-      <p>Aujourd’hui, JavaScript est au cœur des applications modernes, tant pour l’interface utilisateur que pour la logique applicative. Sa maîtrise est essentielle pour tout développeur web souhaitant concevoir des interfaces riches, fluides et en phase avec les attentes actuelles du web.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai été régulièrement amené à utiliser JavaScript dans mes missions chez Interpane et DGS Création, où il jouait un rôle essentiel dans la création d’interfaces web interactives et dynamiques.</p>
-
-      <p>Chez Interpane, j’ai utilisé JavaScript principalement pour manipuler le DOM et améliorer l’expérience utilisateur sur leur logiciel interne de gestion. L’un de mes principaux usages concernait l’intégration de la bibliothèque DataTables, afin de créer des tableaux interactifs, filtrables et triables en temps réel. Cette fonctionnalité permettait aux utilisateurs d’accéder plus facilement aux informations utiles, avec une interface claire, fluide et dynamique. J’ai également développé des scripts personnalisés pour automatiser certaines interactions ou validations côté client, ce qui a permis d’améliorer la productivité au quotidien.</p>
-
-      <p>Chez DGS Création, JavaScript était présent dans tous les projets web que je développais, qu’il s’agisse de sites vitrines ou de plateformes e-commerce. Je l’utilisais pour :</p>
-      <ul>
-        <li>manipuler le DOM et ajouter des comportements dynamiques aux pages,</li>
-        <li>animer des éléments à l’aide de la bibliothèque GSAP, afin d’enrichir l’expérience utilisateur avec des transitions fluides et professionnelles,</li>
-        <li>développer des configurateurs produits interactifs sur certains sites e-commerce, permettant à l’utilisateur de personnaliser un produit en temps réel (ex : choix de coloris, options, visuels...).</li>
-      </ul>
-
-      <p>Chaque projet m’a permis de consolider mes connaissances en JavaScript natif tout en m’adaptant aux différents besoins fonctionnels et esthétiques des clients. J’ai appris à écrire un code structuré, lisible, et à veiller à la compatibilité inter-navigateurs, tout en optimisant les performances côté client.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Grâce aux projets réalisés chez Interpane et DGS Création, j’ai acquis une bonne maîtrise de JavaScript natif et de son utilisation dans un contexte professionnel. Je suis à l’aise avec la manipulation du DOM, la gestion des événements, les animations, ainsi que l’intégration de bibliothèques tierces pour enrichir l’expérience utilisateur.</p>
-
-      <p>Mon expérience m’a notamment permis de :</p>
-      <ul>
-        <li>manipuler dynamiquement les éléments d’interface (formulaires, tableaux, menus…),</li>
-        <li>intégrer et configurer des bibliothèques comme DataTables pour afficher de grandes quantités de données de manière interactive,</li>
-        <li>utiliser GSAP pour créer des animations fluides, engageantes et cohérentes avec les maquettes graphiques,</li>
-        <li>développer des composants interactifs comme des configurateurs de produits personnalisés, en lien avec les besoins fonctionnels du client.</li>
-      </ul>
-
-      <p>J’accorde également une grande importance à la clarté du code, à l’organisation des scripts, et à l’optimisation des performances sur le front-end. Ces éléments sont essentiels pour garantir la maintenabilité des projets et assurer une expérience fluide pour l’utilisateur final.</p>
-
-      <p>Même si je possède déjà une base solide, je suis conscient que JavaScript est un langage en constante évolution. Je souhaite continuer à progresser, notamment en approfondissant des concepts plus avancés comme :</p>
-      <ul>
-        <li>la programmation asynchrone (promesses, async/await),</li>
-        <li>l’optimisation du rendu,</li>
-        <li>la structure modulaire du code (ES modules),</li>
-        <li>et l’utilisation de JavaScript dans des frameworks front-end modernes, comme Angular, que j’utilise actuellement dans mon projet de fin d’études.</li>
-      </ul>
-
-      <p>Mon objectif est de consolider mes compétences JavaScript pour pouvoir aborder sereinement des projets plus complexes, basés sur des interfaces riches, des intégrations API, et une architecture front-end évolutive.</p>
-    `,
+      id: 'docker',
+      name: 'Docker',
+      icon: 'assets/img/docker.svg',
+      category: 'technique',
+      level: 7,
+      tagline: 'La conteneurisation au service de la reproductibilité',
+      definition: `Docker est une plateforme de conteneurisation open source qui permet d'empaqueter une application et toutes ses dépendances dans un conteneur léger et portable. Contrairement aux machines virtuelles, les conteneurs partagent le noyau du système hôte, ce qui les rend beaucoup plus légers et rapides à démarrer. Docker est devenu incontournable dans les environnements DevOps modernes : il garantit que l'application fonctionne de manière identique en développement, en test et en production, éliminant le problème du "ça marche sur ma machine". En 2025, Docker reste la référence pour la conteneurisation, souvent couplé à Kubernetes pour l'orchestration.`,
+      anecdotes: [
+        {
+          texte: `Chez Groupe Synergie Développement, j'ai mis en place la conteneurisation de plusieurs services de l'infrastructure. L'objectif était de standardiser les environnements de déploiement et de faciliter la portabilité des applications entre différents serveurs.`,
+          resultat: `Réduction significative des problèmes liés aux incompatibilités d'environnement. Les déploiements sont devenus plus rapides et reproductibles.`,
+          valeurAjoutee: `Introduction d'une pratique DevOps concrète dans une structure qui n'en avait pas, apportant une vraie valeur sur la maintenabilité des services.`,
+          realisationLink: { label: 'Tschoeppe Live', route: '/realisations/4' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 7,
+          label: 'Avancé',
+          detail: `Je maîtrise les fondamentaux de Docker : images, conteneurs, volumes, réseaux, Dockerfile et docker-compose. Je suis autonome pour conteneuriser des applications standard. Je n'ai pas encore d'expérience approfondie avec l'orchestration à grande échelle (Kubernetes).`
+        },
+        importance: `Docker est un outil important dans mon profil de développeur moderne. Il m'a permis d'apporter une dimension DevOps à mes projets et de me différencier en entreprise. Il reste complémentaire à mes compétences de développement pur, mais de plus en plus attendu dans les offres d'emploi senior.`,
+        vitesse: `Acquise en autodidacte sur un projet professionnel réel. La courbe d'apprentissage est accessible pour les bases, mais la maîtrise des cas avancés (réseaux complexes, optimisation d'images multi-stage) demande du temps et de la pratique.`,
+        recul: `Commencer par bien comprendre le réseau Docker avant de construire des stacks multi-services évite beaucoup de frustration. Ne jamais copier-coller un Dockerfile sans le comprendre : chaque instruction a un impact direct sur la taille de l'image finale et la sécurité du conteneur.`
+      },
+      evolution: {
+        objectif: `Explorer Docker Swarm et Kubernetes pour les environnements de production complexes. L'objectif est d'atteindre un profil DevOps complet, capable de gérer l'infrastructure aussi bien que le code.`,
+        formations: `Exploration de Docker Swarm en environnement de test personnel. Kubernetes est dans ma liste de priorités à court terme.`
+      },
+      realisations: [
+        { label: 'Tschoeppe Live', route: '/realisations/4' }
+      ]
     },
-    {
-      id: 'relation-client',
-      name: 'Relation Client',
-      icon: 'assets/img/relation_client.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>La relation client occupe une place centrale dans la stratégie des entreprises modernes. Elle regroupe l’ensemble des actions mises en œuvre pour établir, entretenir et enrichir les interactions entre une entreprise et ses clients, dans le but de bâtir une relation de confiance durable. Cela passe par la pertinence des réponses apportées, la capacité à gérer les insatisfactions et la volonté d’anticiper les besoins des clients. Au fil des années, cette relation s’est complexifiée avec l’émergence des canaux numériques comme les réseaux sociaux, rendant nécessaire une adaptation constante des pratiques.</p>
 
-      <p>Dans un environnement concurrentiel, la capacité à bien gérer la relation client constitue un levier de différenciation majeur. Il ne s’agit plus simplement de vendre un produit ou un service, mais de proposer une expérience complète, fluide et personnalisée. Cette dimension est d’autant plus importante dans les secteurs techniques ou numériques, où l’accompagnement et l’écoute peuvent faire toute la différence dans la satisfaction et la fidélisation des utilisateurs.</p>
-
-      <p>Aujourd’hui, la relation client dépasse le cadre traditionnel du service après-vente. Elle englobe toutes les étapes du parcours client, depuis le premier contact jusqu’à l’après-vente, en passant par l’assistance, les retours d’expérience, et même l’intégration du client comme acteur du développement. Que ce soit dans une startup, une PME ou une grande entreprise, la capacité à instaurer un dialogue de qualité avec sa clientèle est un facteur clé de réussite.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>Durant mon passage au sein de l’agence web DGS Création, j’ai eu l’opportunité de travailler sur de nombreux projets de sites web, notamment 1envie1vin et Biolaser. Plus récemment, je participe au développement de Tschoeppe Live, un logiciel de dessin 2D utilisé à la fois par les commerciaux de l’entreprise et par des revendeurs externes, appelés relais confiance.</p>
-
-      <p>Chez DGS Création, la relation client se faisait principalement par email. Les clients nous faisaient part de leurs retours, et nous apportions les corrections nécessaires dans la semaine. Ce mode de fonctionnement a également été utilisé dans un premier temps chez Tschoeppe.</p>
-
-      <p>Cependant, afin d’améliorer la gestion des retours et de centraliser les demandes, nous avons mis en place un système de rapport de bug intégré au logiciel. Chaque utilisateur peut désormais signaler un problème directement depuis son interface de configuration, en joignant un court message explicatif. Lorsqu’un rapport est soumis, un email est automatiquement envoyé au service informatique, et une nouvelle tâche est créée dans Trello.</p>
-
-      <p>Chaque tâche contient :</p>
-      <ul>
-        <li>la configuration de l’utilisateur,</li>
-        <li>une capture d’écran du rendu,</li>
-        <li>son message explicatif,</li>
-        <li>ainsi que ses informations de contact.</li>
-      </ul>
-
-      <p>Une fois le problème résolu, une notification est envoyée à l’utilisateur pour l’informer que son bug a été pris en compte et corrigé. Nous en profitons également pour le remercier de sa contribution à l’amélioration continue du logiciel.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Grâce à mes différentes expériences professionnelles, j’ai développé des compétences solides en gestion de la relation client, notamment dans un contexte technique. J’ai appris à traiter les retours utilisateurs de manière structurée, à organiser les corrections de manière efficace, et à assurer un suivi clair et rassurant pour les clients ou partenaires.</p>
-
-      <p>Chez DGS Création comme chez Tschoeppe, j’ai compris l’importance de la réactivité, de la clarté dans les échanges et de la traçabilité des demandes. Le passage d’un système de retours par mail à un système intégré de signalement a représenté une montée en compétence significative : il a fallu adapter nos méthodes de travail, structurer les flux de communication, et collaborer plus étroitement avec les équipes produit et support.</p>
-
-      <p>Je considère toutefois que mes compétences en relation client sont encore en développement. Jusqu’à présent, mes missions ont surtout porté sur la gestion des retours techniques, la communication avec des utilisateurs internes et partenaires, et l’amélioration de l’expérience utilisateur à travers des solutions concrètes.</p>
-
-      <p>La relation client couvre un champ bien plus large, incluant notamment la gestion des conflits, la personnalisation de l’expérience, ou encore la fidélisation active. Ce sont des domaines que je souhaite explorer davantage à l’avenir, que ce soit par la pratique ou à travers des lectures et des formations spécialisées.</p>
-
-      <p>Je suis convaincu que la maîtrise de la relation client est un atout majeur dans n’importe quel environnement professionnel, y compris dans les métiers techniques. Elle permet non seulement d’améliorer la qualité des produits, mais aussi de renforcer la confiance entre l’entreprise et ses utilisateurs. Mon objectif est donc de continuer à progresser sur ces aspects, en m’appuyant sur l’expérience acquise et en restant ouvert à de nouvelles méthodes et outils.</p>
-    `,
-    },
-    {
-      id: 'relation-client',
-      name: 'Relation Client',
-      icon: 'assets/img/relation_client.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>La relation client occupe une place centrale dans la stratégie des entreprises modernes. Elle regroupe l’ensemble des actions mises en œuvre pour établir, entretenir et enrichir les interactions entre une entreprise et ses clients, dans le but de bâtir une relation de confiance durable. Cela passe par la pertinence des réponses apportées, la capacité à gérer les insatisfactions et la volonté d’anticiper les besoins des clients. Au fil des années, cette relation s’est complexifiée avec l’émergence des canaux numériques comme les réseaux sociaux, rendant nécessaire une adaptation constante des pratiques.</p>
-
-      <p>Dans un environnement concurrentiel, la capacité à bien gérer la relation client constitue un levier de différenciation majeur. Il ne s’agit plus simplement de vendre un produit ou un service, mais de proposer une expérience complète, fluide et personnalisée. Cette dimension est d’autant plus importante dans les secteurs techniques ou numériques, où l’accompagnement et l’écoute peuvent faire toute la différence dans la satisfaction et la fidélisation des utilisateurs.</p>
-
-      <p>Aujourd’hui, la relation client dépasse le cadre traditionnel du service après-vente. Elle englobe toutes les étapes du parcours client, depuis le premier contact jusqu’à l’après-vente, en passant par l’assistance, les retours d’expérience, et même l’intégration du client comme acteur du développement. Que ce soit dans une startup, une PME ou une grande entreprise, la capacité à instaurer un dialogue de qualité avec sa clientèle est un facteur clé de réussite.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>Durant mon passage au sein de l’agence web DGS Création, j’ai eu l’opportunité de travailler sur de nombreux projets de sites web, notamment 1envie1vin et Biolaser. Plus récemment, je participe au développement de Tschoeppe Live, un logiciel de dessin 2D utilisé à la fois par les commerciaux de l’entreprise et par des revendeurs externes, appelés relais confiance.</p>
-
-      <p>Chez DGS Création, la relation client se faisait principalement par email. Les clients nous faisaient part de leurs retours, et nous apportions les corrections nécessaires dans la semaine. Ce mode de fonctionnement a également été utilisé dans un premier temps chez Tschoeppe.</p>
-
-      <p>Cependant, afin d’améliorer la gestion des retours et de centraliser les demandes, nous avons mis en place un système de rapport de bug intégré au logiciel. Chaque utilisateur peut désormais signaler un problème directement depuis son interface de configuration, en joignant un court message explicatif. Lorsqu’un rapport est soumis, un email est automatiquement envoyé au service informatique, et une nouvelle tâche est créée dans Trello.</p>
-
-      <p>Chaque tâche contient :</p>
-      <ul>
-        <li>la configuration de l’utilisateur,</li>
-        <li>une capture d’écran du rendu,</li>
-        <li>son message explicatif,</li>
-        <li>ainsi que ses informations de contact.</li>
-      </ul>
-
-      <p>Une fois le problème résolu, une notification est envoyée à l’utilisateur pour l’informer que son bug a été pris en compte et corrigé. Nous en profitons également pour le remercier de sa contribution à l’amélioration continue du logiciel.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Grâce à mes différentes expériences professionnelles, j’ai développé des compétences solides en gestion de la relation client, notamment dans un contexte technique. J’ai appris à traiter les retours utilisateurs de manière structurée, à organiser les corrections de manière efficace, et à assurer un suivi clair et rassurant pour les clients ou partenaires.</p>
-
-      <p>Chez DGS Création comme chez Tschoeppe, j’ai compris l’importance de la réactivité, de la clarté dans les échanges et de la traçabilité des demandes. Le passage d’un système de retours par mail à un système intégré de signalement a représenté une montée en compétence significative : il a fallu adapter nos méthodes de travail, structurer les flux de communication, et collaborer plus étroitement avec les équipes produit et support.</p>
-
-      <p>Je considère toutefois que mes compétences en relation client sont encore en développement. Jusqu’à présent, mes missions ont surtout porté sur la gestion des retours techniques, la communication avec des utilisateurs internes et partenaires, et l’amélioration de l’expérience utilisateur à travers des solutions concrètes.</p>
-
-      <p>La relation client couvre un champ bien plus large, incluant notamment la gestion des conflits, la personnalisation de l’expérience, ou encore la fidélisation active. Ce sont des domaines que je souhaite explorer davantage à l’avenir, que ce soit par la pratique ou à travers des lectures et des formations spécialisées.</p>
-
-      <p>Je suis convaincu que la maîtrise de la relation client est un atout majeur dans n’importe quel environnement professionnel, y compris dans les métiers techniques. Elle permet non seulement d’améliorer la qualité des produits, mais aussi de renforcer la confiance entre l’entreprise et ses utilisateurs. Mon objectif est donc de continuer à progresser sur ces aspects, en m’appuyant sur l’expérience acquise et en restant ouvert à de nouvelles méthodes et outils.</p>
-    `,
-    },
-    {
-      id: 'sql',
-      name: 'SQL',
-      icon: 'assets/img/sql.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>SQL (Structured Query Language) est un langage fondamental pour la gestion des bases de données relationnelles. Il permet d’interagir efficacement avec les données : les créer, les modifier, les interroger ou les supprimer. Dans le développement d'applications web ou logicielles, SQL joue un rôle central en assurant la cohérence, la structure et l’accessibilité des informations manipulées.</p>
-
-      <p>Sa simplicité apparente cache une grande richesse fonctionnelle. Que ce soit pour effectuer des requêtes complexes, optimiser des performances, ou concevoir des modèles de données adaptés, SQL est une compétence essentielle pour tout développeur full stack. Associé à des bases de données comme MySQL, PostgreSQL ou SQL Server, il permet de bâtir des fondations solides pour des systèmes d'information performants.</p>
-
-      <h2>Mon expérience vécue</h2>
-      <p>J’ai eu l’occasion d’utiliser SQL dans plusieurs contextes professionnels, notamment lors de mes expériences chez Interpane, DGS Création, et Tschoeppe. Dans chacun de ces environnements, MySQL était la base de données de référence, et j’ai été amené à réaliser un large éventail de requêtes, allant des opérations simples de lecture à des jointures complexes, en passant par la création de structures de données optimisées.</p>
-
-      <p>Chez Interpane, j’ai participé à la refonte d’un logiciel de GPAO (gestion de production assistée par ordinateur). La base de données initiale étant ancienne et peu normalisée, j’ai d’abord analysé la structure existante pour proposer un schéma plus propre et durable. J’ai ensuite reconstruit les tables et adapté les requêtes dans un environnement modernisé, couplé à Symfony. Ce travail m’a permis de mieux comprendre les enjeux liés à la structuration des données sur le long terme.</p>
-
-      <p>Chez DGS Création, j’ai utilisé SQL aussi bien directement que via l’ORM Doctrine, notamment dans le cadre de projets Symfony. J’ai également manipulé des bases liées à WordPress ou PrestaShop, que ce soit pour intégrer des fonctionnalités personnalisées ou pour effectuer des opérations spécifiques sur les données. Cette diversité d’outils m’a permis de développer une bonne aisance dans la navigation et la manipulation de schémas de bases de données variés.</p>
-
-      <p>Chez Tschoeppe, je continue de travailler avec MySQL dans le cadre du développement du logiciel Tlive, utilisé en interne comme par des partenaires externes. J’interviens régulièrement sur les requêtes SQL pour intégrer de nouvelles fonctionnalités, corriger des anomalies ou extraire des données pour l’analyse. Ce travail m’a amené à automatiser certaines tâches répétitives, et à optimiser des requêtes utilisées fréquemment pour améliorer les performances globales du système.</p>
-
-      <h2>Mon niveau de compétence</h2>
-      <p>Grâce à ces différentes expériences, j’ai acquis une bonne maîtrise de SQL dans un contexte professionnel. Je suis aujourd’hui à l’aise avec :</p>
-      <ul>
-        <li>la conception de bases de données relationnelles,</li>
-        <li>l’écriture de requêtes complexes (jointures, agrégations, sous-requêtes),</li>
-        <li>l’optimisation de requêtes pour améliorer les temps de réponse,</li>
-        <li>l’utilisation de Doctrine dans un projet Symfony,</li>
-        <li>la gestion des migrations de données et des schémas.</li>
-      </ul>
-
-      <p>Je suis conscient que le domaine du SQL est vaste et que sa maîtrise passe aussi par une compréhension approfondie des bonnes pratiques de modélisation, de la gestion des index, ou encore de la sécurité des requêtes. À ce titre, je souhaite continuer à progresser, notamment en consolidant mes connaissances sur l’optimisation des performances, la gestion de grandes volumétries, et la mise en place de procédures stockées ou de vues matérialisées dans des contextes plus complexes.</p>
-
-      <p>Dans cette optique, je prévois de me former davantage, notamment en consultant des ouvrages techniques et des ressources spécialisées, afin d’atteindre un niveau avancé et d’être pleinement autonome dans la conception et l’optimisation de bases de données relationnelles.</p>
-    `,
-    },
-    {
-      id: 'wordpress',
-      name: 'Wordpress',
-      icon: 'assets/img/wordpress.png',
-      html: `
-      <h2>Introduction</h2>
-  <p>
-    WordPress est aujourd’hui l’un des CMS les plus utilisés au monde, réputé pour sa flexibilité, sa large communauté,
-    et sa richesse en fonctionnalités. Il permet aussi bien de créer des blogs, des sites vitrines que des boutiques en ligne,
-    grâce à un écosystème de thèmes et de plugins très développé.
-  </p>
-  <p>
-    Dans un contexte professionnel, WordPress représente une solution particulièrement efficace pour les clients souhaitant
-    disposer d’un site administrable, évolutif et rapide à mettre en place. Il offre également l’avantage de permettre
-    aux équipes non techniques de gérer le contenu de manière autonome, grâce à son interface intuitive.
-  </p>
-
-  <h2>Mon expérience vécue</h2>
-  <p>
-    J’ai été amené à travailler sur plusieurs projets professionnels avec WordPress, principalement au sein de l’agence
-    <strong>DGS Création</strong>. Tous les sites réalisés étaient faits <strong>sur mesure</strong>, en partant de zéro,
-    avec un <strong>thème personnalisé développé spécifiquement</strong> pour chaque client, afin de répondre au mieux à
-    leur identité visuelle, à leurs besoins métiers, et à leur cahier des charges.
-  </p>
-  <p>
-    Je n’ai <strong>jamais utilisé de constructeur de pages comme Elementor</strong> : tout était codé directement,
-    que ce soit en PHP, HTML, CSS/SCSS et JavaScript, afin d’assurer un <strong>contrôle total</strong> sur le rendu final,
-    les performances et la maintenabilité.
-  </p>
-  <p>Sur ces projets, j’ai notamment travaillé sur :</p>
-  <ul>
-    <li>La structure des templates WordPress (page, article, CPT…)</li>
-    <li>L’intégration des maquettes fournies par les graphistes</li>
-    <li>Le développement de fonctionnalités personnalisées via des plugins maison</li>
-    <li>L’optimisation SEO technique (balises, structure HTML, chargement)</li>
-    <li>La configuration du back-office pour faciliter la prise en main par le client</li>
-  </ul>
-
-  <h2>Mon niveau de compétence</h2>
-  <p>
-    Mon expérience avec WordPress m’a permis de <strong>maîtriser pleinement son architecture</strong> : boucle WordPress,
-    système de hooks (actions, filtres), création de CPT (Custom Post Types), taxonomies, ACF (Advanced Custom Fields), etc.
-  </p>
-  <p>
-    Je suis à l’aise pour <strong>concevoir un site WordPress de A à Z</strong>, de son installation à sa mise en production,
-    en passant par le développement frontend et backend. Je privilégie toujours la <strong>qualité du code</strong>,
-    la <strong>performance du site</strong> et la <strong>facilité d’administration</strong> pour le client final.
-  </p>
-  <p>
-    Je considère WordPress comme un outil puissant à condition d’être bien maîtrisé, et je continue à suivre ses évolutions,
-    tout en consolidant mes compétences sur des projets réels.
-  </p>
-  `,
-    },
+    // ─────────────────────────────────────────────────────
+    // PRESTASHOP
+    // ─────────────────────────────────────────────────────
     {
       id: 'prestashop',
-      name: 'Prestashop',
+      name: 'PrestaShop',
       icon: 'assets/img/prestashop.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>
-        <strong>PrestaShop</strong> est une solution e-commerce open source reconnue pour sa flexibilité, sa richesse fonctionnelle et sa capacité à gérer des catalogues produits complexes. Utilisé par des milliers de boutiques en ligne à travers le monde, il permet de créer des sites e-commerce performants, adaptables et entièrement personnalisables.
-      </p>
-
-      <p>
-        Dans un contexte professionnel, PrestaShop est souvent choisi pour des projets où la liberté de développement et la maîtrise du code sont essentielles. Grâce à son architecture modulaire, il est possible d’adapter la boutique aux besoins précis des commerçants, tant au niveau de l’expérience utilisateur que des processus métiers internes.
-      </p>
-
-      <h2>Mon expérience vécue</h2>
-
-      <p>
-        J’ai eu l’occasion de travailler à plusieurs reprises sur PrestaShop, notamment lors de mon passage chez <strong>DGS Création</strong>, où nous accompagnions des clients dans la conception de leurs sites e-commerce sur mesure.
-      </p>
-
-      <p>Sur ces projets, j’ai travaillé à la fois sur :</p>
-
-      <ul class="list-disc list-inside ml-4">
-        <li><strong>L’intégration front-end</strong> : en transformant les maquettes des graphistes en pages PrestaShop responsives et fidèles au design.</li>
-        <li><strong>Le développement de modules personnalisés</strong> : pour répondre à des besoins spécifiques du client (gestion de livraison, affichage produit dynamique, options marketing...).</li>
-        <li><strong>L’adaptation du back-office</strong> pour le rendre plus accessible et intuitif pour les équipes non techniques.</li>
-        <li><strong>L’optimisation SEO</strong>, indispensable pour assurer la visibilité de la boutique.</li>
-      </ul>
-
-      <p>
-        L’un des projets les plus complets sur lesquels j’ai travaillé est la <strong>refonte du site Uberti.shop</strong>. Sur ce projet, j’ai développé un thème PrestaShop 100% personnalisé, intégré un catalogue produit complet, conçu des modules sur mesure pour faciliter la gestion quotidienne du site, et accompagné le client lors de la prise en main de son nouvel outil.
-      </p>
-
-      <h2>Mon niveau de compétence</h2>
-
-      <p>
-        Grâce à ces expériences, j’ai pu me familiariser avec les mécanismes internes de PrestaShop : <strong>système de hooks</strong>, <strong>architecture MVC</strong>, <strong>surcharge de classes et de templates</strong>, <strong>structure du back-office</strong>, etc.
-      </p>
-
-      <p>Je suis capable de :</p>
-
-      <ul class="list-disc list-inside ml-4">
-        <li>Créer ou modifier un <strong>thème PrestaShop</strong> sur mesure,</li>
-        <li>Développer des <strong>modules personnalisés</strong>,</li>
-        <li>Intégrer des maquettes tout en respectant les contraintes techniques du CMS,</li>
-        <li>Optimiser les performances et le SEO du site,</li>
-        <li>Gérer la <strong>mise en production</strong> d’une boutique PrestaShop.</li>
-      </ul>
-
-      <p>
-        Je considère PrestaShop comme un outil puissant lorsqu’il est bien utilisé, mais qui demande une vraie rigueur de développement pour garantir sa maintenabilité et sa stabilité dans le temps.
-      </p>
-  `,
+      category: 'technique',
+      level: 7,
+      tagline: "L'e-commerce open source maîtrisé en contexte agence",
+      definition: `PrestaShop est un CMS e-commerce open source écrit en PHP, permettant de créer et gérer des boutiques en ligne. Lancé en 2007, il est utilisé par des centaines de milliers de marchands, particulièrement en Europe. Son architecture modulaire permet d'étendre ses fonctionnalités via des modules natifs ou personnalisés. Avec l'essor du commerce headless, PrestaShop a évolué pour proposer des options d'API-first, mais reste majoritairement utilisé en mode traditionnel dans les PME pour sa facilité de prise en main et son large écosystème.`,
+      anecdotes: [
+        {
+          texte: `Chez DGS Création, j'ai développé et livré Uberti.shop, une boutique en ligne complète pour la marque Uberti (bio, naturel & bien-être). Le projet comprenait la création d'un thème 100% personnalisé, l'intégration du catalogue complet et le développement de modules sur mesure pour répondre à des besoins non couverts par les extensions natives.`,
+          resultat: `Livraison d'une boutique e-commerce fonctionnelle avec un design cohérent avec l'identité de la marque, une navigation fluide et une administration simplifiée pour les équipes internes.`,
+          valeurAjoutee: `Capacité à dépasser les limitations des modules natifs en développant des solutions PHP sur mesure, différenciant la proposition de l'agence face à des solutions génériques clé en main.`,
+          realisationLink: { label: 'Uberti.shop', route: '/realisations/1' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 7,
+          label: 'Avancé',
+          detail: `Je maîtrise l'installation, la personnalisation de thèmes, le développement de modules et l'utilisation des overrides PrestaShop. Je connais l'architecture MVC du CMS et sais intervenir à différents niveaux : template Smarty, override de classes, création de modules.`
+        },
+        importance: `PrestaShop était une compétence centrale dans mon profil d'agence web. Elle est aujourd'hui moins utilisée dans mon CDI actuel, mais reste un atout pour des missions e-commerce ou des évolutions en contexte freelance.`,
+        vitesse: `Acquise rapidement sous pression des délais clients en agence. L'immersion opérationnelle est le mode d'apprentissage le plus efficace pour ce type d'outil, bien plus qu'une formation théorique.`,
+        recul: `Toujours lire la documentation avant de modifier le core de PrestaShop. Les overrides sont préférables aux modifications directes pour garantir la maintenabilité lors des mises à jour. Un module bien documenté évite de nombreuses heures de débogage futur.`
+      },
+      evolution: {
+        objectif: `Explorer l'approche headless de PrestaShop pour des architectures plus modernes combinant un back PrestaShop avec un front Angular ou Next.js.`,
+        formations: `Veille sur PrestaShop 8 et ses nouvelles API. Exploration possible du commerce headless à titre personnel.`
+      },
+      realisations: [
+        { label: 'Uberti.shop', route: '/realisations/1' }
+      ]
     },
-    {
-      id: 'typescript',
-      name: 'TypeScript',
-      icon: 'assets/img/typescript.png',
-      html: `
-      <h2>Introduction</h2>
-  <p>
-    <strong>TypeScript</strong> est un sur-ensemble de JavaScript qui ajoute le typage statique et des fonctionnalités avancées au langage. Il permet d’écrire un code plus robuste, maintenable et lisible, en facilitant la détection d’erreurs dès l’étape de compilation. Très utilisé dans les projets front-end modernes, notamment avec Angular ou React, TypeScript est devenu un standard dans les environnements de développement professionnels.
-  </p>
 
-  <p>
-    En combinant la souplesse de JavaScript avec la rigueur du typage, TypeScript améliore significativement la qualité du code et la productivité des développeurs. Il est particulièrement apprécié dans les projets de moyenne à grande échelle, où la clarté et la fiabilité du code sont essentielles.
-  </p>
-
-  <h2>Mon expérience vécue</h2>
-
-  <p>
-    J’ai découvert TypeScript dans un contexte professionnel lors de projets front-end, notamment avec le framework <strong>Angular</strong>. Dans le cadre de mon projet de portfolio personnel, j’ai réalisé toute l’interface en Angular, ce qui m’a permis de manipuler TypeScript quotidiennement.
-  </p>
-
-  <p>
-    À travers ce projet, j’ai appris à structurer mon code en modules et composants, à définir des interfaces claires pour mes données, et à tirer parti du typage fort pour éviter des erreurs courantes. J’ai également manipulé des services, des observables, et mis en place des formulaires dynamiques avec validation typée.
-  </p>
-
-  <p>
-    L’utilisation de TypeScript m’a permis de gagner en confiance lors du développement, en anticipant plus facilement les comportements inattendus et en documentant naturellement mon code via les types.
-  </p>
-
-  <h2>Mon niveau de compétence</h2>
-
-  <p>
-    Aujourd’hui, je suis à l’aise avec TypeScript dans un contexte Angular. Je suis capable de :
-  </p>
-
-  <ul class="list-disc list-inside ml-4">
-    <li>Créer et utiliser des <strong>interfaces</strong>, <strong>types</strong> et <strong>énumérations</strong> pour structurer les données,</li>
-    <li>Manipuler les <strong>classes</strong>, méthodes et propriétés avec une bonne maîtrise de l’orienté objet,</li>
-    <li>Utiliser les concepts de <strong>génériques</strong>, d’<strong>union types</strong> ou d’<strong>optionnalité</strong> pour écrire un code souple mais sécurisé,</li>
-    <li>Comprendre et corriger les messages d’erreur du compilateur pour améliorer mon code,</li>
-    <li>Intégrer TypeScript dans des projets front-end complexes en lien avec une architecture modulaire.</li>
-  </ul>
-
-  <p>
-    Je continue d’enrichir mes connaissances de TypeScript à travers la pratique quotidienne, la lecture de documentation et l’analyse de projets open source. C’est un langage que j’apprécie particulièrement pour la <strong>rigueur</strong> et la <strong>lisibilité</strong> qu’il apporte à mes projets web.
-  </p>
-  `,
-    },
+    // ─────────────────────────────────────────────────────
+    // ANGULAR
+    // ─────────────────────────────────────────────────────
     {
       id: 'angular',
       name: 'Angular',
       icon: 'assets/img/angular.png',
-      html: `
-      <h2>Introduction</h2>
-      <p>
-        <strong>Angular</strong> est un framework front-end open source développé par Google, basé sur TypeScript. Il permet de créer des applications web dynamiques, modulaires et maintenables. Grâce à son système de composants, ses outils intégrés (comme le routing, les services, ou la gestion des formulaires) et son architecture robuste, Angular est aujourd’hui utilisé dans de nombreux projets professionnels à grande échelle.
-      </p>
-
-      <p>
-        Pensé pour les projets structurés, Angular favorise une organisation claire du code et une séparation des responsabilités, ce qui en fait un choix privilégié pour les équipes de développement souhaitant construire des applications évolutives.
-      </p>
-
-      <h2>Mon expérience vécue</h2>
-
-      <p>
-        J’ai commencé à utiliser Angular dans le cadre de projets personnels, puis je l’ai pleinement mis en pratique lors de la création de mon portfolio. Ce projet m’a permis d’explorer les principales fonctionnalités du framework : création de composants réutilisables, gestion du routing, utilisation des services pour partager des données, et manipulation des formulaires réactifs.
-      </p>
-
-      <p>
-        J’ai également intégré des bibliothèques externes comme <strong>Tailwind CSS</strong> pour le style, ou <strong>GSAP</strong> pour animer certains éléments de l’interface. Angular m’a offert une structure claire et puissante pour développer rapidement des interfaces cohérentes, tout en gardant une bonne maintenabilité du code.
-      </p>
-
-      <p>
-        La typisation apportée par TypeScript, couplée à la rigueur imposée par Angular, m’a aidé à structurer mes projets plus efficacement et à anticiper les erreurs potentielles dès la phase de développement.
-      </p>
-
-      <h2>Mon niveau de compétence</h2>
-
-      <p>
-        Aujourd’hui, je suis à l’aise avec Angular pour développer des applications complètes. Je suis capable de :
-      </p>
-
-      <ul class="list-disc list-inside ml-4">
-        <li>Créer une architecture d’application Angular claire et modulaire,</li>
-        <li>Développer des composants dynamiques et réutilisables,</li>
-        <li>Utiliser les services et l’injection de dépendances pour centraliser les données,</li>
-        <li>Gérer la navigation avec le module de routing,</li>
-        <li>Travailler avec les formulaires réactifs et les validations,</li>
-        <li>Utiliser les directives, pipes personnalisés et binding avancé,</li>
-        <li>Intégrer des bibliothèques comme GSAP pour les animations ou Tailwind pour le design.</li>
-      </ul>
-
-      <p>
-        Angular est pour moi un framework fiable et puissant, qui me permet de produire des interfaces complexes avec une bonne expérience utilisateur tout en respectant les standards modernes du développement web.
-      </p>
-  `,
+      category: 'technique',
+      level: 7,
+      tagline: 'Le framework TypeScript de mes interfaces modernes',
+      definition: `Angular est un framework front-end open source développé par Google, basé sur TypeScript. Il propose une architecture en composants, un système d'injection de dépendances, un routeur intégré et de nombreux outils pour construire des Single Page Applications (SPA) robustes. Depuis Angular 14, le framework évolue vers les "standalone components" supprimant les NgModules pour les projets simples. Angular 17 a introduit les Signals, un nouveau mécanisme de réactivité plus performant. Plébiscité dans les grandes organisations pour sa structure opinionnée et sa maintenabilité, Angular est aujourd'hui l'un des trois grands frameworks front-end avec React et Vue.`,
+      anecdotes: [
+        {
+          texte: `J'ai développé l'intégralité de ce portfolio professionnel en Angular 17 avec des composants standalone, Tailwind CSS et des animations CSS pour les transitions. C'est mon premier projet Angular conséquent mené de bout en bout, de l'architecture au déploiement.`,
+          resultat: `Portfolio fonctionnel, déployé et présenté dans le cadre de mon évaluation de Master Expert en Ingénierie Logicielle à l'ISCOD.`,
+          valeurAjoutee: `Montée en compétence autonome sur un framework majeur, en partant de zéro et en livrant un produit complet dans un délai contraint. Preuve concrète de ma capacité d'apprentissage rapide sur des technologies non maîtrisées.`
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 7,
+          label: 'Avancé',
+          detail: `Je maîtrise les concepts fondamentaux d'Angular : composants standalone, routing, data binding, services, pipes, directives. Je suis en cours d'exploration des Signals et des patterns avancés (lazy loading, state management).`
+        },
+        importance: `Angular est une compétence stratégique dans ma trajectoire de développeur full-stack. Elle me positionne sur le marché des projets d'entreprise où les SPA typées sont la norme. Dans mon CDI actuel, elle est utilisée principalement pour ce portfolio, mais constitue une base solide pour des projets futurs.`,
+        vitesse: `Appris en autodidacte dans le cadre de ce portfolio. La documentation officielle est excellente et le fait d'avoir un projet concret comme fil conducteur a accéléré ma compréhension bien plus qu'un tutoriel théorique.`,
+        recul: `Maîtriser RxJS est indispensable pour vraiment tirer parti d'Angular. Je me conseillerais de commencer par les Observables et les Subjects avant de me lancer dans des composants complexes. Penser "composants réutilisables" dès le début évite aussi beaucoup de refactoring.`
+      },
+      evolution: {
+        objectif: `Approfondir les Signals Angular, explorer NgRx pour la gestion d'état et me former aux tests unitaires (Jasmine/Jest). L'objectif est de prendre en charge un projet Angular d'entreprise de bout en bout.`,
+        formations: `Formation en cours via la documentation officielle Angular 17+. Exploration prévue de NgRx et des tests E2E avec Cypress.`
+      },
+      realisations: []
     },
+
+    // ─────────────────────────────────────────────────────
+    // PHP
+    // ─────────────────────────────────────────────────────
     {
-      id: 'symfony',
-      name: 'Symfony',
-      icon: 'assets/img/symfony.png',
-      html: `
-        <h2>Introduction</h2>
-        <p>
-          <strong>Symfony</strong> est un framework PHP open source reconnu pour sa robustesse, sa modularité et son respect des bonnes pratiques du développement web. Utilisé par de nombreuses entreprises et projets d’envergure, il s’appuie sur l’architecture MVC (Modèle-Vue-Contrôleur) et offre un ensemble d’outils puissants pour construire des applications web sécurisées, évolutives et maintenables.
-        </p>
-
-        <p>
-          Grâce à son écosystème riche (Doctrine, Twig, composants Symfony réutilisables), Symfony permet un développement structuré et professionnel, tout en favorisant la qualité du code et la performance applicative.
-        </p>
-
-        <h2>Mon expérience vécue</h2>
-
-        <p>
-          J’ai été amené à travailler avec Symfony lors de mon passage chez <strong>Interpane</strong>, dans le cadre d’un projet de refonte complète de leur logiciel de gestion de production assistée par ordinateur (GPAO).
-        </p>
-
-        <p>
-          L’ancien système tournait encore sous PHP 3, avec un code vieillissant, difficile à maintenir et à faire évoluer. L’objectif était donc de moderniser totalement l’application, tant sur le plan technique que fonctionnel.
-        </p>
-
-        <p>
-          J’ai choisi Symfony comme socle du nouveau logiciel afin de bénéficier d’un cadre solide, de bonnes pratiques de développement et de la puissance de ses composants. Ce projet m’a amené à :
-        </p>
-
-        <ul class="list-disc list-inside ml-4">
-          <li>Repenser l’architecture complète du logiciel sous forme d’une application web moderne,</li>
-          <li>Migrer progressivement les anciennes pages vers des pages Symfony,</li>
-          <li>Utiliser <strong>Doctrine</strong> pour gérer la base de données de manière fiable et évolutive,</li>
-          <li>Intégrer des vues dynamiques avec le moteur de templates <strong>Twig</strong>,</li>
-          <li>Documenter l’ensemble du projet afin d’en faciliter la maintenance future.</li>
-        </ul>
-
-        <p>
-          Au terme de mon passage, j’ai livré une version modernisée du logiciel, accompagnée d’une documentation claire pour permettre à l’équipe de continuer à l’enrichir.
-        </p>
-
-        <h2>Mon niveau de compétence</h2>
-
-        <p>
-          Cette expérience m’a permis d’acquérir de solides bases sur Symfony, en particulier sur :
-        </p>
-
-        <ul class="list-disc list-inside ml-4">
-          <li>La structuration d’une application Symfony (routing, contrôleurs, services…)</li>
-          <li>L’intégration avec <strong>Doctrine</strong> pour le mapping objet-relationnel (ORM)</li>
-          <li>L’utilisation de <strong>Twig</strong> pour des interfaces propres et dynamiques</li>
-          <li>La gestion des formulaires, des validations, et des entités complexes</li>
-          <li>La séparation claire des responsabilités (MVC) et l’architecture modulaire</li>
-        </ul>
-
-        <p>
-          Je considère aujourd’hui Symfony comme un outil fiable et adapté aux projets métiers complexes, en particulier lorsqu’il s’agit de créer une application web sur mesure. Cette expérience a renforcé ma rigueur et mon sens de l’organisation dans le développement back-end.
-        </p>
-      `,
+      id: 'php',
+      name: 'PHP',
+      icon: 'assets/img/php.png',
+      category: 'technique',
+      level: 8,
+      tagline: "Un pilier du web que j'ai poussé à ses limites modernes",
+      definition: `PHP (Hypertext Preprocessor) est un langage de programmation open source largement utilisé pour le développement web côté serveur. Sa simplicité et sa compatibilité avec la plupart des hébergeurs en font un choix incontournable pour le web, alimentant aujourd'hui plus de 75% des sites à moteur de script serveur — notamment WordPress, Drupal et PrestaShop. Avec les mises à jour PHP 8.x apportant les unions de types, les named arguments et les améliorations JIT, PHP reste un choix pertinent pour des applications robustes. Son écosystème de frameworks modernes (Symfony, Laravel) permet des architectures enterprise-grade comparables à Java ou .NET.`,
+      anecdotes: [
+        {
+          texte: `Chez Interpane, j'ai pris en charge la migration complète d'un logiciel GPAO de PHP 3 vers PHP 8 et Symfony, en l'absence totale de documentation et de référent technique. J'ai analysé l'architecture existante, défini la nouvelle structure Symfony et migré progressivement les fonctionnalités.`,
+          resultat: `Livraison d'une version stable et documentée du nouveau logiciel, passant d'un code obsolète et impossible à maintenir à une architecture moderne et extensible.`,
+          valeurAjoutee: `Sauvetage d'un outil métier critique en fin de vie. Ma décision de migrer vers Symfony a donné plusieurs années supplémentaires de durée de vie au logiciel, sans qu'Interpane ait à investir dans un développement from scratch.`,
+          realisationLink: { label: 'GPAO – Interpane', route: '/realisations/2' }
+        },
+        {
+          texte: `Chez DGS Création, j'ai développé des modules PHP personnalisés pour WordPress et PrestaShop, notamment sur le projet Uberti.shop, dépassant les limites des plugins natifs pour répondre à des besoins métiers spécifiques.`,
+          resultat: `Modules fonctionnels livrés et utilisés en production, répondant à des besoins non couverts par les solutions génériques du marché.`,
+          valeurAjoutee: `Capacité à concevoir des solutions PHP sur mesure là où les outils existants montraient leurs limites, différenciant l'agence de concurrents proposant uniquement des modules préfabriqués.`,
+          realisationLink: { label: 'Uberti.shop', route: '/realisations/1' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 8,
+          label: 'Avancé',
+          detail: `Je suis à l'aise avec PHP aussi bien en développement "from scratch" qu'avec Symfony, WordPress ou PrestaShop. Je maîtrise la POO PHP, Doctrine ORM, Twig, et les bonnes pratiques modernes (namespaces, Composer, PSR).`
+        },
+        importance: `PHP reste la technologie back-end qui couvre le plus large spectre de mes expériences professionnelles. Même si Java est aujourd'hui ma compétence principale, PHP est incontournable dans mon profil pour tout contexte web ou agence.`,
+        vitesse: `Ma montée en compétence PHP a été progressive mais efficace. La migration PHP 3 → PHP 8 chez Interpane a été l'accélérateur le plus significatif : rien ne force à comprendre un langage mieux que devoir assumer la totalité d'un projet existant.`,
+        recul: `Prendre le temps de comprendre Composer et la gestion des dépendances dès le début est indispensable. Je conseillerais aussi d'apprendre Symfony avant WordPress — le premier forme les bonnes habitudes que le second ne demande pas.`
+      },
+      evolution: {
+        objectif: `Approfondir les tests automatisés en PHP (PHPUnit) et explorer Laravel comme alternative à Symfony. À plus long terme, m'intéresser à l'intégration continue pour les projets PHP.`,
+        formations: `Veille active sur PHP 8.3+. Exploration personnelle de Laravel et des patterns CQRS en PHP.`
+      },
+      realisations: [
+        { label: 'GPAO – Interpane', route: '/realisations/2' },
+        { label: 'Uberti.shop',      route: '/realisations/1' }
+      ]
     },
+
+    // ─────────────────────────────────────────────────────
+    // WORDPRESS
+    // ─────────────────────────────────────────────────────
+    {
+      id: 'wordpress',
+      name: 'WordPress',
+      icon: 'assets/img/wordpress.png',
+      category: 'technique',
+      level: 8,
+      tagline: 'Le CMS dominant, maîtrisé au-delà des plugins',
+      definition: `WordPress est un CMS open source écrit en PHP, alimentant aujourd'hui plus de 40% des sites web mondiaux. Initialement conçu pour le blogging, il a évolué en un CMS polyvalent grâce à son écosystème de 60 000 plugins et ses thèmes. L'arrivée de l'éditeur de blocs Gutenberg et du Full Site Editing a transformé WordPress en un véritable constructeur de sites visuels, tandis que l'API REST native permet des architectures headless découplant le back WordPress d'un front React ou Angular. WordPress reste la solution incontournable pour les sites vitrines et les projets nécessitant une interface d'administration accessible aux non-techniciens.`,
+      anecdotes: [
+        {
+          texte: `Chez DGS Création, j'ai développé et livré LD Éclairage, un site vitrine avec catalogue et système de demande de devis, basé sur WordPress avec ACF et WooCommerce en mode catalogue. Le projet nécessitait une interface d'administration simple pour que le client puisse gérer son catalogue produits en autonomie.`,
+          resultat: `Livraison d'un site vitrine professionnel avec une gestion de catalogue flexible et un formulaire de devis fonctionnel, pris en main rapidement par le client sans formation lourde.`,
+          valeurAjoutee: `Conception d'une architecture éditoriale sur mesure avec ACF permettant au client de gérer ses produits comme un vrai back-office, sans la complexité d'un e-commerce complet.`,
+          realisationLink: { label: 'LD Éclairage', route: '/realisations/3' }
+        },
+        {
+          texte: `J'ai développé le site de l'Atelier des Créatrices Solidaires, une association cherchant à valoriser ses actions en ligne tout en anticipant une future boutique solidaire. Le projet impliquait de poser un socle WordPress évolutif, simple à administrer par des bénévoles non-techniciens.`,
+          resultat: `Plateforme stable et régulièrement mise à jour par les bénévoles, avec une architecture déjà prête pour l'activation de la boutique solidaire.`,
+          valeurAjoutee: `Rédaction d'une documentation bénévole et conception de blocs réutilisables permettant à l'association d'être totalement autonome dans la gestion de son contenu.`,
+          realisationLink: { label: 'Atelier des Créatrices Solidaires', route: '/realisations/5' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 8,
+          label: 'Avancé',
+          detail: `Je maîtrise WordPress dans toutes ses dimensions : thèmes enfants, développement de plugins custom, ACF, WooCommerce, hooks (actions/filtres), WP_Query et optimisation des performances.`
+        },
+        importance: `WordPress reste l'une des compétences les plus demandées sur le marché du web, particulièrement en contexte agence ou freelance. Dans mon CDI actuel, elle est moins sollicitée, mais constitue un atout différenciateur fort.`,
+        vitesse: `Acquise rapidement grâce à l'immersion en agence. Les premiers projets m'ont donné les bases ; c'est la diversité des cas clients qui m'a vraiment fait progresser vers une maîtrise avancée.`,
+        recul: `Ne pas systématiquement chercher un plugin pour tout résoudre. Pour des fonctionnalités simples, coder un mini-plugin personnalisé est souvent plus propre et performant. Et toujours tester les mises à jour de plugins sur un environnement de staging avant la production.`
+      },
+      evolution: {
+        objectif: `Explorer WordPress en mode headless, combinant un back WordPress avec l'API REST et un front Angular. Cette approche permettrait d'unir la flexibilité du back WordPress avec les performances d'un SPA moderne.`,
+        formations: `Veille sur l'écosystème WP headless. Exploration personnelle d'une architecture WP REST API + Angular.`
+      },
+      realisations: [
+        { label: 'LD Éclairage',                     route: '/realisations/3' },
+        { label: 'Atelier des Créatrices Solidaires', route: '/realisations/5' }
+      ]
+    },
+
+    // ─────────────────────────────────────────────────────
+    // COMMUNICATION
+    // ─────────────────────────────────────────────────────
+    {
+      id: 'communication',
+      name: 'Communication',
+      icon: 'assets/img/communication.png',
+      category: 'humaine',
+      level: 8,
+      tagline: 'Transmettre clairement dans un contexte technique',
+      definition: `La communication professionnelle dans les métiers du développement englobe deux dimensions indissociables : technique (documenter, commenter, rédiger des spécifications) et relationnelle (écouter, vulgariser, convaincre). Avec la généralisation des méthodes Agile et des équipes distribuées, la communication est devenue une compétence à part entière pour un développeur. Savoir expliquer une contrainte technique à un directeur, documenter une API pour ses collègues ou présenter une solution en réunion sont des situations qui font la différence entre un bon et un excellent ingénieur logiciel.`,
+      anecdotes: [
+        {
+          texte: `Chez DGS Création, j'étais en contact direct avec les clients tout au long des projets : de la phase de recueil de besoins jusqu'à la livraison et la formation à l'utilisation. Je devais régulièrement traduire des contraintes techniques en termes accessibles à des clients non-techniciens.`,
+          resultat: `Réduction des allers-retours de modification grâce à une compréhension précise des attentes dès le départ, et taux de satisfaction élevé sur les projets dont j'assurais le suivi.`,
+          valeurAjoutee: `Ma capacité à vulgariser les aspects techniques a permis d'établir une relation de confiance avec les clients, favorisant des échanges efficaces et limitant les incompréhensions coûteuses.`
+        },
+        {
+          texte: `Dans le cadre de mon Master à l'ISCOD, j'ai produit de nombreux livrables professionnels : rapports d'activité, documentations techniques, présentations de projet. Cet exercice régulier m'a permis de structurer et formaliser ma communication écrite.`,
+          resultat: `Livrables validés par les jurys avec des retours positifs sur la qualité rédactionnelle et la clarté de la présentation.`,
+          valeurAjoutee: `Développement d'une capacité à produire des documents professionnels accessibles à différents publics, directement transférable à la documentation de projets en entreprise.`
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 8,
+          label: 'Avancé',
+          detail: `Je communique efficacement à l'écrit (documentation, rapports, emails professionnels) comme à l'oral (réunions, présentations, relation client). Je suis à l'aise pour vulgariser des sujets techniques et adapter mon discours à mon interlocuteur.`
+        },
+        importance: `La communication est une compétence transversale que je considère comme l'amplificateur de toutes mes compétences techniques. Un développeur qui ne sait pas communiquer ses solutions ne peut pas pleinement les valoriser. Dans mon métier actuel, elle est sollicitée quotidiennement.`,
+        vitesse: `Cette compétence s'est développée progressivement grâce à l'alternance, qui confronte directement aux situations de communication réelle avec des clients, des collègues et des tuteurs aux attentes différentes.`,
+        recul: `La communication technique s'améliore en écrivant régulièrement. Prendre l'habitude de rédiger pour un lecteur futur — qui ne connaît pas le contexte — change radicalement la qualité de sa documentation. Commenter son code comme si on l'expliquerait à quelqu'un d'autre est le meilleur exercice quotidien.`
+      },
+      evolution: {
+        objectif: `Continuer à développer ma communication technique via la documentation de mes projets, et explorer la prise de parole dans des contextes professionnels (présentations techniques, meetups).`,
+        formations: `Veille sur les bonnes pratiques de documentation technique (framework Diátaxis). Rédaction régulière de READMEs et de livrables dans le cadre de mes projets personnels.`
+      },
+      realisations: []
+    },
+
+    // ─────────────────────────────────────────────────────
+    // GESTION DE PROJET
+    // ─────────────────────────────────────────────────────
+    {
+      id: 'gestion-projet',
+      name: 'Gestion de projet',
+      icon: 'assets/img/gestion_de_projet.png',
+      category: 'humaine',
+      level: 7,
+      tagline: "Piloter l'incertitude pour livrer dans les délais",
+      definition: `La gestion de projet dans le développement logiciel consiste à planifier, organiser, suivre et livrer des projets dans les contraintes de temps, de budget et de qualité. Avec la complexité croissante des projets informatiques, les méthodes Agile (Scrum, Kanban) ont largement remplacé les approches en cascade, permettant une meilleure adaptabilité aux changements. Aujourd'hui, un développeur expérimenté ne peut ignorer les fondamentaux du management de projet : définition du périmètre, gestion des risques et communication avec les parties prenantes sont des compétences attendues bien au-delà du rôle de chef de projet.`,
+      anecdotes: [
+        {
+          texte: `Chez Interpane, j'ai géré seul la migration du logiciel GPAO de PHP 3 vers PHP 8/Symfony, depuis l'analyse de l'existant jusqu'à la livraison finale, sans méthodologie formelle imposée. J'ai organisé mon travail de manière autonome : priorisation, suivi de l'avancement, gestion des imprévus techniques.`,
+          resultat: `Livraison d'une version stable du nouveau logiciel accompagnée d'une documentation complète, dans les délais convenus avec l'entreprise.`,
+          valeurAjoutee: `Capacité à mener un projet technique de bout en bout sans supervision directe, en prenant des décisions d'architecture autonomes et en gérant les risques de régression.`,
+          realisationLink: { label: 'GPAO – Interpane', route: '/realisations/2' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 7,
+          label: 'Avancé',
+          detail: `Je suis autonome pour gérer des projets de taille moyenne en solo ou en petite équipe. Je maîtrise les bases des méthodes Agile et je suis à l'aise avec les outils de suivi courants (Jira, Trello, GitHub Projects). Je manque encore d'expérience sur des projets multi-équipes complexes.`
+        },
+        importance: `La gestion de projet est de plus en plus attendue des développeurs seniors. Dans mon CDI, je suis amené à organiser mon propre travail et à reporter l'avancement à la direction, ce qui nécessite des bases solides en planification et en communication de projet.`,
+        vitesse: `Développée progressivement par la pratique sur des projets réels. Les formations Agile de l'ISCOD ont fourni le cadre théorique que j'ai pu ensuite appliquer concrètement.`,
+        recul: `Ne jamais sous-estimer la documentation en cours de projet. Les notes prises pendant le développement valent de l'or lors des phases de livraison ou de maintenance ultérieure. Apprendre à dire non à des demandes hors périmètre est également une compétence de gestion de projet à part entière.`
+      },
+      evolution: {
+        objectif: `Me former aux certifications Agile (PSM I) et explorer les outils de management de projet modernes. L'objectif est de pouvoir prendre des responsabilités de tech lead sur des projets d'équipe.`,
+        formations: `Intérêt pour la certification PSM I. Utilisation active de GitHub Projects et Notion dans mes projets personnels.`
+      },
+      realisations: [
+        { label: 'GPAO – Interpane', route: '/realisations/2' }
+      ]
+    },
+
+    // ─────────────────────────────────────────────────────
+    // RELATION CLIENT
+    // ─────────────────────────────────────────────────────
+    {
+      id: 'relation-client',
+      name: 'Relation client',
+      icon: 'assets/img/relation_client.png',
+      category: 'humaine',
+      level: 7,
+      tagline: 'Transformer les besoins en solutions comprises de tous',
+      definition: `La relation client dans les métiers du numérique va bien au-delà du contact commercial. Elle englobe l'écoute active, la traduction des besoins en spécifications techniques, la gestion des attentes tout au long du projet et la livraison d'une solution qui répond véritablement aux problématiques métier. Dans un contexte d'agence web ou de développement sur mesure, la qualité de la relation client est souvent aussi importante que la qualité technique du livrable : un client bien accompagné est un client fidèle qui recommande.`,
+      anecdotes: [
+        {
+          texte: `Chez DGS Création, j'assurais le suivi direct des clients tout au long des projets : de la réunion de kick-off pour recueillir les besoins jusqu'à la livraison finale et la formation à l'utilisation. Je gérais les retours clients et arbitrais les demandes de modifications en fonction du périmètre initial.`,
+          resultat: `Taux de satisfaction élevé sur les projets dont j'assurais le suivi, avec des retours positifs sur la clarté de la communication et la réactivité aux demandes.`,
+          valeurAjoutee: `Réduction significative des modifications de dernière minute grâce à une compréhension précise des attentes dès le départ, économisant du temps de développement et évitant des tensions.`
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 7,
+          label: 'Avancé',
+          detail: `Je suis à l'aise pour interagir avec des clients en face-à-face ou par écrit, recueillir et reformuler leurs besoins, et gérer les situations de feedback ou d'insatisfaction de manière constructive.`
+        },
+        importance: `La relation client est moins centrale dans mon CDI actuel (pas de contact direct avec des clients externes), mais reste une compétence précieuse qui différencie un développeur d'un simple exécutant et ouvre des responsabilités de type tech lead.`,
+        vitesse: `Développée naturellement dans le contexte d'agence web, où chaque projet est associé à un client avec des attentes et un calendrier spécifiques. L'immersion est le meilleur apprentissage.`,
+        recul: `Toujours reformuler la demande client par écrit avant de commencer le développement et faire valider cette reformulation. Ce simple réflexe évite 80% des malentendus coûteux. Séparer clairement ce qui est dans le périmètre de ce qui ne l'est pas est aussi une compétence à développer tôt.`
+      },
+      evolution: {
+        objectif: `Continuer à développer cette compétence en m'impliquant dans les phases de cadrage projet chez Synergie et en cherchant des opportunités de contact avec les utilisateurs finaux des outils que je développe.`,
+        formations: `Lecture de littérature sur la communication non-violente. Application quotidienne dans les échanges professionnels.`
+      },
+      realisations: []
+    },
+
+    // ─────────────────────────────────────────────────────
+    // AUTONOMIE
+    // ─────────────────────────────────────────────────────
     {
       id: 'autonomie',
       name: 'Autonomie',
       icon: 'assets/img/autonomie.png',
-      html: `
-        <h2>Introduction</h2>
-        <p>
-          L’autonomie est une compétence clé dans le monde professionnel, en particulier dans les métiers du numérique où les projets sont souvent complexes, évolutifs et impliquent des équipes distribuées.
-          Être autonome, c’est savoir organiser son travail, prendre des décisions pertinentes sans supervision constante, résoudre des problèmes de manière proactive et rester efficace même dans des environnements incertains ou en évolution rapide.
-        </p>
-        <p>
-          Cette capacité demande une bonne gestion du temps, de la rigueur, mais aussi une forme de curiosité et d’initiative :
-          chercher des solutions par soi-même, apprendre de nouvelles choses sans attendre qu’on nous les enseigne, anticiper les besoins du projet ou de l’entreprise.
-          Dans un secteur où les technologies évoluent sans cesse, être autonome est un atout précieux pour gagner en efficacité et en crédibilité.
-        </p>
-        <p>
-          L’autonomie n’exclut évidemment pas le travail en équipe. Au contraire, elle le renforce :
-          un collaborateur autonome sait quand il doit avancer seul, mais aussi quand il est nécessaire de consulter, d’alerter ou de coopérer.
-          C’est cette capacité à équilibrer indépendance et collaboration qui fait toute la valeur d’un professionnel autonome.
-        </p>
-
-        <h2>Mon expérience vécue</h2>
-        <p>
-          Mon autonomie s’est particulièrement développée au sein de l’entreprise <strong>Tschoeppe</strong>, où je travaille actuellement.
-          Suite au départ de plusieurs responsables du service informatique, je me suis retrouvé en charge de sujets importants sans supervision directe pendant plusieurs semaines.
-          J’ai dû prendre en main un logiciel de dessin 2D complexe, analyser et corriger des bugs critiques, tout en poursuivant le développement de nouvelles fonctionnalités.
-          Cette situation m’a permis de prouver ma capacité à <strong>gérer des responsabilités importantes de manière autonome</strong> et à m’adapter rapidement à un contexte évolutif.
-        </p>
-        <p>
-          Chez <strong>Interpane</strong>, j’ai eu à moderniser un ancien logiciel de GPAO en PHP 3. En l’absence de documentation et de référent technique,
-          j’ai pris l’initiative de migrer le projet vers Symfony, de redéfinir son architecture et de créer une documentation claire.
-          Cette décision a grandement facilité la maintenance future du logiciel.
-        </p>
-        <p>
-          Enfin, chez <strong>DGS Création</strong>, j’ai géré intégralement certains projets de sites e-commerce et vitrine :
-          de l’intégration à la création de modules personnalisés, jusqu’à la formation du client.
-          J’étais souvent seul à assurer l’ensemble du développement, tout en respectant les maquettes validées et les délais impartis.
-        </p>
-
-        <h2>Mon niveau de compétence</h2>
-        <p>
-          Grâce à ces différentes expériences, je me considère aujourd’hui comme <strong>autonome et fiable</strong> dans mon travail. Je suis capable de :
-        </p>
-        <ul>
-          <li>Comprendre un besoin ou un problème de manière indépendante,</li>
-          <li>Proposer des solutions réalistes et adaptées,</li>
-          <li>Planifier et prioriser mes tâches sans dépendre d’un encadrement constant,</li>
-          <li>Utiliser les ressources disponibles pour me former et progresser seul.</li>
-        </ul>
-        <p>
-          Je suis également conscient que l’autonomie se développe en continu. J’essaie donc de renforcer cette compétence au quotidien,
-          en me fixant des objectifs clairs, en documentant ce que je fais, et en apprenant de mes erreurs.
-          Mon objectif est de devenir un profil encore plus <strong>proactif, adaptable et moteur dans une équipe</strong>,
-          capable de contribuer pleinement à la réussite des projets, tout en continuant à progresser personnellement.
-        </p>
-      `,
+      category: 'humaine',
+      level: 9,
+      tagline: 'Avancer seul, décider vite, livrer quand même',
+      definition: `L'autonomie est une compétence clé dans les métiers du numérique où les projets sont complexes, évolutifs et impliquent souvent des équipes réduites ou distribuées. Être autonome, c'est savoir organiser son travail, prendre des décisions pertinentes sans supervision constante, résoudre des problèmes de manière proactive et rester efficace même dans des environnements incertains. Dans un secteur où les technologies évoluent sans cesse, cette capacité à s'autoformer et à anticiper les besoins est un atout précieux. L'autonomie n'exclut pas le travail en équipe — au contraire, un collaborateur autonome sait quand avancer seul et quand consulter ou alerter.`,
+      anecdotes: [
+        {
+          texte: `Chez Groupe Synergie Développement, suite au départ de plusieurs membres du service informatique, je me suis retrouvé seul en charge de Tschoeppe Live sans supervision directe pendant plusieurs semaines. J'ai dû analyser et corriger des bugs critiques sur ce logiciel de dessin 2D Java tout en poursuivant le développement de nouvelles fonctionnalités.`,
+          resultat: `Maintien opérationnel du logiciel sans interruption de service, et livraison des fonctionnalités prévues dans les délais malgré l'absence d'encadrement.`,
+          valeurAjoutee: `Démonstration concrète de ma capacité à porter des responsabilités importantes sans supervision, ce qui m'a valu la confiance de la direction et une embauche en CDI.`,
+          realisationLink: { label: 'Tschoeppe Live', route: '/realisations/4' }
+        },
+        {
+          texte: `Chez Interpane, en l'absence totale de documentation et de référent technique, j'ai pris l'initiative de migrer seul le logiciel GPAO de PHP 3 vers Symfony, en redéfinissant l'architecture et en créant une documentation complète.`,
+          resultat: `Livraison d'un logiciel modernisé avec documentation, permettant à l'équipe de continuer à le maintenir et l'enrichir après mon départ.`,
+          valeurAjoutee: `Ma prise d'initiative sur les choix d'architecture (Symfony plutôt qu'une simple mise à jour PHP) a considérablement prolongé la durée de vie du logiciel et réduit la dette technique.`,
+          realisationLink: { label: 'GPAO – Interpane', route: '/realisations/2' }
+        }
+      ],
+      autocritique: {
+        niveau: {
+          score: 9,
+          label: 'Expert',
+          detail: `Je suis reconnu pour mon autonomie par mes différents employeurs. Je suis capable de prendre en charge des sujets complexes sans encadrement, de prendre des décisions techniques responsables et de les assumer.`
+        },
+        importance: `L'autonomie est probablement ma compétence la plus différenciante. Elle m'a permis de créer de la valeur dans des contextes où d'autres auraient attendu des instructions. Dans mon CDI actuel, elle est reconnue et attendue explicitement.`,
+        vitesse: `L'autonomie ne s'apprend pas, elle se forge dans les situations de contrainte. Chacune de mes expériences m'a confronté à des moments où je devais avancer sans filet — c'est dans ces moments que cette compétence se développe vraiment.`,
+        recul: `L'autonomie mal calibrée peut devenir de l'isolement. La nuance importante que j'ai apprise : savoir quand alerter est aussi important que savoir avancer seul. Un développeur autonome qui cache ses blocages pendant trop longtemps crée plus de problèmes qu'il n'en résout.`
+      },
+      evolution: {
+        objectif: `Canaliser cette autonomie vers des responsabilités de leadership technique : être autonome pour un projet solo est acquis, l'enjeu suivant est d'embarquer une équipe dans cette dynamique.`,
+        formations: `Lectures sur le leadership technique et l'architecture logicielle. Objectif de prendre des responsabilités de tech lead sur un projet dans les 12 prochains mois.`
+      },
+      realisations: [
+        { label: 'Tschoeppe Live',   route: '/realisations/4' },
+        { label: 'GPAO – Interpane', route: '/realisations/2' }
+      ]
     }
   ];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.skillId = this.route.snapshot.paramMap.get('id') || '';
-    this.skill = this.allSkills.find((s) => s.id === this.skillId);
+    const id = this.route.snapshot.paramMap.get('id') || '';
+    this.skill = this.allSkills.find(s => s.id === id);
+  }
+
+  levelLabel(score: number): string {
+    if (score >= 9) return 'Expert';
+    if (score >= 7) return 'Avancé';
+    if (score >= 5) return 'Intermédiaire';
+    return 'Débutant';
+  }
+
+  levelColor(score: number): string {
+    if (score >= 9) return 'text-red-600 bg-red-50 border-red-200';
+    if (score >= 7) return 'text-orange-600 bg-orange-50 border-orange-200';
+    return 'text-yellow-600 bg-yellow-50 border-yellow-200';
   }
 }

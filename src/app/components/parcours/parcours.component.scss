@@ -1,9 +1,19 @@
-#parcours {
-  scroll-margin-top: 100px;
-
-  .timeline-entry {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
-  }
+:host {
+  display: block;
 }
+
+// Animation d'entrée — transform uniquement, jamais opacity:0
+// Éléments toujours visibles, juste glissants au chargement
+@keyframes slideUp {
+  from { transform: translateY(20px); }
+  to   { transform: translateY(0); }
+}
+
+.parcours-card {
+  animation: slideUp 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.parcours-card:nth-child(1) { animation-delay: 0.05s; }
+.parcours-card:nth-child(2) { animation-delay: 0.12s; }
+.parcours-card:nth-child(3) { animation-delay: 0.19s; }
+.parcours-card:nth-child(4) { animation-delay: 0.26s; }
